@@ -1,0 +1,350 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "C4A",
+          "version": "0.1.0",
+          "informationUri": "https://example.local/c4a",
+          "rules": [
+            {
+              "id": "crypto-config",
+              "name": "crypto-config",
+              "shortDescription": {
+                "text": "Cifrador débil u obsoleto en platform/c4a/detectors/crypto_config.py"
+              },
+              "helpUri": "https://cwe.mitre.org/data/definitions/327.html"
+            },
+            {
+              "id": "dependencies",
+              "name": "dependencies",
+              "shortDescription": {
+                "text": "Dependencias npm sin fijar en platform/examples/vuln-demo/package.json"
+              },
+              "helpUri": "https://cwe.mitre.org/data/definitions/1104.html"
+            }
+          ]
+        }
+      },
+      "automationDetails": {
+        "id": "RUN-20261006T032256Z-2c8f"
+      },
+      "results": [
+        {
+          "ruleId": "dependencies",
+          "level": "warning",
+          "message": {
+            "text": "Dependencias npm sin fijar en platform/examples/vuln-demo/package.json — 1 dependencia(s) usan rangos abiertos (^, ~, *, latest, >=). No implica vulnerabilidad por sí mismo; sí dificulta reproducir builds y rastrear qué versión concreta corre. La correlación con CVE requiere una herramienta de SCA (revisión manual)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "platform/examples/vuln-demo/package.json"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ],
+          "properties": {
+            "severidad": "MEDIO",
+            "estado": "false-positive",
+            "confianza": "direct",
+            "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:L",
+            "cvss_base": 5.6,
+            "cwe": [
+              "CWE-1104",
+              "CWE-1395"
+            ],
+            "cve": [],
+            "controles": [
+              "A.8.8"
+            ],
+            "normativas": [
+              "ISO-27001",
+              "LEY-21663"
+            ],
+            "finding_id": "F-def509cf5e"
+          },
+          "suppressions": [
+            {
+              "kind": "external",
+              "justification": "triaje humano: falso positivo"
+            }
+          ]
+        },
+        {
+          "ruleId": "crypto-config",
+          "level": "warning",
+          "message": {
+            "text": "Cifrador débil u obsoleto en platform/c4a/detectors/crypto_config.py — Se detectó cifrador débil u obsoleto. Requiere validación: puede ser uso legítimo (p. ej. hash no de seguridad) o un control criptográfico débil real."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "platform/c4a/detectors/crypto_config.py"
+                },
+                "region": {
+                  "startLine": 3
+                }
+              }
+            }
+          ],
+          "properties": {
+            "severidad": "MEDIO",
+            "estado": "requires-validation",
+            "confianza": "indirect",
+            "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+            "cvss_base": 5.9,
+            "cwe": [
+              "CWE-327"
+            ],
+            "cve": [],
+            "controles": [
+              "A.8.24"
+            ],
+            "normativas": [
+              "ISO-27001",
+              "LEY-21719"
+            ],
+            "finding_id": "F-e69a421257"
+          }
+        },
+        {
+          "ruleId": "crypto-config",
+          "level": "error",
+          "message": {
+            "text": "Verificación tls desactivada en platform/c4a/detectors/crypto_config.py — Se detectó verificación TLS desactivada. Requiere validación: puede ser uso legítimo (p. ej. hash no de seguridad) o un control criptográfico débil real."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "platform/c4a/detectors/crypto_config.py"
+                },
+                "region": {
+                  "startLine": 4
+                }
+              }
+            }
+          ],
+          "properties": {
+            "severidad": "ALTO",
+            "estado": "requires-validation",
+            "confianza": "indirect",
+            "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
+            "cvss_base": 7.4,
+            "cwe": [
+              "CWE-319",
+              "CWE-327"
+            ],
+            "cve": [],
+            "controles": [
+              "A.8.24"
+            ],
+            "normativas": [
+              "ISO-27001",
+              "LEY-21719"
+            ],
+            "finding_id": "F-7aaa3301bd"
+          }
+        },
+        {
+          "ruleId": "crypto-config",
+          "level": "note",
+          "message": {
+            "text": "Endpoint sobre http:// (texto claro) en platform/c4a/detectors/crypto_config.py — Se detectó endpoint sobre http:// (texto claro). Requiere validación: puede ser uso legítimo (p. ej. hash no de seguridad) o un control criptográfico débil real."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "platform/c4a/detectors/crypto_config.py"
+                },
+                "region": {
+                  "startLine": 5
+                }
+              }
+            }
+          ],
+          "properties": {
+            "severidad": "BAJO",
+            "estado": "requires-validation",
+            "confianza": "indirect",
+            "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N",
+            "cvss_base": 3.7,
+            "cwe": [
+              "CWE-319"
+            ],
+            "cve": [],
+            "controles": [
+              "A.8.24"
+            ],
+            "normativas": [
+              "ISO-27001",
+              "LEY-21719"
+            ],
+            "finding_id": "F-909427ccba"
+          }
+        },
+        {
+          "ruleId": "crypto-config",
+          "level": "note",
+          "message": {
+            "text": "Endpoint sobre http:// (texto claro) en platform/tests/test_sarif.py — Se detectó endpoint sobre http:// (texto claro). Requiere validación: puede ser uso legítimo (p. ej. hash no de seguridad) o un control criptográfico débil real."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "platform/tests/test_sarif.py"
+                },
+                "region": {
+                  "startLine": 12
+                }
+              }
+            }
+          ],
+          "properties": {
+            "severidad": "BAJO",
+            "estado": "requires-validation",
+            "confianza": "indirect",
+            "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N",
+            "cvss_base": 3.7,
+            "cwe": [
+              "CWE-319"
+            ],
+            "cve": [],
+            "controles": [
+              "A.8.24"
+            ],
+            "normativas": [
+              "ISO-27001",
+              "LEY-21719"
+            ],
+            "finding_id": "F-e47cda5852"
+          }
+        },
+        {
+          "ruleId": "crypto-config",
+          "level": "warning",
+          "message": {
+            "text": "Algoritmo hash débil para seguridad en platform/tests/test_smoke.py — Se detectó algoritmo hash débil para seguridad. Requiere validación: puede ser uso legítimo (p. ej. hash no de seguridad) o un control criptográfico débil real."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "platform/tests/test_smoke.py"
+                },
+                "region": {
+                  "startLine": 23
+                }
+              }
+            }
+          ],
+          "properties": {
+            "severidad": "MEDIO",
+            "estado": "requires-validation",
+            "confianza": "indirect",
+            "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N",
+            "cvss_base": 4.8,
+            "cwe": [
+              "CWE-327"
+            ],
+            "cve": [],
+            "controles": [
+              "A.8.24"
+            ],
+            "normativas": [
+              "ISO-27001",
+              "LEY-21719"
+            ],
+            "finding_id": "F-4839799cf8"
+          }
+        },
+        {
+          "ruleId": "crypto-config",
+          "level": "note",
+          "message": {
+            "text": "Endpoint sobre http:// (texto claro) en platform/tests/test_smoke.py — Se detectó endpoint sobre http:// (texto claro). Requiere validación: puede ser uso legítimo (p. ej. hash no de seguridad) o un control criptográfico débil real."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "platform/tests/test_smoke.py"
+                },
+                "region": {
+                  "startLine": 18
+                }
+              }
+            }
+          ],
+          "properties": {
+            "severidad": "BAJO",
+            "estado": "requires-validation",
+            "confianza": "indirect",
+            "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N",
+            "cvss_base": 3.7,
+            "cwe": [
+              "CWE-319"
+            ],
+            "cve": [],
+            "controles": [
+              "A.8.24"
+            ],
+            "normativas": [
+              "ISO-27001",
+              "LEY-21719"
+            ],
+            "finding_id": "F-00bb89fb81"
+          }
+        },
+        {
+          "ruleId": "crypto-config",
+          "level": "note",
+          "message": {
+            "text": "Endpoint sobre http:// (texto claro) en platform/tests/test_triage.py — Se detectó endpoint sobre http:// (texto claro). Requiere validación: puede ser uso legítimo (p. ej. hash no de seguridad) o un control criptográfico débil real."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "platform/tests/test_triage.py"
+                },
+                "region": {
+                  "startLine": 13
+                }
+              }
+            }
+          ],
+          "properties": {
+            "severidad": "BAJO",
+            "estado": "requires-validation",
+            "confianza": "indirect",
+            "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N",
+            "cvss_base": 3.7,
+            "cwe": [
+              "CWE-319"
+            ],
+            "cve": [],
+            "controles": [
+              "A.8.24"
+            ],
+            "normativas": [
+              "ISO-27001",
+              "LEY-21719"
+            ],
+            "finding_id": "F-bfde058dd5"
+          }
+        }
+      ]
+    }
+  ]
+}

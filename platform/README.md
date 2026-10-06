@@ -17,6 +17,7 @@ cd platform
 python3 -m c4a catalog                      # detectores y normativas
 python3 -m c4a init      --config config/audit.example.json
 python3 -m c4a run       --config config/audit.vt.json
+python3 -m c4a run       --config config/audit.vt.json --fail-on ALTO   # corta CI si hay altos abiertos
 python3 -m c4a runs      --config config/audit.vt.json
 python3 -m c4a reproduce --config config/audit.vt.json --run <RUN-ID>   # por ciclo (hash)
 python3 -m c4a verify    --config config/audit.vt.json --run <RUN-ID>   # por hallazgo
@@ -96,9 +97,12 @@ sin encuadre.
 
 `report.py` escribe: resumen ejecutivo, informe técnico, plan de remediación,
 reporte de riesgos, mapa CVE/CWE/CVSS, matriz de normativas, registro de
-evidencia y registro de reproducción, más un índice. En `03_hallazgos/` deja una
-ficha por hallazgo y la `matriz_cumplimiento.csv`; en `02_evidencia/` el
-`inventario.json`.
+evidencia, de reproducción y de triaje, más un índice. En `03_hallazgos/` deja
+una ficha por hallazgo y la `matriz_cumplimiento.csv`; en `02_evidencia/` el
+`inventario.json`. Para integración con CI y code scanning, `sarif.py` emite
+`04_informe/hallazgos.sarif.json` (SARIF 2.1.0); `--fail-on <sev>` corta el
+pipeline con código de salida !=0 si queda algún hallazgo abierto en o sobre esa
+severidad (los falsos positivos triados no cuentan).
 
 ## Cómo se reproduce una auditoría
 

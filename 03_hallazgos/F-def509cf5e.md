@@ -5,7 +5,7 @@
 - **Estado:** false-positive  ·  **Confianza:** direct
 - **Probabilidad:** media  ·  **Impacto:** medio
 - **Componente:** `platform/examples/vuln-demo/package.json`
-- **Detector:** dependencies  ·  **Detectado:** 2026-10-06T02:58:49Z
+- **Detector:** dependencies  ·  **Detectado:** 2026-10-06T03:22:56Z
 - **Roles:** Rol Técnico de Investigación
 
 ## Descripción
@@ -24,7 +24,7 @@
 - **Impacto de cumplimiento:** A.8.8 gestión de vulnerabilidades técnicas.
 
 ## Evidencia
-- `E-5dff6175e3` — platform/examples/vuln-demo/package.json · sha256 `cb3d9bd07eb230b7…` · 1 dependencia(s) con versión sin fijar
+- `E-e28caaa22e` — platform/examples/vuln-demo/package.json · sha256 `cb3d9bd07eb230b7…` · 1 dependencia(s) con versión sin fijar
 
   ```
   lodash: ^4.17.4  [dependencies]

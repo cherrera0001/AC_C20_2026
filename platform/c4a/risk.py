@@ -53,6 +53,19 @@ def priority(f: Finding) -> float:
     return round(min(score, 12.0), 2)
 
 
+def gate(findings: List[Finding], threshold: str) -> Dict[str, object]:
+    """Compuerta de CI: ¿hay hallazgos ABIERTOS en o por encima del umbral?
+
+    Devuelve si se dispara y cuántos. Los falsos positivos triados no cuentan.
+    """
+    th = _SEV_WEIGHT.get(threshold.upper(), 0)
+    offending = [f for f in findings
+                 if f.status != "false-positive" and _SEV_WEIGHT.get(f.severity, 0) >= th]
+    return {"threshold": threshold.upper(), "triggered": bool(offending),
+            "count": len(offending),
+            "ids": [f.id for f in offending][:50]}
+
+
 def summary(findings: List[Finding]) -> Dict[str, int]:
     counts: Dict[str, int] = {}
     for f in findings:

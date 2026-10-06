@@ -1,12 +1,12 @@
 # Registro de reproducción
 
-Ejecución RUN-20261006T025849Z-d4e4 · hash de resultado `9ffd5176ee846b1a…`
+Ejecución RUN-20261006T032256Z-2c8f · hash de resultado `6c4c287114249809…`
 
 Cómo reproducir la auditoría completa:
 
 ```
 python3 -m c4a run --config audit.example.json
-python3 -m c4a reproduce --run RUN-20261006T025849Z-d4e4
+python3 -m c4a reproduce --run RUN-20261006T032256Z-2c8f
 ```
 
 La reproducción re-ejecuta la auditoría y compara cada hallazgo por id determinista y por hash de evidencia. Estados posibles: reproducido, parcial, no reproducido.
@@ -17,5 +17,6 @@ La reproducción re-ejecuta la auditoría y compara cada hallazgo por id determi
 | F-e69a421257 | requires-validation | `grep -niE "(?i)\b(DES|RC4|3DES|ECB)\b" "platform/c4a/detectors/crypto_config.py"` |
 | F-4839799cf8 | requires-validation | `grep -niE "(?i)\b(md5|sha1)\s*\(" "platform/tests/test_smoke.py"` |
 | F-909427ccba | requires-validation | `grep -niE "http://(?!localhost|127\.0\.0\.1|0\.0\.0\.0)[A-Za-z0-9.\-]+" "platform/c4a/detectors/crypto_config.py"` |
+| F-e47cda5852 | requires-validation | `grep -niE "http://(?!localhost|127\.0\.0\.1|0\.0\.0\.0)[A-Za-z0-9.\-]+" "platform/tests/test_sarif.py"` |
 | F-00bb89fb81 | requires-validation | `grep -niE "http://(?!localhost|127\.0\.0\.1|0\.0\.0\.0)[A-Za-z0-9.\-]+" "platform/tests/test_smoke.py"` |
 | F-bfde058dd5 | requires-validation | `grep -niE "http://(?!localhost|127\.0\.0\.1|0\.0\.0\.0)[A-Za-z0-9.\-]+" "platform/tests/test_triage.py"` |

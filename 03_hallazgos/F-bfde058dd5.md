@@ -5,7 +5,7 @@
 - **Estado:** requires-validation  ·  **Confianza:** indirect
 - **Probabilidad:** media  ·  **Impacto:** medio
 - **Componente:** `platform/tests/test_triage.py`
-- **Detector:** crypto-config  ·  **Detectado:** 2026-10-06T02:58:49Z
+- **Detector:** crypto-config  ·  **Detectado:** 2026-10-06T03:22:56Z
 - **Roles:** Rol Técnico de Investigación
 
 ## Descripción
@@ -24,7 +24,7 @@ Se detectó endpoint sobre http:// (texto claro). Requiere validación: puede se
 - **Impacto de cumplimiento:** A.8.24 uso de criptografía; protección de datos en tránsito.
 
 ## Evidencia
-- `E-a9f0c8593b` — platform/tests/test_triage.py:13 · sha256 `76ff923860726c8d…` · 1 coincidencia(s): endpoint sobre http:// (texto claro)
+- `E-4f6f9a6531` — platform/tests/test_triage.py:13 · sha256 `76ff923860726c8d…` · 1 coincidencia(s): endpoint sobre http:// (texto claro)
 
   ```
   L13: "app.py": "url = 'http://api.example.com/v1'\n",

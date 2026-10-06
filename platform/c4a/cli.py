@@ -63,6 +63,14 @@ def _cmd_run(args) -> int:
     if run.errors:
         print(f"  ⚠ errores: {run.errors}")
     print(f"  informe: {cfg.phase['informe'] / 'README.md'}")
+    print(f"  sarif: {cfg.phase['informe'] / 'hallazgos.sarif.json'}")
+    if args.fail_on:
+        from . import risk
+        g = risk.gate(findings, args.fail_on)
+        if g["triggered"]:
+            print(f"  ✗ compuerta: {g['count']} hallazgo(s) abiertos en o sobre {g['threshold']}")
+            return 2
+        print(f"  ✓ compuerta: ningún hallazgo abierto en o sobre {g['threshold']}")
     return 0
 
 
@@ -143,6 +151,9 @@ def main(argv=None) -> int:
         sp.add_argument("--config", default=_DEFAULT_CONFIG, help="ruta a la config JSON del encargo")
         if extra is True:
             sp.add_argument("--person", default="", help="quién ejecuta (para el ledger)")
+            sp.add_argument("--fail-on", default="", dest="fail_on",
+                            choices=["CRITICO", "ALTO", "MEDIO", "BAJO", "INFORMACIONAL"],
+                            help="código de salida !=0 si hay hallazgos abiertos en o sobre esta severidad (para CI)")
         if extra == "repro":
             sp.add_argument("--run", required=True, help="run_id de la corrida a reproducir")
         if extra == "verify":

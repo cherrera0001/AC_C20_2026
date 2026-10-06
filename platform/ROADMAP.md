@@ -28,16 +28,13 @@ abajo; el `/loop` de maduración implementa uno por iteración.
 
 ## Near-term (próximas iteraciones del loop)
 
-- **N1 · Triaje persistente (revisión humana).** Un `triage.json` donde un humano
-  marca `false-positive`, `accepted-risk` o `confirmed`; la plataforma lo aplica
-  en cada corrida y separa *abiertos* de *triados*. Ataca la deuda 1 y encarna
-  «separar detección de conclusión».
-  *Aceptación:* `c4a triage` registra una decisión; la siguiente corrida cambia
-  el estado del hallazgo y lo excluye del recuento de abiertos; prueba que lo fija.
-- **N2 · Exportar SARIF + compuerta de CI.** `--format sarif` y `--fail-on
-  <sev>` con código de salida. Ataca la deuda 2.
-  *Aceptación:* se genera un SARIF válido; `--fail-on ALTO` devuelve exit!=0 si
-  hay un hallazgo alto abierto; prueba del esquema y del código de salida.
+- **N1 · [HECHO, commit `9610d99`] Triaje persistente (revisión humana).** Un
+  `triage.json` donde un humano marca `false-positive`, `accepted-risk` o
+  `confirmed`; la plataforma lo aplica en cada corrida y separa *abiertos* de
+  *triados*. Encarna «separar detección de conclusión».
+- **N2 · [HECHO] Exportar SARIF + compuerta de CI.** `hallazgos.sarif.json`
+  (SARIF 2.1.0, con `suppressions` para los falsos positivos triados) y
+  `--fail-on <sev>` con código de salida !=0 para cortar un pipeline.
 - **N3 · Menos falsos positivos.** Heurísticas: ignorar coincidencias en
   comentarios, entropía mínima para secretos, excluir por defecto los propios
   fuentes del detector y los fixtures. Ataca la deuda 1 en la fuente.

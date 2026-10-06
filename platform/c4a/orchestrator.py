@@ -10,6 +10,7 @@ objetivo inalterado produzcan el mismo hash: esa es la prueba de reproducción.
 """
 from __future__ import annotations
 
+import json
 import platform
 import sys
 import time
@@ -17,6 +18,7 @@ from pathlib import Path
 from typing import Dict, List, Tuple
 
 from . import correlation, report, risk
+from . import sarif as sarif_mod
 from . import sca as sca_mod
 from . import triage as triage_mod
 from .config import Config
@@ -126,6 +128,12 @@ def run_audit(cfg: Config, person: str = "", command: str = "run") -> Tuple[Run,
     )
 
     report.write_reports(cfg, run, findings, inventory, matrix, corr, ev_items)
+
+    # SARIF 2.1.0: salida estándar para CI / code scanning.
+    sarif_doc = sarif_mod.to_sarif(cfg, run, findings, ev_items)
+    with open(cfg.phase["informe"] / "hallazgos.sarif.json", "w", encoding="utf-8") as fh:
+        json.dump(sarif_doc, fh, ensure_ascii=False, indent=2)
+
     Ledger(cfg.phase["state"]).append(run)
     return run, findings, {"inventory": inventory, "matrix": matrix, "correlation": corr}
 

@@ -5,7 +5,7 @@
 - **Estado:** requires-validation  ·  **Confianza:** indirect
 - **Probabilidad:** media  ·  **Impacto:** alto
 - **Componente:** `platform/c4a/detectors/crypto_config.py`
-- **Detector:** crypto-config  ·  **Detectado:** 2026-10-06T02:58:49Z
+- **Detector:** crypto-config  ·  **Detectado:** 2026-10-06T03:22:56Z
 - **Roles:** Rol Técnico de Investigación
 
 ## Descripción
@@ -24,7 +24,7 @@ Se detectó verificación TLS desactivada. Requiere validación: puede ser uso l
 - **Impacto de cumplimiento:** A.8.24 uso de criptografía; protección de datos en tránsito.
 
 ## Evidencia
-- `E-46be198512` — platform/c4a/detectors/crypto_config.py:4 · sha256 `fb3988de1a9843fe…` · 1 coincidencia(s): verificación TLS desactivada
+- `E-3d52204865` — platform/c4a/detectors/crypto_config.py:4 · sha256 `fb3988de1a9843fe…` · 1 coincidencia(s): verificación TLS desactivada
 
   ```
   L4: desactivada (rejectUnauthorized:false, verify=False, InsecureSkipVerify) y
