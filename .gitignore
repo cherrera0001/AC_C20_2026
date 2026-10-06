@@ -1,0 +1,19 @@
+# Evidencia cruda: puede contener datos personales o sensibles.
+# Se versiona cifrada y con hash; el crudo no entra a git por defecto.
+evidence/*
+!evidence/README.md
+!evidence/.gitkeep
+!evidence/MANIFEST.md
+!evidence/*.sha256
+
+# Secretos y credenciales
+*.key
+*.pem
+*.p12
+.env
+.env.*
+
+# Temporales
+*.tmp
+*.log
+.DS_Store
