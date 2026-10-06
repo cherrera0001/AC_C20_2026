@@ -82,7 +82,8 @@ def run_audit(cfg: Config, person: str = "", command: str = "run") -> Tuple[Run,
     if sca_meta.get("status") == "error":
         errors.append(f"sca: {sca_meta.get('note')}")
     if sca_refs:
-        sca_mod.enrich_dependency_findings(findings, sca_refs)
+        ev_by_id = {e.id: e for e in store.items()}
+        sca_mod.enrich_dependency_findings(findings, sca_refs, ev_by_id)
         findings.extend(sca_mod.to_findings(sca_refs, store, sca_meta))
 
     risk.assess(findings)

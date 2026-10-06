@@ -43,8 +43,11 @@ def verify_run(cfg: Config, run_id: str, only: Optional[str] = None) -> Dict:
     results: List[Dict] = []
     try:
         store = EvidenceStore("_verify", tmp_raw, cfg.target)
+        # Si hay hallazgos de CVE, se re-escanea con el SCA una sola vez para
+        # re-verificarlos de verdad (no marcarlos como "externos sin más").
+        sca_ids, sca_meta = _rescan_sca(cfg, scope, store, records)
         for rec in records:
-            results.append(_verify_one(cfg, scope, store, rec, manifest))
+            results.append(_verify_one(cfg, scope, store, rec, manifest, sca_ids, sca_meta))
     finally:
         shutil.rmtree(tmp_raw, ignore_errors=True)
 
@@ -65,6 +68,21 @@ def verify_run(cfg: Config, run_id: str, only: Optional[str] = None) -> Dict:
     return report
 
 
+def _rescan_sca(cfg, scope, store, records):
+    """Re-escanea con el SCA si hay hallazgos de CVE que re-verificar.
+
+    Devuelve (ids_actuales, meta). Si no hay hallazgos SCA o el motor no está
+    disponible, devuelve conjunto vacío y el estado, y los CVE quedan 'external'.
+    """
+    if not any(r.get("source", "").startswith("sca:") for r in records):
+        return set(), {"status": "skipped"}
+    from . import sca as sca_mod
+    mgr = sca_mod.SCAManager(cfg)
+    refs, meta = mgr.run(scope)
+    ids = {f.id for f in sca_mod.to_findings(refs, store, meta)} if refs else set()
+    return ids, meta
+
+
 def _load_manifest(cfg: Config, run_id: str) -> Dict[str, str]:
     """Mapa id_evidencia → sha256 desde el MANIFEST de la corrida."""
     mpath = cfg.phase["evidence_raw"] / run_id / "MANIFEST.json"
@@ -79,14 +97,19 @@ def _load_manifest(cfg: Config, run_id: str) -> Dict[str, str]:
 
 
 def _verify_one(cfg: Config, scope: ScopeManager, store: EvidenceStore, rec: Dict,
-                manifest: Dict[str, str]) -> Dict:
+                manifest: Dict[str, str], sca_ids, sca_meta) -> Dict:
     fid = rec["id"]
     source = rec.get("source", "")
     component = rec.get("component", "")
 
     if source.startswith("sca:"):
+        if sca_meta.get("status") == "completed":
+            status = "reproduced" if fid in sca_ids else "not-reproduced"
+            detail = ("el re-escaneo SCA confirma la(s) CVE" if status == "reproduced"
+                      else "el re-escaneo SCA ya no reporta esta vulnerabilidad")
+            return {"id": fid, "component": component, "status": status, "detail": detail}
         return {"id": fid, "component": component, "status": "external",
-                "detail": "CVE: re-verificar re-escaneando con el motor SCA"}
+                "detail": f"SCA no disponible para re-verificar ({sca_meta.get('status')})"}
 
     detector_cls = REGISTRY.get(source)
     if not detector_cls:

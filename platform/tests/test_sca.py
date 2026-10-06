@@ -72,6 +72,43 @@ class TestScaParsers(unittest.TestCase):
         self.assertIn(("lodash", "4.17.4"), pkgs)
         self.assertIn(("express", "4.18.2"), pkgs)
 
+    def test_enrich_matches_package_in_evidence(self):
+        from c4a.model import Evidence, Finding
+        refs = sca.parse_osv_scanner(OSV_SCANNER)  # lodash → CVE-2019-10744
+        ev = Evidence(
+            id="E1", type="dependency", source="file:package.json",
+            location="package.json", collected_at="t", sha256="x",
+            responsible_role="r", scope="in-scope", status="collected",
+            result="", description="", relevance="",
+            excerpt_masked="lodash: ^4.17.4 [dependencies]\nexpress: ^4.0.0",
+        )
+        f = Finding(
+            id="F1", title="deps", description="dependencias sin fijar",
+            component="package.json", asset="package.json", scope="in-scope",
+            finding_type="technical", severity="MEDIO", probability="media",
+            impact="medio", status="detected", evidence=["E1"], source="dependencies",
+        )
+        sca.enrich_dependency_findings([f], refs, {"E1": ev})
+        self.assertIn("CVE-2019-10744", f.cve)
+
+    def test_enrich_no_false_match(self):
+        from c4a.model import Evidence, Finding
+        refs = sca.parse_osv_scanner(OSV_SCANNER)  # lodash
+        ev = Evidence(
+            id="E1", type="dependency", source="f", location="package.json",
+            collected_at="t", sha256="x", responsible_role="r", scope="in-scope",
+            status="collected", result="", description="", relevance="",
+            excerpt_masked="express: ^4.0.0\nreact: ^18.0.0",
+        )
+        f = Finding(
+            id="F1", title="deps", description="x", component="package.json",
+            asset="package.json", scope="in-scope", finding_type="technical",
+            severity="MEDIO", probability="media", impact="medio", status="detected",
+            evidence=["E1"], source="dependencies",
+        )
+        sca.enrich_dependency_findings([f], refs, {"E1": ev})
+        self.assertEqual(f.cve, [])  # lodash no está en la evidencia → no se correlaciona
+
     def test_disabled_by_default(self):
         from c4a import config as cm
         from c4a.scope import ScopeManager

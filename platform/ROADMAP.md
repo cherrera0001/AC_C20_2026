@@ -41,10 +41,16 @@ abajo; el `/loop` de maduración implementa uno por iteración.
   reglas del detector y los fixtures se excluyen del alcance de la autoauditoría.
   *Resultado:* la autoauditoría pasó de 10 hallazgos ruidosos a 0 reales; los
   controles quedan probados con casos positivos y negativos.
-- **N4 · Enriquecimiento CVE robusto + re-verificación SCA.** Correlacionar por
-  nombre y versión exactos leyendo la evidencia, y que `verify` re-escanee los
-  hallazgos de CVE. Ataca la deuda 3.
-  *Aceptación:* el hallazgo de dependencia de `lodash` queda con sus CVE.
+- **N4 · [HECHO] Enriquecimiento CVE robusto + re-verificación SCA.** La
+  correlación busca el paquete en la evidencia del hallazgo (no en la
+  descripción), y `verify` re-escanea con el SCA los hallazgos de CVE en vez de
+  marcarlos como externos.
+  *Resultado:* el hallazgo estático de `lodash` quedó con sus 8 CVE, y `verify`
+  reprodujo 3/3 en la demo, re-escaneando los CVE.
+
+> **Near-term COMPLETO** (N1–N4, commits `9610d99`, `628d9c6`, `408fbb8`, y este).
+> La siguiente ronda de maduración toma los ítems mid-term, empezando por M1
+> (mapa de evidencia y resultados en HTML).
 
 ## Mid-term
 

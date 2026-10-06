@@ -17,6 +17,7 @@ Sin dependencias: solo subprocess y urllib de la librería estándar.
 from __future__ import annotations
 
 import json
+import re
 import shutil
 import subprocess
 import urllib.error
@@ -347,16 +348,32 @@ def to_findings(refs: List[CveRef], store, meta: Dict) -> List:
     return findings
 
 
-def enrich_dependency_findings(static_findings: List, refs: List[CveRef]) -> None:
-    """Añade CVE a los hallazgos de dependencias estáticas cuyo paquete coincide."""
-    by_pkg: Dict[str, List[str]] = {}
+def enrich_dependency_findings(static_findings: List, refs: List[CveRef], ev_by_id: Dict) -> None:
+    """Añade CVE a los hallazgos de dependencias cuyo paquete aparece en su evidencia.
+
+    Busca el nombre del paquete (con frontera de palabra) en el extracto de
+    evidencia del hallazgo, su componente y su descripción. Antes se buscaba solo
+    en la descripción —que no lista los paquetes— y por eso no correlacionaba.
+    """
+    by_pkg: Dict[str, set] = {}
     for r in refs:
-        if r.cve_id:
-            by_pkg.setdefault(r.package.lower(), []).append(r.cve_id)
+        if r.cve_id and r.package:
+            by_pkg.setdefault(r.package.lower(), set()).add(r.cve_id)
+    if not by_pkg:
+        return
     for f in static_findings:
         if f.source != "dependencies":
             continue
-        hit = sorted({cve for pkg, cves in by_pkg.items() if pkg in f.description.lower() for cve in cves})
+        hay = " ".join(
+            (ev_by_id[eid].excerpt_masked or "").lower()
+            for eid in f.evidence if eid in ev_by_id
+        )
+        hay = f"{hay} {f.component.lower()} {f.description.lower()}"
+        hit = sorted({
+            cve for pkg, cves in by_pkg.items()
+            if re.search(r"(?<![\w-])" + re.escape(pkg) + r"(?![\w-])", hay)
+            for cve in cves
+        })
         if hit:
             f.cve = sorted(set(f.cve) | set(hit))
-            f.cve_note = "Correlación SCA por nombre de paquete; verificar versión afectada."
+            f.cve_note = "Correlación SCA: paquete presente en la evidencia; verificar versión afectada."
