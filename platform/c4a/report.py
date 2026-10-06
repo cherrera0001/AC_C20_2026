@@ -131,11 +131,13 @@ def write_finding_cards(cfg: Config, findings: List[Finding], ev_by_id: Dict[str
 
 def write_reports(cfg, run, findings, inventory, matrix, correlation, ev_items) -> List[Path]:
     paths: List[Path] = []
-    counts = risk.summary(findings)
-    ordered = _ordered(findings)
-    inf = cfg.phase["informe"]
+    # Los informes se centran en lo ABIERTO (los falsos positivos triados se
+    # excluyen de los recuentos, pero quedan trazados en el registro de triaje).
+    open_f = [f for f in findings if f.status != "false-positive"]
+    counts = risk.summary(open_f)
+    ordered = _ordered(open_f)
 
-    paths.append(_resumen_ejecutivo(cfg, run, ordered, counts, inventory, matrix))
+    paths.append(_resumen_ejecutivo(cfg, run, ordered, counts, inventory, matrix, findings))
     paths.append(_informe_tecnico(cfg, run, ordered, inventory))
     paths.append(_plan_remediacion(cfg, ordered))
     paths.append(_riesgos(cfg, ordered))
@@ -143,6 +145,7 @@ def write_reports(cfg, run, findings, inventory, matrix, correlation, ev_items) 
     paths.append(_matriz_normativas(cfg, matrix))
     paths.append(_registro_evidencia(cfg, ev_items))
     paths.append(_registro_reproduccion(cfg, run, ordered))
+    paths.append(_registro_triaje(cfg, findings))
     paths.append(_indice(cfg, run, paths))
     return paths
 
@@ -156,9 +159,12 @@ def _sev_table(counts: Dict[str, int]) -> str:
     return "| Severidad | N.º |\n|---|---|\n" + "\n".join(rows)
 
 
-def _resumen_ejecutivo(cfg, run, ordered, counts, inventory, matrix) -> Path:
+def _resumen_ejecutivo(cfg, run, ordered, counts, inventory, matrix, all_findings=None) -> Path:
     no_cumple = sum(1 for r in matrix if r["cumplimiento"] == "no-cumple")
     parcial = sum(1 for r in matrix if r["cumplimiento"] == "parcial")
+    all_findings = all_findings if all_findings is not None else ordered
+    n_fp = sum(1 for f in all_findings if f.status == "false-positive")
+    n_acc = sum(1 for f in all_findings if f.status == "accepted-risk")
     top = ordered[:5]
     body = f"""# Resumen ejecutivo — {cfg.audit_name}
 
@@ -168,8 +174,10 @@ permanece tras su compuerta de autorización y no forma parte de esta ejecución
 
 ## Estado en una línea
 
-Se analizaron {inventory['totals']['files_scanned']} archivos y se registraron
-{len(ordered)} hallazgos. Controles con incumplimiento: {no_cumple}; parciales: {parcial}.
+Se analizaron {inventory['totals']['files_scanned']} archivos y hay {len(ordered)}
+hallazgos ABIERTOS. Controles con incumplimiento: {no_cumple}; parciales: {parcial}.
+Triaje humano: {n_fp} descartado(s) como falso positivo, {n_acc} con riesgo aceptado
+(trazados en registro_triaje.md, fuera de este recuento).
 
 ## Hallazgos por severidad
 
@@ -337,6 +345,22 @@ def _registro_reproduccion(cfg, run, ordered) -> Path:
     if not ordered:
         body.append("| - | - | - |")
     p = cfg.phase["informe"] / "registro_reproduccion.md"
+    _w(p, "\n".join(body))
+    return p
+
+
+def _registro_triaje(cfg, all_findings) -> Path:
+    triaged = [f for f in all_findings if f.status in ("false-positive", "accepted-risk")]
+    body = ["# Registro de triaje", "",
+            "Decisiones humanas que cambian el tratamiento de un hallazgo. Persisten "
+            "entre corridas vía `triage.json` y se aplican en cada auditoría.", "",
+            "| ID | Decisión (estado) | Componente | Nota |", "|---|---|---|---|"]
+    for f in triaged:
+        nota = (f.notes or "").replace("\n", " ")[:160]
+        body.append(f"| {f.id} | {f.status} | `{f.component}` | {nota} |")
+    if not triaged:
+        body.append("| - | (sin decisiones de triaje todavía) | - | - |")
+    p = cfg.phase["informe"] / "registro_triaje.md"
     _w(p, "\n".join(body))
     return p
 

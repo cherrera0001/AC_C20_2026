@@ -20,7 +20,8 @@
     "exclude_dirs": [
       ".git", "node_modules", "dist", "build", ".turbo", ".next",
       "__pycache__", ".venv", "venv", "coverage",
-      "01_plan", "02_evidencia", "03_hallazgos", "04_informe", "evidence", ".c4a"
+      "01_plan", "02_evidencia", "03_hallazgos", "04_informe", "evidence", ".c4a",
+      "triage", "reports"
     ],
     "exclude_globs": ["*.pdf"]
   }

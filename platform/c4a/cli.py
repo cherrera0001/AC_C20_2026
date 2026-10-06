@@ -18,6 +18,7 @@ from . import __version__
 from . import config as config_mod
 from . import orchestrator
 from . import reproduction
+from . import triage as triage_mod
 from .detectors import catalog as det_catalog
 from .ledger import Ledger
 
@@ -51,6 +52,12 @@ def _cmd_run(args) -> int:
     print(f"✓ auditoría {run.run_id} · {run.status} · {run.duration_s}s")
     print(f"  archivos analizados: {s['files_scanned']}")
     print(f"  hallazgos: {s['findings']}  {json.dumps(s['by_severity'], ensure_ascii=False)}")
+    tri = s.get("triage", {})
+    if tri.get("false-positive") or tri.get("accepted-risk") or tri.get("confirmed"):
+        print(f"  triaje: {json.dumps(tri, ensure_ascii=False)}")
+    sca = s.get("sca", {})
+    if sca.get("status") not in (None, "skipped"):
+        print(f"  sca: {sca.get('engine')} {sca.get('status')} · {sca.get('cve_findings',0)} hallazgo(s) CVE")
     print(f"  evidencia: {s['evidence_items']} pieza(s) · controles: {s['controls_evaluated']}")
     print(f"  result_hash: {run.hash}")
     if run.errors:
@@ -82,6 +89,16 @@ def _cmd_verify(args) -> int:
     repro = c.get("reproduced", 0)
     total = sum(c.values())
     print(f"  reproducidos {repro}/{total}")
+    return 0
+
+
+def _cmd_triage(args) -> int:
+    cfg = _load(args)
+    path = triage_mod.append_decision(cfg, args.finding, args.decision, args.reason, args.by)
+    print(f"✓ triaje registrado: {args.finding} → {args.decision}")
+    print(f"  motivo: {args.reason or '(sin motivo)'} · por: {args.by or 'revisor'}")
+    print(f"  archivo: {path}")
+    print("  Se aplica en la próxima corrida (c4a run).")
     return 0
 
 
@@ -118,6 +135,7 @@ def main(argv=None) -> int:
         ("run", _cmd_run, True),
         ("reproduce", _cmd_reproduce, "repro"),
         ("verify", _cmd_verify, "verify"),
+        ("triage", _cmd_triage, "triage"),
         ("catalog", _cmd_catalog, False),
         ("runs", _cmd_runs, False),
     ]:
@@ -130,6 +148,13 @@ def main(argv=None) -> int:
         if extra == "verify":
             sp.add_argument("--run", required=True, help="run_id a verificar por hallazgo")
             sp.add_argument("--finding", default="", help="verificar solo este id de hallazgo")
+        if extra == "triage":
+            sp.add_argument("--finding", required=True, help="id del hallazgo a triar")
+            sp.add_argument("--decision", required=True,
+                            choices=list(triage_mod.VALID_DECISIONS),
+                            help="false-positive | accepted-risk | confirmed")
+            sp.add_argument("--reason", default="", help="motivo de la decisión")
+            sp.add_argument("--by", default="", help="quién decide")
         sp.set_defaults(func=func)
 
     args = p.parse_args(argv)

@@ -2,10 +2,10 @@
 
 - **Tipo:** technical
 - **Severidad:** MEDIO  ·  **Prioridad combinada:** 7.7
-- **Estado:** detected  ·  **Confianza:** direct
+- **Estado:** false-positive  ·  **Confianza:** direct
 - **Probabilidad:** media  ·  **Impacto:** medio
 - **Componente:** `platform/examples/vuln-demo/package.json`
-- **Detector:** dependencies  ·  **Detectado:** 2026-10-06T02:32:39Z
+- **Detector:** dependencies  ·  **Detectado:** 2026-10-06T02:58:49Z
 - **Roles:** Rol Técnico de Investigación
 
 ## Descripción
@@ -24,7 +24,7 @@
 - **Impacto de cumplimiento:** A.8.8 gestión de vulnerabilidades técnicas.
 
 ## Evidencia
-- `E-570bce2325` — platform/examples/vuln-demo/package.json · sha256 `cb3d9bd07eb230b7…` · 1 dependencia(s) con versión sin fijar
+- `E-5dff6175e3` — platform/examples/vuln-demo/package.json · sha256 `cb3d9bd07eb230b7…` · 1 dependencia(s) con versión sin fijar
 
   ```
   lodash: ^4.17.4  [dependencies]
@@ -41,4 +41,4 @@ Fijar versiones exactas y confiar en el lockfile; habilitar actualizaciones auto
 
 **Recomendaciones:** Ejecutar un SCA (npm audit, osv-scanner, Trivy) para correlacionar con CVEs reales.
 
-**Notas:** Correlación CVE: no automática en este ciclo; requiere feed/SCA.
+**Notas:** Correlación CVE: no automática en este ciclo; requiere feed/SCA. Triaje: false-positive por cristobal (2026-10-06T02:58:05Z): patron del propio detector, no cripto real

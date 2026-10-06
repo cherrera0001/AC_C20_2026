@@ -20,6 +20,7 @@ python3 -m c4a run       --config config/audit.vt.json
 python3 -m c4a runs      --config config/audit.vt.json
 python3 -m c4a reproduce --config config/audit.vt.json --run <RUN-ID>   # por ciclo (hash)
 python3 -m c4a verify    --config config/audit.vt.json --run <RUN-ID>   # por hallazgo
+python3 -m c4a triage    --config config/audit.example.json --finding <FID> --decision false-positive --reason "..." --by tu-nombre
 python3 -m c4a run       --config config/audit.sca-demo.windows.json    # demo SCA (CVE reales vía OSV.dev)
 ```
 
@@ -116,6 +117,17 @@ Dos niveles:
   `.c4a/verify/<run_id>.json`.
 
 Todo queda en el ledger append-only `.c4a/runs.jsonl`.
+
+## Cómo entra la revisión humana (triaje)
+
+`triage.py` + el subcomando `triage` guardan la decisión de un humano sobre un
+hallazgo —`false-positive`, `accepted-risk` o `confirmed`— en `triage.json`,
+indexada por el id determinista del hallazgo. En cada corrida la plataforma
+aplica el triaje: cambia el estado, separa *abiertos* de *triados* y deja
+`registro_triaje.md` con quién decidió y por qué. El triaje no altera el
+`result_hash` (cambia estado, no severidad), así que la reproducibilidad del
+análisis estático se preserva. Es la encarnación de «detección ≠ conclusión»:
+el detector observa, el humano concluye, y la conclusión persiste entre corridas.
 
 ## Cómo se evita la sobreespeculación
 

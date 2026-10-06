@@ -34,6 +34,7 @@ STATUS = (
     "not-reproduced",      # no se pudo reproducir
     "resolved",            # remediado y verificado
     "accepted-risk",       # riesgo aceptado por el propietario
+    "false-positive",      # descartado por revisión humana (triaje)
 )
 
 SEVERITIES = ("CRITICO", "ALTO", "MEDIO", "BAJO", "INFORMACIONAL",

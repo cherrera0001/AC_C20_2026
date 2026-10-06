@@ -18,6 +18,7 @@ from typing import Dict, List, Tuple
 
 from . import correlation, report, risk
 from . import sca as sca_mod
+from . import triage as triage_mod
 from .config import Config
 from .detectors import select
 from .detectors.base import DetectorContext, FileBlob
@@ -83,6 +84,7 @@ def run_audit(cfg: Config, person: str = "", command: str = "run") -> Tuple[Run,
         findings.extend(sca_mod.to_findings(sca_refs, store, sca_meta))
 
     risk.assess(findings)
+    triage_counts = triage_mod.apply_triage(findings, triage_mod.load_triage(cfg))
     corr = correlation.correlate(findings, cfg)
     matrix = correlation.controls_matrix(findings, cfg, started)
     ev_items = store.items()
@@ -113,6 +115,7 @@ def run_audit(cfg: Config, person: str = "", command: str = "run") -> Tuple[Run,
             "sca": {"engine": sca_meta.get("engine"), "status": sca_meta.get("status"),
                     "packages": sca_meta.get("packages", 0),
                     "cve_findings": sum(1 for f in findings if f.source.startswith("sca:"))},
+            "triage": triage_counts,
         },
         errors=errors,
         duration_s=round(time.time() - t0, 3),
