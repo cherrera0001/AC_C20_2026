@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-10-06T02:21:33Z",
+  "target": "C:\\Users\\herre\\OneDrive\\Documentos\\AC_C20_2026",
+  "totals": {
+    "files_scanned": 40,
+    "skipped_large": 0,
+    "skipped_binary": 0
+  },
+  "languages": {
+    "Python": 25
+  },
+  "extensions": {
+    ".py": 25,
+    ".json": 7,
+    ".md": 6,
+    "(sin extensión)": 1,
+    ".txt": 1
+  },
+  "package_managers": [
+    "platform/requirements.txt → pip (Python)"
+  ],
+  "containerization": [],
+  "infrastructure_as_code": [],
+  "kubernetes_manifests": [],
+  "ci_cd": [],
+  "env_files": []
+}

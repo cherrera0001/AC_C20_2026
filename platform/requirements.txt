@@ -1,0 +1,10 @@
+# C4A — primer ciclo: SIN dependencias externas.
+# Todo el núcleo usa solo la librería estándar de Python 3.10+.
+# Esto es deliberado: una auditoría debe poder re-ejecutarse en cualquier
+# máquina sin instalar nada, para ser reproducible y auditable.
+#
+# Herramientas EXTERNAS que la plataforma recomienda invocar (no son
+# dependencias de Python; se integran como comandos/MCP en ciclos futuros):
+#   - osv-scanner / Trivy / grype   (SCA real → correlación CVE)
+#   - gitleaks                       (escaneo de secretos)
+#   - nmap, sslscan                  (fase de red, tras autorización)

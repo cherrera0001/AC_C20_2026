@@ -1,0 +1,16 @@
+{
+  "_nota": "Subconjunto de CWE usado por los detectores del primer ciclo. Cada entrada se cita como referencia; no sustituye el catálogo oficial de MITRE.",
+  "CWE-798": {"name": "Use of Hard-coded Credentials", "url": "https://cwe.mitre.org/data/definitions/798.html"},
+  "CWE-312": {"name": "Cleartext Storage of Sensitive Information", "url": "https://cwe.mitre.org/data/definitions/312.html"},
+  "CWE-200": {"name": "Exposure of Sensitive Information to an Unauthorized Actor", "url": "https://cwe.mitre.org/data/definitions/200.html"},
+  "CWE-1104": {"name": "Use of Unmaintained Third Party Components", "url": "https://cwe.mitre.org/data/definitions/1104.html"},
+  "CWE-1395": {"name": "Dependency on Vulnerable Third-Party Component", "url": "https://cwe.mitre.org/data/definitions/1395.html"},
+  "CWE-250": {"name": "Execution with Unnecessary Privileges", "url": "https://cwe.mitre.org/data/definitions/250.html"},
+  "CWE-1393": {"name": "Use of Default Password", "url": "https://cwe.mitre.org/data/definitions/1393.html"},
+  "CWE-732": {"name": "Incorrect Permission Assignment for Critical Resource", "url": "https://cwe.mitre.org/data/definitions/732.html"},
+  "CWE-494": {"name": "Download of Code Without Integrity Check", "url": "https://cwe.mitre.org/data/definitions/494.html"},
+  "CWE-829": {"name": "Inclusion of Functionality from Untrusted Control Sphere", "url": "https://cwe.mitre.org/data/definitions/829.html"},
+  "CWE-327": {"name": "Use of a Broken or Risky Cryptographic Algorithm", "url": "https://cwe.mitre.org/data/definitions/327.html"},
+  "CWE-319": {"name": "Cleartext Transmission of Sensitive Information", "url": "https://cwe.mitre.org/data/definitions/319.html"},
+  "CWE-16": {"name": "Configuration", "url": "https://cwe.mitre.org/data/definitions/16.html"}
+}

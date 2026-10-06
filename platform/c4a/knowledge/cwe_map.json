@@ -1,0 +1,16 @@
+{
+  "_nota": "Mapa de correlación: por cada CWE, los controles ISO 27001 y normativas con que se relaciona, y el porqué. Lo usa el gestor de correlación (Fase 8). Es un mapa curado y auditable, no una inferencia automática.",
+  "CWE-798": {"controles": ["A.8.24", "A.8.28"], "normativas": ["ISO-27001", "NIST-800-218"], "porque": "Credenciales embebidas violan la gestión de secretos y la codificación segura."},
+  "CWE-312": {"controles": ["A.8.24", "A.8.3"], "normativas": ["ISO-27001", "LEY-21719"], "porque": "Datos sensibles en claro afectan el uso de criptografía y el control de acceso a la información."},
+  "CWE-200": {"controles": ["A.8.3", "A.8.4"], "normativas": ["ISO-27001", "LEY-21719"], "porque": "Exposición de información a actor no autorizado."},
+  "CWE-1104": {"controles": ["A.8.8"], "normativas": ["ISO-27001", "LEY-21663"], "porque": "Componentes sin mantenimiento son deuda de gestión de vulnerabilidades."},
+  "CWE-1395": {"controles": ["A.8.8"], "normativas": ["ISO-27001", "LEY-21663", "NIST-CSF"], "porque": "Dependencia de componente vulnerable: gestión de vulnerabilidades técnicas."},
+  "CWE-250": {"controles": ["A.8.2"], "normativas": ["ISO-27001", "NIST-800-53"], "porque": "Ejecución con privilegios innecesarios."},
+  "CWE-1393": {"controles": ["A.8.2", "A.8.24"], "normativas": ["ISO-27001"], "porque": "Contraseñas por defecto."},
+  "CWE-732": {"controles": ["A.8.3", "A.8.9"], "normativas": ["ISO-27001"], "porque": "Permisos incorrectos sobre recurso crítico."},
+  "CWE-494": {"controles": ["A.8.25", "A.8.9"], "normativas": ["ISO-27001", "NIST-800-218"], "porque": "Descarga de código sin verificación de integridad."},
+  "CWE-829": {"controles": ["A.8.25", "A.8.28"], "normativas": ["ISO-27001", "NIST-800-218"], "porque": "Inclusión de funcionalidad desde esfera de control no confiable (p. ej. acción CI sin fijar)."},
+  "CWE-327": {"controles": ["A.8.24"], "normativas": ["ISO-27001", "LEY-21719"], "porque": "Algoritmo criptográfico roto o riesgoso."},
+  "CWE-319": {"controles": ["A.8.24"], "normativas": ["ISO-27001", "LEY-21719"], "porque": "Transmisión de información sensible en claro."},
+  "CWE-16": {"controles": ["A.8.9"], "normativas": ["ISO-27001", "NIST-800-53"], "porque": "Debilidad de configuración."}
+}

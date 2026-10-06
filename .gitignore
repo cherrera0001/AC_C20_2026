@@ -17,3 +17,14 @@ evidence/*
 *.tmp
 *.log
 .DS_Store
+
+# Estado interno de la plataforma C4A (ledger y dumps de hallazgos por corrida).
+# Los entregables legibles viven en 02_evidencia/, 03_hallazgos/ y 04_informe/;
+# una corrida se puede re-generar de forma reproducible desde la config.
+.c4a/
+
+# Cachés de Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/

@@ -1,0 +1,32 @@
+{
+  "_nota": "Catálogo de normativas seleccionables por auditoría. La config de cada encargo decide cuáles aplican; NO se asume que todas apliquen.",
+  "ISO-27001": {
+    "nombre": "ISO/IEC 27001:2022",
+    "tipo": "estándar certificable",
+    "referencia": "Anexo A (93 controles)"
+  },
+  "ISO-27002": {
+    "nombre": "ISO/IEC 27002:2022",
+    "tipo": "guía de implementación de controles"
+  },
+  "NIST-CSF": {
+    "nombre": "NIST Cybersecurity Framework 2.0",
+    "tipo": "marco",
+    "funciones": ["GOVERN", "IDENTIFY", "PROTECT", "DETECT", "RESPOND", "RECOVER"]
+  },
+  "NIST-800-53": {"nombre": "NIST SP 800-53 Rev.5", "tipo": "catálogo de controles"},
+  "NIST-800-218": {"nombre": "NIST SP 800-218 (SSDF)", "tipo": "desarrollo seguro"},
+  "LEY-21663": {
+    "nombre": "Ley 21.663 (Marco de Ciberseguridad, Chile) + ANCI",
+    "tipo": "obligación legal",
+    "estado": "exigible"
+  },
+  "LEY-21719": {
+    "nombre": "Ley 21.719 (Protección de Datos, Chile)",
+    "tipo": "obligación legal",
+    "estado": "preparación (vigencia diferida; verificar a la fecha de ejecución)"
+  },
+  "SOC2": {"nombre": "SOC 2 (Trust Services Criteria)", "tipo": "atestación"},
+  "PCI-DSS": {"nombre": "PCI DSS v4.0", "tipo": "estándar de industria"},
+  "GDPR": {"nombre": "Reglamento General de Protección de Datos (UE)", "tipo": "obligación legal"}
+}

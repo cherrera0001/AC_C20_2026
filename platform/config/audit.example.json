@@ -1,0 +1,19 @@
+{
+  "audit_name": "Autoauditoría del laboratorio C4A",
+  "auditor": "Cristóbal Herrera Jara",
+  "person": "Cristóbal Herrera Jara",
+  "target": "../..",
+  "output_root": "../..",
+  "normativas": ["ISO-27001", "LEY-21663", "LEY-21719", "NIST-800-218"],
+  "detectors": ["all"],
+  "scope": {
+    "read_only": true,
+    "max_file_bytes": 1500000,
+    "exclude_dirs": [
+      ".git", "node_modules", "dist", "build", ".turbo", ".next",
+      "__pycache__", ".venv", "venv", "coverage",
+      "01_plan", "02_evidencia", "03_hallazgos", "04_informe", "evidence", ".c4a"
+    ],
+    "exclude_globs": ["*.pdf"]
+  }
+}
