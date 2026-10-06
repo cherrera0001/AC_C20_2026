@@ -17,6 +17,7 @@ from pathlib import Path
 from . import __version__
 from . import config as config_mod
 from . import orchestrator
+from . import reproduction
 from .detectors import catalog as det_catalog
 from .ledger import Ledger
 
@@ -69,6 +70,21 @@ def _cmd_reproduce(args) -> int:
     return 0 if cmp["reproduced"] else 1
 
 
+def _cmd_verify(args) -> int:
+    cfg = _load(args)
+    report = reproduction.verify_run(cfg, args.run, only=args.finding or None)
+    c = report["counts"]
+    print(f"Verificación por hallazgo · corrida {args.run} · {report['verified_at']}")
+    print(f"  {json.dumps(c, ensure_ascii=False)}")
+    for r in report["results"]:
+        if r["status"] not in ("reproduced",):
+            print(f"  · {r['id']} [{r['status']}] {r['component']} — {r.get('detail','')}")
+    repro = c.get("reproduced", 0)
+    total = sum(c.values())
+    print(f"  reproducidos {repro}/{total}")
+    return 0
+
+
 def _cmd_catalog(args) -> int:
     print("Detectores:")
     for d in det_catalog():
@@ -101,6 +117,7 @@ def main(argv=None) -> int:
         ("init", _cmd_init, False),
         ("run", _cmd_run, True),
         ("reproduce", _cmd_reproduce, "repro"),
+        ("verify", _cmd_verify, "verify"),
         ("catalog", _cmd_catalog, False),
         ("runs", _cmd_runs, False),
     ]:
@@ -110,6 +127,9 @@ def main(argv=None) -> int:
             sp.add_argument("--person", default="", help="quién ejecuta (para el ledger)")
         if extra == "repro":
             sp.add_argument("--run", required=True, help="run_id de la corrida a reproducir")
+        if extra == "verify":
+            sp.add_argument("--run", required=True, help="run_id a verificar por hallazgo")
+            sp.add_argument("--finding", default="", help="verificar solo este id de hallazgo")
         sp.set_defaults(func=func)
 
     args = p.parse_args(argv)

@@ -1,22 +1,24 @@
 {
-  "generated_at": "2026-10-06T02:21:33Z",
+  "generated_at": "2026-10-06T02:32:39Z",
   "target": "C:\\Users\\herre\\OneDrive\\Documentos\\AC_C20_2026",
   "totals": {
-    "files_scanned": 40,
+    "files_scanned": 47,
     "skipped_large": 0,
     "skipped_binary": 0
   },
   "languages": {
-    "Python": 25
+    "Python": 28
   },
   "extensions": {
-    ".py": 25,
-    ".json": 7,
+    ".py": 28,
+    ".json": 11,
     ".md": 6,
     "(sin extensión)": 1,
     ".txt": 1
   },
   "package_managers": [
+    "platform/examples/vuln-demo/package-lock.json → npm (lockfile)",
+    "platform/examples/vuln-demo/package.json → npm/pnpm/yarn (Node.js)",
     "platform/requirements.txt → pip (Python)"
   ],
   "containerization": [],

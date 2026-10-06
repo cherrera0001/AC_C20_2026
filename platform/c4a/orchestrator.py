@@ -17,6 +17,7 @@ from pathlib import Path
 from typing import Dict, List, Tuple
 
 from . import correlation, report, risk
+from . import sca as sca_mod
 from .config import Config
 from .detectors import select
 from .detectors.base import DetectorContext, FileBlob
@@ -29,8 +30,13 @@ from .util import now_iso, sha256_text, short_id
 
 
 def _result_hash(findings: List[Finding], ev_items) -> str:
+    # Los hallazgos de SCA (CVE) dependen de una base externa que cambia en el
+    # tiempo: se excluyen para que el hash mida la reproducibilidad del análisis
+    # ESTÁTICO. Los de CVE se verifican re-escaneando, no por hash de ciclo.
     parts = []
     for f in sorted(findings, key=lambda x: x.id):
+        if f.source.startswith("sca:"):
+            continue
         ev_hashes = "+".join(sorted(e.sha256 for e in ev_items if e.id in f.evidence))
         parts.append(f"{f.id}:{f.severity}:{ev_hashes}")
     return sha256_text("\n".join(parts))
@@ -67,6 +73,15 @@ def run_audit(cfg: Config, person: str = "", command: str = "run") -> Tuple[Run,
         except Exception as exc:  # un detector no debe tumbar la corrida
             errors.append(f"detector {det.id}: {exc!r}")
 
+    # SCA: correlación con CVE reales si hay motor; si no, degrada a manual.
+    sca_mgr = sca_mod.SCAManager(cfg)
+    sca_refs, sca_meta = sca_mgr.run(scope)
+    if sca_meta.get("status") == "error":
+        errors.append(f"sca: {sca_meta.get('note')}")
+    if sca_refs:
+        sca_mod.enrich_dependency_findings(findings, sca_refs)
+        findings.extend(sca_mod.to_findings(sca_refs, store, sca_meta))
+
     risk.assess(findings)
     corr = correlation.correlate(findings, cfg)
     matrix = correlation.controls_matrix(findings, cfg, started)
@@ -95,6 +110,9 @@ def run_audit(cfg: Config, person: str = "", command: str = "run") -> Tuple[Run,
             "evidence_items": len(ev_items),
             "files_scanned": inventory["totals"]["files_scanned"],
             "controls_evaluated": len(matrix),
+            "sca": {"engine": sca_meta.get("engine"), "status": sca_meta.get("status"),
+                    "packages": sca_meta.get("packages", 0),
+                    "cve_findings": sum(1 for f in findings if f.source.startswith("sca:"))},
         },
         errors=errors,
         duration_s=round(time.time() - t0, 3),

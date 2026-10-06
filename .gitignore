@@ -28,3 +28,7 @@ __pycache__/
 *.pyc
 .pytest_cache/
 .venv/
+
+# Informes generados contra objetivos EXTERNOS (p. ej. el repo VT o demos SCA).
+# Son reproducibles desde su config; no engordan el repo del laboratorio.
+reports/

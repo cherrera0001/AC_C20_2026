@@ -11,6 +11,7 @@ from pathlib import Path
 
 from c4a import config as config_mod
 from c4a import orchestrator
+from c4a import reproduction
 
 
 FIXTURE = {
@@ -80,9 +81,20 @@ class TestSmoke(unittest.TestCase):
             run2, _, _ = orchestrator.run_audit(cfg2)
             self.assertEqual(run1.hash, run2.hash)
 
-            # CVE nunca inventada
+            # CVE nunca inventada (SCA desactivado en esta config)
             for f in findings1:
                 self.assertEqual(f.cve, [])
+
+            # Reproducción POR HALLAZGO: sobre el mismo objetivo, todo reproduce
+            rep = reproduction.verify_run(cfg, run1.run_id)
+            self.assertGreater(rep["counts"].get("reproduced", 0), 0)
+            self.assertEqual(rep["counts"].get("not-reproduced", 0), 0)
+            self.assertTrue((out / ".c4a" / "verify" / f"{run1.run_id}.json").exists())
+
+            # Verificar un solo hallazgo también funciona
+            one = findings1[0].id
+            rep1 = reproduction.verify_run(cfg, run1.run_id, only=one)
+            self.assertEqual(len(rep1["results"]), 1)
 
 
 if __name__ == "__main__":

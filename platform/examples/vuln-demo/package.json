@@ -1,0 +1,9 @@
+{
+  "name": "vuln-demo",
+  "version": "1.0.0",
+  "description": "Fixture con dependencias de vulnerabilidad conocida para demostrar el SCA.",
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "minimist": "1.2.0"
+  }
+}

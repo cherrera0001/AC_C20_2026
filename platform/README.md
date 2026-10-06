@@ -15,10 +15,12 @@ nada. Esa es la base de la reproducibilidad.
 ```bash
 cd platform
 python3 -m c4a catalog                      # detectores y normativas
-python3 -m c4a init     --config config/audit.example.json
-python3 -m c4a run      --config config/audit.vt.json
-python3 -m c4a runs     --config config/audit.vt.json
-python3 -m c4a reproduce --config config/audit.vt.json --run <RUN-ID>
+python3 -m c4a init      --config config/audit.example.json
+python3 -m c4a run       --config config/audit.vt.json
+python3 -m c4a runs      --config config/audit.vt.json
+python3 -m c4a reproduce --config config/audit.vt.json --run <RUN-ID>   # por ciclo (hash)
+python3 -m c4a verify    --config config/audit.vt.json --run <RUN-ID>   # por hallazgo
+python3 -m c4a run       --config config/audit.sca-demo.windows.json    # demo SCA (CVE reales vía OSV.dev)
 ```
 
 En Windows, usa `py -3` o `python` y la config con rutas Windows
@@ -51,11 +53,11 @@ El `orchestrator.py` encadena todo y registra una ejecución en el ledger.
 - **Skills**: los detectores son la primera encarnación de *skills* de dominio
   (secretos, dependencias, Dockerfile, CI/CD, criptografía, permisos). Añadir
   una skill = añadir una subclase de `Detector` al registro.
-- **MCP** (ciclos futuros): puntos de integración previstos para consultar
-  bases de CVE/amenazas y para ejecutar herramientas externas de SCA
-  (osv-scanner, Trivy), escaneo de secretos (gitleaks) y, tras autorización, la
-  fase de red (nmap, sslscan). La plataforma marca hoy esos enganches; no
-  fabrica sus resultados.
+- **SCA / CVE** (`sca.py`, implementado): ejecuta `osv-scanner`/`trivy` locales
+  o consulta la API de OSV.dev por red, parsea el resultado y genera hallazgos
+  con CVE reales. Es el primer conector externo real; los demás (gitleaks,
+  escaneo de imágenes, y la fase de red nmap/sslscan tras autorización) quedan
+  como enganches marcados, sin fabricar resultados.
 
 ## Cómo se captura la evidencia
 
@@ -82,8 +84,12 @@ sin encuadre.
 - **CWE**: cada detector asigna CWE justificadas (catálogo en `knowledge/`).
 - **Normas/controles**: `correlation.py` usa un mapa curado CWE→control→norma y
   solo adjunta normativas que la config declaró aplicables.
-- **CVE**: **no se inventa**. Si no hay fuente verificable, el hallazgo queda
-  marcado «sin correlación automática — revisión manual» y se recomienda un SCA.
+- **CVE**: correlación REAL por SCA (`sca.py`), no inventada. Si hay motor
+  habilitado —`osv-scanner` o `trivy` locales, o la API de OSV.dev por red
+  (opt-in)— se generan hallazgos con CVE reales, su peor CVSS y evidencia de la
+  herramienta. Si no hay motor, se degrada con honestidad: «revisión manual».
+  Config en el bloque `"sca"` (desactivado por defecto). Demostrado contra
+  OSV.dev: `lodash@4.17.4` → 8 CVE, `minimist@1.2.0` → CVE-2020-7598 (CVSS 9.8).
 
 ## Cómo se genera el reporte
 
@@ -95,11 +101,21 @@ ficha por hallazgo y la `matriz_cumplimiento.csv`; en `02_evidencia/` el
 
 ## Cómo se reproduce una auditoría
 
-Cada corrida calcula un `result_hash` a partir **solo del contenido** (ids de
-hallazgo deterministas + hashes de evidencia), nunca de relojes ni rutas.
-`reproduce` re-ejecuta y compara: si el objetivo no cambió, el hash coincide y la
-auditoría queda reproducida; si cambió, lista qué hallazgos aparecen o
-desaparecen. Todo queda en el ledger append-only `.c4a/runs.jsonl`.
+Dos niveles:
+
+- **Por ciclo** (`reproduce`): cada corrida calcula un `result_hash` a partir
+  **solo del contenido** (ids de hallazgo deterministas + hashes de evidencia),
+  nunca de relojes ni rutas. Re-ejecuta y compara: si el objetivo no cambió, el
+  hash coincide; si cambió, lista qué hallazgos aparecen o desaparecen. Los
+  hallazgos de SCA se excluyen del hash porque dependen de una base externa.
+- **Por hallazgo** (`verify`, `reproduction.py`): re-ejecuta la comprobación de
+  cada hallazgo de forma nativa (re-lee el componente, re-calcula su hash y
+  re-corre el mismo detector acotado a ese archivo) y lo marca `reproduced`,
+  `not-reproduced` o `external` (CVE, se re-verifica re-escaneando). Determinista
+  y multiplataforma; no depende de que exista grep. Resultado en
+  `.c4a/verify/<run_id>.json`.
+
+Todo queda en el ledger append-only `.c4a/runs.jsonl`.
 
 ## Cómo se evita la sobreespeculación
 
@@ -124,10 +140,12 @@ platform/
   c4a/
     cli.py  orchestrator.py  config.py  scope.py  inventory.py
     evidence.py  ledger.py  model.py  cvss.py  risk.py  correlation.py  report.py
+    sca.py  reproduction.py
     detectors/  (secrets_files, dependencies, dockerfile, cicd, crypto_config, permissions)
     knowledge/  (cwe.json, cwe_map.json, controls_iso27001.json, normativas.json)
-  config/   (audit.example.json, audit.vt.json, audit.vt.windows.json)
-  tests/    (test_cvss.py, test_smoke.py)
+  config/   (audit.example.json, audit.vt*.json, audit.sca-demo.windows.json)
+  examples/ (vuln-demo/ — fixture con dependencias vulnerables para el SCA)
+  tests/    (test_cvss.py, test_sca.py, test_smoke.py)
 ```
 
 ## Pruebas

@@ -1,0 +1,20 @@
+{
+  "audit_name": "Demo SCA — correlación de CVE por OSV.dev",
+  "auditor": "Cristóbal Herrera Jara",
+  "person": "Cristóbal Herrera Jara",
+  "target": "../examples/vuln-demo",
+  "output_root": "../../reports/sca-demo",
+  "normativas": ["ISO-27001", "LEY-21663"],
+  "detectors": ["dependencies"],
+  "sca": {
+    "enabled": true,
+    "engine": "osv-api",
+    "allow_network": true,
+    "timeout": 60,
+    "max_packages": 20
+  },
+  "scope": {
+    "read_only": true,
+    "max_file_bytes": 1000000
+  }
+}

@@ -273,9 +273,14 @@ def _riesgos(cfg, ordered) -> Path:
 
 
 def _mapa_cve_cwe_cvss(cfg, ordered) -> Path:
-    body = ["# Mapa CVE / CWE / CVSS", "",
-            "CVE: en este ciclo no hay correlación automática; se marca para revisión "
-            "manual con una herramienta de SCA. CWE y CVSS sí están presentes.", "",
+    con_cve = sum(1 for f in ordered if f.cve)
+    if con_cve:
+        nota = (f"CVE: {con_cve} hallazgo(s) con CVE correlacionadas por SCA. "
+                "El resto queda para revisión manual. CWE y CVSS presentes.")
+    else:
+        nota = ("CVE: en este ciclo no corrió SCA; se marca para revisión manual "
+                "con una herramienta de SCA. CWE y CVSS sí están presentes.")
+    body = ["# Mapa CVE / CWE / CVSS", "", nota, "",
             "| ID | CWE | CVSS (vector → base) | CVE |", "|---|---|---|---|"]
     for f in ordered:
         cwe = ", ".join(f.cwe) or "n/d"
