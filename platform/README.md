@@ -99,7 +99,10 @@ sin encuadre.
 reporte de riesgos, mapa CVE/CWE/CVSS, matriz de normativas, registro de
 evidencia, de reproducción y de triaje, más un índice. En `03_hallazgos/` deja
 una ficha por hallazgo y la `matriz_cumplimiento.csv`; en `02_evidencia/` el
-`inventario.json`. Para integración con CI y code scanning, `sarif.py` emite
+`inventario.json`. `htmlmap.py` genera `04_informe/mapa.html`: un mapa de
+evidencia y resultados navegable, de un solo archivo sin red (tiles de
+severidad, hallazgos con su detalle, filtro por texto/severidad y claro/oscuro).
+Para integración con CI y code scanning, `sarif.py` emite
 `04_informe/hallazgos.sarif.json` (SARIF 2.1.0); `--fail-on <sev>` corta el
 pipeline con código de salida !=0 si queda algún hallazgo abierto en o sobre esa
 severidad (los falsos positivos triados no cuentan).

@@ -18,6 +18,7 @@ from pathlib import Path
 from typing import Dict, List, Tuple
 
 from . import correlation, report, risk
+from . import htmlmap as htmlmap_mod
 from . import sarif as sarif_mod
 from . import sca as sca_mod
 from . import triage as triage_mod
@@ -134,6 +135,11 @@ def run_audit(cfg: Config, person: str = "", command: str = "run") -> Tuple[Run,
     sarif_doc = sarif_mod.to_sarif(cfg, run, findings, ev_items)
     with open(cfg.phase["informe"] / "hallazgos.sarif.json", "w", encoding="utf-8") as fh:
         json.dump(sarif_doc, fh, ensure_ascii=False, indent=2)
+
+    # M1: mapa de evidencia y resultados en HTML, autocontenido.
+    html_doc = htmlmap_mod.render(cfg, run, findings, inventory, matrix, ev_items)
+    with open(cfg.phase["informe"] / "mapa.html", "w", encoding="utf-8") as fh:
+        fh.write(html_doc)
 
     Ledger(cfg.phase["state"]).append(run)
     return run, findings, {"inventory": inventory, "matrix": matrix, "correlation": corr}

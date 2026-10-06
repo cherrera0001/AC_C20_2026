@@ -373,6 +373,8 @@ def _indice(cfg, run, paths) -> Path:
     for n in names:
         body.append(f"- [{n}]({n})")
     body += ["", "## Artefactos relacionados", "",
+             "- Mapa navegable (HTML, abrir en el navegador): [mapa.html](mapa.html)",
+             "- SARIF 2.1.0 (CI / code scanning): `hallazgos.sarif.json`",
              "- Inventario: `../02_evidencia/inventario.json`",
              "- Fichas de hallazgo y matriz: `../03_hallazgos/`",
              "- Evidencia cruda con hash: `../evidence/" + run.run_id + "/`",

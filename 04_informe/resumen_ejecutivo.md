@@ -1,12 +1,12 @@
 # Resumen ejecutivo — Autoauditoría del laboratorio C4A
 
-**Ejecución:** RUN-20261006T034844Z-0d7e · 2026-10-06T03:48:44Z · objetivo `C:\Users\herre\OneDrive\Documentos\AC_C20_2026`
+**Ejecución:** RUN-20261006T110708Z-aad4 · 2026-10-06T11:07:08Z · objetivo `C:\Users\herre\OneDrive\Documentos\AC_C20_2026`
 **Alcance:** auditoría estática de repositorio (solo lectura). El pentest de red
 permanece tras su compuerta de autorización y no forma parte de esta ejecución.
 
 ## Estado en una línea
 
-Se analizaron 38 archivos y hay 0
+Se analizaron 39 archivos y hay 0
 hallazgos ABIERTOS. Controles con incumplimiento: 0; parciales: 0.
 Triaje humano: 0 descartado(s) como falso positivo, 0 con riesgo aceptado
 (trazados en registro_triaje.md, fuera de este recuento).

@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mapa C4A — Autoauditoría del laboratorio C4A</title>
+<style>
+  :root {
+    --surface: #fcfcfb; --panel: #ffffff; --ink: #0b0b0b; --ink2: #52514e;
+    --line: #e4e3df; --accent: #2a78d6;
+  }
+  :root[data-theme="dark"] {
+    --surface: #1a1a19; --panel: #232322; --ink: #ffffff; --ink2: #c3c2b7;
+    --line: #383835; --accent: #3987e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root[data-theme="auto"] {
+      --surface: #1a1a19; --panel: #232322; --ink: #ffffff; --ink2: #c3c2b7;
+      --line: #383835; --accent: #3987e5;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--surface); color:var(--ink);
+    font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+  header { padding:20px 24px; border-bottom:1px solid var(--line); }
+  h1 { font-size:19px; margin:0 0 4px; }
+  .sub { color:var(--ink2); font-size:13px; }
+  main { padding:20px 24px; max-width:1100px; margin:0 auto; }
+  .tiles { display:flex; flex-wrap:wrap; gap:10px; margin:0 0 18px; }
+  .tile { background:var(--panel); border:1px solid var(--line); border-radius:10px;
+    padding:10px 14px; min-width:92px; display:flex; flex-direction:column; gap:2px; }
+  .tile-n { font-size:22px; font-weight:650; }
+  .tile-l { font-size:11px; color:var(--ink2); text-transform:uppercase; letter-spacing:.04em; }
+  .dot { width:9px; height:9px; border-radius:50%; display:inline-block; }
+  .controls { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:0 0 14px; }
+  input[type=search] { flex:1; min-width:200px; padding:8px 10px; border:1px solid var(--line);
+    border-radius:8px; background:var(--panel); color:var(--ink); }
+  .sevbtn, .toggle { padding:6px 10px; border:1px solid var(--line); border-radius:8px;
+    background:var(--panel); color:var(--ink2); cursor:pointer; font-size:12px; }
+  .sevbtn.active { color:var(--ink); border-color:var(--accent); }
+  .finding { background:var(--panel); border:1px solid var(--line); border-radius:10px;
+    margin:0 0 8px; overflow:hidden; }
+  .finding.suppressed { opacity:.55; }
+  summary { list-style:none; cursor:pointer; padding:11px 14px; display:grid;
+    grid-template-columns:120px 1fr auto; gap:12px; align-items:center; }
+  summary::-webkit-details-marker { display:none; }
+  .badge { font-size:11px; font-weight:650; color:#fff; background:var(--c);
+    padding:3px 8px; border-radius:999px; text-align:center; }
+  .f-title { font-weight:550; }
+  .f-meta { color:var(--ink2); font-size:12px; text-align:right; }
+  .detail { padding:4px 16px 16px; border-top:1px solid var(--line); }
+  dl { display:grid; grid-template-columns:140px 1fr; gap:4px 12px; margin:10px 0; }
+  dt { color:var(--ink2); font-size:13px; }
+  h4 { margin:14px 0 6px; font-size:13px; }
+  pre { background:var(--surface); border:1px solid var(--line); border-radius:8px;
+    padding:8px 10px; overflow:auto; font-size:12px; white-space:pre-wrap; word-break:break-word; }
+  ul.ev { margin:0; padding-left:18px; }
+  ul.ev li { margin:0 0 6px; }
+  code { font-size:12px; }
+  table { width:100%; border-collapse:collapse; margin:8px 0; font-size:13px; }
+  th, td { text-align:left; padding:6px 8px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { color:var(--ink2); font-weight:550; }
+  .cmp-no-cumple { color:#d03b3b; } .cmp-parcial { color:#ec835a; }
+  .notes { color:var(--ink2); font-size:12px; }
+  h2 { font-size:15px; margin:26px 0 8px; }
+  footer { color:var(--ink2); font-size:12px; padding:18px 24px; border-top:1px solid var(--line); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Autoauditoría del laboratorio C4A</h1>
+  <div class="sub">Ejecución RUN-20261006T110708Z-aad4 · 2026-10-06T11:07:08Z · objetivo <code>C:\Users\herre\OneDrive\Documentos\AC_C20_2026</code> ·
+    39 archivos · 0 hallazgos abiertos 
+    <button class="toggle" id="themebtn" style="float:right">tema</button></div>
+</header>
+<main>
+  <div class="tiles"><div class="tile"><span class="dot" style="background:#d03b3b"></span><span class="tile-n">0</span><span class="tile-l">CRITICO</span></div>
+<div class="tile"><span class="dot" style="background:#ec835a"></span><span class="tile-n">0</span><span class="tile-l">ALTO</span></div>
+<div class="tile"><span class="dot" style="background:#fab219"></span><span class="tile-n">0</span><span class="tile-l">MEDIO</span></div>
+<div class="tile"><span class="dot" style="background:#2a78d6"></span><span class="tile-n">0</span><span class="tile-l">BAJO</span></div>
+<div class="tile"><span class="dot" style="background:#6b6a66"></span><span class="tile-n">0</span><span class="tile-l">INFORMACIONAL</span></div>
+<div class="tile"><span class="tile-n">0</span><span class="tile-l">falsos positivos</span></div>
+<div class="tile"><span class="tile-n">0</span><span class="tile-l">riesgo aceptado</span></div></div>
+  <div class="controls">
+    <input type="search" id="q" placeholder="filtrar por texto, CWE, CVE, componente…">
+    <button class="sevbtn" data-sev="CRITICO">CRITICO</button>
+<button class="sevbtn" data-sev="ALTO">ALTO</button>
+<button class="sevbtn" data-sev="MEDIO">MEDIO</button>
+<button class="sevbtn" data-sev="BAJO">BAJO</button>
+<button class="sevbtn" data-sev="INFORMACIONAL">INFORMACIONAL</button>
+    <label class="toggle"><input type="checkbox" id="showsup"> ver suprimidos</label>
+  </div>
+  <div id="list">
+  
+  </div>
+
+  <h2>Matriz de controles</h2>
+  <table>
+    <thead><tr><th>Control</th><th>Objetivo</th><th>Cumplimiento</th><th>Riesgo</th><th>Referencia</th></tr></thead>
+    <tbody><tr><td>A.5.1</td><td>Políticas de seguridad de la información</td><td class='cmp cmp-no-evaluado'>no-evaluado</td><td>n/d</td><td>ISO-27001</td></tr>
+<tr><td>A.5.37</td><td>Procedimientos operativos documentados</td><td class='cmp cmp-no-evaluado'>no-evaluado</td><td>n/d</td><td>ISO-27001</td></tr>
+<tr><td>A.8.2</td><td>Derechos de acceso privilegiado</td><td class='cmp cmp-no-evaluado'>no-evaluado</td><td>n/d</td><td>ISO-27001</td></tr>
+<tr><td>A.8.3</td><td>Restricción de acceso a la información</td><td class='cmp cmp-no-evaluado'>no-evaluado</td><td>n/d</td><td>ISO-27001</td></tr>
+<tr><td>A.8.4</td><td>Acceso al código fuente</td><td class='cmp cmp-no-evaluado'>no-evaluado</td><td>n/d</td><td>ISO-27001; NIST-800-218</td></tr>
+<tr><td>A.8.8</td><td>Gestión de vulnerabilidades técnicas</td><td class='cmp cmp-no-evaluado'>no-evaluado</td><td>n/d</td><td>ISO-27001; LEY-21663</td></tr>
+<tr><td>A.8.9</td><td>Gestión de la configuración</td><td class='cmp cmp-no-evaluado'>no-evaluado</td><td>n/d</td><td>ISO-27001</td></tr>
+<tr><td>A.8.24</td><td>Uso de criptografía</td><td class='cmp cmp-no-evaluado'>no-evaluado</td><td>n/d</td><td>ISO-27001; LEY-21719</td></tr>
+<tr><td>A.8.25</td><td>Ciclo de vida de desarrollo seguro</td><td class='cmp cmp-no-evaluado'>no-evaluado</td><td>n/d</td><td>ISO-27001; NIST-800-218</td></tr>
+<tr><td>A.8.28</td><td>Codificación segura</td><td class='cmp cmp-no-evaluado'>no-evaluado</td><td>n/d</td><td>ISO-27001; NIST-800-218</td></tr>
+<tr><td>A.8.31</td><td>Separación de entornos (desarrollo, prueba, producción)</td><td class='cmp cmp-no-evaluado'>no-evaluado</td><td>n/d</td><td>ISO-27001</td></tr>
+<tr><td>A.5.23</td><td>Seguridad en el uso de servicios en la nube</td><td class='cmp cmp-no-evaluado'>no-evaluado</td><td>n/d</td><td>ISO-27001</td></tr></tbody>
+  </table>
+</main>
+<footer>
+  Generado por C4A 0.1.0. Reproduce la auditoría con
+  <code>python -m c4a run</code> y verifícala con <code>c4a verify</code> /
+  <code>c4a reproduce</code>. Mapa autocontenido, sin red.
+</footer>
+<script>
+  var active = new Set();
+  function apply() {
+    var q = document.getElementById('q').value.toLowerCase();
+    var sup = document.getElementById('showsup').checked;
+    document.querySelectorAll('.finding').forEach(function(el) {
+      var okText = !q || (el.getAttribute('data-text')||'').indexOf(q) >= 0;
+      var okSev = active.size === 0 || active.has(el.getAttribute('data-sev'));
+      var okSup = sup || el.getAttribute('data-status') !== 'false-positive';
+      el.style.display = (okText && okSev && okSup) ? '' : 'none';
+    });
+  }
+  document.getElementById('q').addEventListener('input', apply);
+  document.getElementById('showsup').addEventListener('change', apply);
+  document.querySelectorAll('.sevbtn').forEach(function(b) {
+    b.addEventListener('click', function() {
+      var s = b.getAttribute('data-sev');
+      if (active.has(s)) { active.delete(s); b.classList.remove('active'); }
+      else { active.add(s); b.classList.add('active'); }
+      apply();
+    });
+  });
+  document.getElementById('themebtn').addEventListener('click', function() {
+    var r = document.documentElement;
+    r.setAttribute('data-theme', r.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+  apply();
+</script>
+</body>
+</html>

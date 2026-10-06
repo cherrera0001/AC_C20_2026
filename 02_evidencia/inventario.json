@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-10-06T03:48:44Z",
+  "generated_at": "2026-10-06T11:07:08Z",
   "target": "C:\\Users\\herre\\OneDrive\\Documentos\\AC_C20_2026",
   "totals": {
-    "files_scanned": 38,
+    "files_scanned": 39,
     "skipped_large": 0,
     "skipped_binary": 0
   },
   "languages": {
-    "Python": 19
+    "Python": 20
   },
   "extensions": {
-    ".py": 19,
+    ".py": 20,
     ".json": 9,
     ".md": 7,
     "(sin extensión)": 1,

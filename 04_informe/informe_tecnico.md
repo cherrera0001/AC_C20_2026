@@ -1,7 +1,7 @@
 # Informe técnico — Autoauditoría del laboratorio C4A
 
-**Ejecución:** RUN-20261006T034844Z-0d7e · **Objetivo:** `C:\Users\herre\OneDrive\Documentos\AC_C20_2026`
-**Auditor:** Cristóbal Herrera Jara · **Inicio:** 2026-10-06T03:48:44Z · **Fin:** 2026-10-06T03:48:44Z
+**Ejecución:** RUN-20261006T110708Z-aad4 · **Objetivo:** `C:\Users\herre\OneDrive\Documentos\AC_C20_2026`
+**Auditor:** Cristóbal Herrera Jara · **Inicio:** 2026-10-06T11:07:08Z · **Fin:** 2026-10-06T11:07:08Z
 
 ## Metodología
 
@@ -14,7 +14,7 @@ Auditoría estática de solo lectura en 4 fases (planificar, recopilar, analizar
 - Contenedorización: 0 archivo(s)
 - CI/CD: 0 workflow(s)
 - Archivos .env detectados: 0
-- Archivos analizados: 38 (omitidos por tamaño: 0, binarios: 0)
+- Archivos analizados: 39 (omitidos por tamaño: 0, binarios: 0)
 
 ## Hallazgos (por prioridad)
 

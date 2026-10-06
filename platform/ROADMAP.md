@@ -54,8 +54,12 @@ abajo; el `/loop` de maduración implementa uno por iteración.
 
 ## Mid-term
 
-- **M1 · Mapa de evidencia y resultados en HTML** navegable (un `index.html`
-  autocontenido, sin dependencias) que enlace hallazgos ↔ evidencia ↔ controles.
+- **M1 · [HECHO] Mapa de evidencia y resultados en HTML** navegable
+  (`04_informe/mapa.html`, un solo archivo sin red): tiles de severidad,
+  hallazgos con su detalle (evidencia con hash, reproducción, remediación),
+  enlace hallazgo ↔ CWE/CVE ↔ control ↔ normativa, filtro por texto/severidad,
+  modo claro/oscuro, y todo el código auditado escapado. Paleta de estado de la
+  skill dataviz; la severidad siempre con etiqueta, nunca color solo.
 - **M2 · Baseline y diff entre corridas**: «nuevos vs conocidos» para triage de
   regresiones, con tendencia de cumplimiento en el tiempo.
 - **M3 · Catálogos completos** de CWE/controles y perfiles de normativa por
