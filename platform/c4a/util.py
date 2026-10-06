@@ -7,7 +7,9 @@ hace comparable una reproducción contra su detección original.
 from __future__ import annotations
 
 import hashlib
+import math
 import re
+from collections import Counter
 from datetime import datetime, timezone
 
 
@@ -71,3 +73,33 @@ def redact_line(line: str) -> str:
     def _sub(m: "re.Match") -> str:
         return m.group(0).replace(m.group("val"), mask_secret(m.group("val")))
     return _SECRET_LINE.sub(_sub, line).rstrip("\n")
+
+
+def shannon_entropy(text: str) -> float:
+    """Entropía de Shannon en bits por carácter. Mide cuán 'aleatorio' es un valor.
+
+    Sirve para distinguir un secreto real (alta entropía) de un marcador como
+    'password' o 'example' (baja entropía), y así bajar los falsos positivos.
+    """
+    if not text:
+        return 0.0
+    n = len(text)
+    counts = Counter(text)
+    return -sum((c / n) * math.log2(c / n) for c in counts.values())
+
+
+_COMMENT_PREFIXES = ("#", "//", "*", "--", "<!--", '"""', "'''")
+
+
+def is_comment_line(line: str) -> bool:
+    """Heurística multilenguaje: ¿la línea es un comentario? (no es configuración viva)."""
+    s = line.strip()
+    return any(s.startswith(p) for p in _COMMENT_PREFIXES)
+
+
+_IGNORE = re.compile(r"(?i)\b(c4a:ignore|nosec|noqa|lgtm)\b")
+
+
+def has_ignore_marker(line: str) -> bool:
+    """¿La línea trae un marcador de supresión en línea (c4a:ignore / nosec / noqa)?"""
+    return bool(_IGNORE.search(line))

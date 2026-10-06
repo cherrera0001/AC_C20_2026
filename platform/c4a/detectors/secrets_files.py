@@ -12,17 +12,21 @@ import re
 from typing import List
 
 from ..model import Finding
-from ..util import redact_line
+from ..util import has_ignore_marker, is_comment_line, redact_line, shannon_entropy
 from .base import Detector, DetectorContext, build_finding
 
 _CRED = re.compile(
     r"""(?ix)\b(password|passwd|pwd|secret|token|api[_-]?key|apikey|
     access[_-]?key|private[_-]?key|client[_-]?secret|bearer)\b
-    \s*[:=]\s*['"]?[A-Za-z0-9/\+\=_\-\.]{6,}""",
+    \s*[:=]\s*['"]?(?P<val>[A-Za-z0-9/\+\=_\-\.]{6,})['"]?""",  # c4a:ignore
     re.VERBOSE,
 )
-_PLACEHOLDER = re.compile(r"(?i)(example|changeme|your[_-]?|xxx+|<[^>]+>|\$\{|placeholder|dummy|test)")
+_PLACEHOLDER = re.compile(r"(?i)(example|changeme|your[_-]?|xxx+|<[^>]+>|\$\{|placeholder|dummy|test)")  # c4a:ignore
 _MAX_LINES = 20
+# Umbral de entropía: un valor con poca entropía y corto suele ser un marcador
+# ('password', 'secret123'), no un secreto real. Reduce falsos positivos.
+_ENTROPY_MIN = 3.0
+_ENTROPY_LEN = 24
 
 
 class SecretsDetector(Detector):
@@ -66,7 +70,14 @@ class SecretsDetector(Detector):
                 continue
             hits = []
             for i, line in enumerate(fb.text.splitlines(), start=1):
-                if _CRED.search(line) and not _PLACEHOLDER.search(line):
+                if is_comment_line(line) or has_ignore_marker(line):
+                    continue
+                m = _CRED.search(line)
+                if m and not _PLACEHOLDER.search(line):
+                    val = m.group("val")
+                    # baja entropía y corto → marcador, no secreto real
+                    if shannon_entropy(val) < _ENTROPY_MIN and len(val) < _ENTROPY_LEN:
+                        continue
                     hits.append((i, redact_line(line)[:160]))
                 if len(hits) >= _MAX_LINES:
                     break

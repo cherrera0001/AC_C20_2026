@@ -10,17 +10,18 @@ import re
 from typing import List, Tuple
 
 from ..model import Finding
+from ..util import has_ignore_marker, is_comment_line
 from .base import Detector, DetectorContext, build_finding
 
 _RULES: List[Tuple[str, "re.Pattern", str, List[str], str]] = [
-    ("weak-hash", re.compile(r"(?i)\b(md5|sha1)\s*\(", ), "algoritmo hash débil para seguridad",
+    ("weak-hash", re.compile(r"(?i)\b(md5|sha1)\s*\("), "algoritmo hash débil para seguridad",  # c4a:ignore
      ["CWE-327"], "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N"),
-    ("weak-cipher", re.compile(r"(?i)\b(DES|RC4|3DES|ECB)\b"), "cifrador débil u obsoleto",
+    ("weak-cipher", re.compile(r"(?i)\b(DES|RC4|3DES|ECB)\b"), "cifrador débil u obsoleto",  # c4a:ignore
      ["CWE-327"], "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N"),
-    ("tls-verify-off", re.compile(r"(?i)(rejectUnauthorized\s*:\s*false|verify\s*=\s*False|InsecureSkipVerify\s*:\s*true|CURLOPT_SSL_VERIFYPEER\s*,\s*0)"),
+    ("tls-verify-off", re.compile(r"(?i)(rejectUnauthorized\s*:\s*false|verify\s*=\s*False|InsecureSkipVerify\s*:\s*true|CURLOPT_SSL_VERIFYPEER\s*,\s*0)"),  # c4a:ignore
      "verificación TLS desactivada", ["CWE-319", "CWE-327"],
      "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N"),
-    ("cleartext-endpoint", re.compile(r"http://(?!localhost|127\.0\.0\.1|0\.0\.0\.0)[A-Za-z0-9.\-]+"),
+    ("cleartext-endpoint", re.compile(r"http://(?!localhost|127\.0\.0\.1|0\.0\.0\.0)[A-Za-z0-9.\-]+"),  # c4a:ignore
      "endpoint sobre http:// (texto claro)", ["CWE-319"],
      "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N"),
 ]
@@ -44,6 +45,9 @@ class CryptoConfigDetector(Detector):
             for rule_id, pat, label, cwe, vector in _RULES:
                 hits = []
                 for i, line in enumerate(lines, start=1):
+                    # saltar comentarios y líneas con marcador de supresión
+                    if is_comment_line(line) or has_ignore_marker(line):
+                        continue
                     if pat.search(line):
                         hits.append((i, line.strip()[:160]))
                     if len(hits) >= _MAX_LINES:

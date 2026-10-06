@@ -1,6 +1,6 @@
 # Índice del informe — Autoauditoría del laboratorio C4A
 
-Ejecución RUN-20261006T032256Z-2c8f · 2026-10-06T03:22:56Z
+Ejecución RUN-20261006T034844Z-0d7e · 2026-10-06T03:48:44Z
 
 ## Documentos
 
@@ -18,5 +18,5 @@ Ejecución RUN-20261006T032256Z-2c8f · 2026-10-06T03:22:56Z
 
 - Inventario: `../02_evidencia/inventario.json`
 - Fichas de hallazgo y matriz: `../03_hallazgos/`
-- Evidencia cruda con hash: `../evidence/RUN-20261006T032256Z-2c8f/`
+- Evidencia cruda con hash: `../evidence/RUN-20261006T034844Z-0d7e/`
 - Ledger de ejecución: `../.c4a/runs.jsonl`

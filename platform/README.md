@@ -140,6 +140,10 @@ el detector observa, el humano concluye, y la conclusión persiste entre corrida
 - No se afirma «seguro» sin evidencia; se registra la incertidumbre y los
   posibles falsos positivos en las notas.
 - No se inventan CVEs ni resultados de herramientas no ejecutadas.
+- Controles de falso positivo en origen: se ignoran coincidencias en comentarios,
+  se exige entropía mínima a los valores de secreto (un `password=example` no es
+  secreto), y se respeta un marcador en línea `# c4a:ignore` (estilo `nosec`).
+  Lo que el control no decide, lo decide el humano con el triaje.
 
 ## Cómo se controla el acceso
 

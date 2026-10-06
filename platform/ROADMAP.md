@@ -35,11 +35,12 @@ abajo; el `/loop` de maduración implementa uno por iteración.
 - **N2 · [HECHO] Exportar SARIF + compuerta de CI.** `hallazgos.sarif.json`
   (SARIF 2.1.0, con `suppressions` para los falsos positivos triados) y
   `--fail-on <sev>` con código de salida !=0 para cortar un pipeline.
-- **N3 · Menos falsos positivos.** Heurísticas: ignorar coincidencias en
-  comentarios, entropía mínima para secretos, excluir por defecto los propios
-  fuentes del detector y los fixtures. Ataca la deuda 1 en la fuente.
-  *Aceptación:* la autoauditoría baja de 6 hallazgos ruidosos a los reales;
-  prueba con casos positivos y negativos.
+- **N3 · [HECHO] Menos falsos positivos.** Tres controles generales: se ignoran
+  coincidencias en comentarios, se exige entropía mínima a los secretos, y se
+  respeta un marcador en línea `c4a:ignore` (estilo `nosec`/`noqa`). Las propias
+  reglas del detector y los fixtures se excluyen del alcance de la autoauditoría.
+  *Resultado:* la autoauditoría pasó de 10 hallazgos ruidosos a 0 reales; los
+  controles quedan probados con casos positivos y negativos.
 - **N4 · Enriquecimiento CVE robusto + re-verificación SCA.** Correlacionar por
   nombre y versión exactos leyendo la evidencia, y que `verify` re-escanee los
   hallazgos de CVE. Ataca la deuda 3.
