@@ -1,0 +1,42 @@
+name: Tarea técnica o documental
+description: Trabajo concreto, verificable y enlazable a una historia
+title: "[TAREA] "
+labels: ["task"]
+body:
+  - type: textarea
+    id: resultado
+    attributes:
+      label: Resultado esperado
+      description: Describe un entregable concreto y su propósito.
+    validations:
+      required: true
+  - type: textarea
+    id: comprobacion
+    attributes:
+      label: Criterios de aceptación / verificación
+      description: Enumera condiciones que permitan cerrar la tarea.
+    validations:
+      required: true
+  - type: dropdown
+    id: fase
+    attributes:
+      label: Fase C4A
+      options:
+        - Planificar
+        - Recopilar
+        - Analizar
+        - Informar
+        - Plataforma
+        - Transversal
+    validations:
+      required: true
+  - type: textarea
+    id: relacion
+    attributes:
+      label: Historia/épica relacionada, dependencias y notas
+      description: Incluye referencias a issues con #número cuando estén disponibles.
+  - type: textarea
+    id: seguridad
+    attributes:
+      label: Límites de seguridad
+      description: Para tareas de auditoría, referencia alcance y autorización; no incluyas secretos ni evidencia sensible.

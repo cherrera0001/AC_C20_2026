@@ -13,6 +13,14 @@ salida en disco y la siguiente la consume:
 3. **Analizar** → `03_hallazgos/<id>.md` + `03_hallazgos/matriz_cumplimiento.csv`
 4. **Informar** → `04_informe/` (técnico, resumen ejecutivo, plan de remediación)
 
+## Planificación y versionado
+
+- Project ágil: [C4A — Gestión Ágil 2026](https://github.com/users/cherrera0001/projects/7), enlazado al repositorio GitHub.
+- Método de trabajo, estimación por tallas, métricas y DoR/DoD: `AGILE_PROJECT.md`.
+- Formularios GitHub Issues: `.github/ISSUE_TEMPLATE/`.
+- Prompt técnico único para Claude Code (auditoría, GitHub y gestión ágil): `CLAUDE_CODE_PROMPT.md`.
+- Las tallas son esfuerzo relativo y no equivalen a horas. No publicar evidencia cruda, secretos ni datos personales.
+
 ## Compuerta de seguridad
 
 **No se toca el objetivo sin `scope/autorizacion.md` firmado y con ventana

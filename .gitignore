@@ -32,3 +32,9 @@ __pycache__/
 # Informes generados contra objetivos EXTERNOS (p. ej. el repo VT o demos SCA).
 # Son reproducibles desde su config; no engordan el repo del laboratorio.
 reports/
+
+# Material de clase: no se publica sin autorización (ver ESTACION_LOCAL.md).
+*.pdf
+
+# Estado local de Claude Code
+.claude/*.lock

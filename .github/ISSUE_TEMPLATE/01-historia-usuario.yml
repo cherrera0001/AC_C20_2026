@@ -1,0 +1,44 @@
+name: Historia de usuario
+description: Solicita valor funcional con criterios de aceptación verificables
+title: "[HU] "
+labels: ["user-story"]
+body:
+  - type: textarea
+    id: historia
+    attributes:
+      label: Historia
+      description: Expresa quién necesita qué y para qué.
+      value: "Como [rol], quiero [capacidad], para [beneficio]."
+    validations:
+      required: true
+  - type: textarea
+    id: aceptacion
+    attributes:
+      label: Criterios de aceptación
+      description: Usa criterios observables; Gherkin es opcional.
+      placeholder: "Dado... Cuando... Entonces..."
+    validations:
+      required: true
+  - type: dropdown
+    id: fase
+    attributes:
+      label: Fase C4A
+      options:
+        - Planificar
+        - Recopilar
+        - Analizar
+        - Informar
+        - Plataforma
+        - Transversal
+    validations:
+      required: true
+  - type: textarea
+    id: definicion
+    attributes:
+      label: Alcance, dependencias y Definition of Done
+      description: Indica fuera de alcance, dependencias y cómo se comprobará el resultado.
+  - type: textarea
+    id: privacidad
+    attributes:
+      label: Consideraciones de seguridad y privacidad
+      description: No pegues credenciales, datos personales ni evidencia cruda. Referencia rutas seguras si corresponde.

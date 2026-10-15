@@ -1,0 +1,44 @@
+name: Épica
+description: Agrupa un objetivo amplio en historias entregables
+title: "[ÉPICA] "
+labels: ["epic"]
+body:
+  - type: textarea
+    id: objetivo
+    attributes:
+      label: Objetivo y valor esperado
+      description: Indica el resultado de negocio/auditoría y a quién beneficia.
+    validations:
+      required: true
+  - type: textarea
+    id: alcance
+    attributes:
+      label: Alcance y exclusiones
+      description: Delimita qué incluye y qué no incluye.
+    validations:
+      required: true
+  - type: textarea
+    id: resultado
+    attributes:
+      label: Resultado / criterios de salida
+      description: Señala cómo se sabrá que la épica está completa; desglosa historias enlazadas.
+    validations:
+      required: true
+  - type: dropdown
+    id: fase
+    attributes:
+      label: Fase C4A principal
+      options:
+        - Planificar
+        - Recopilar
+        - Analizar
+        - Informar
+        - Plataforma
+        - Transversal
+    validations:
+      required: true
+  - type: textarea
+    id: riesgos
+    attributes:
+      label: Dependencias, riesgos y notas de seguridad
+      description: Para auditoría de red, no sustituye autorización firmada ni define permiso de ejecución.

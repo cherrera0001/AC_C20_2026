@@ -1,0 +1,42 @@
+name: Bug
+description: Reporta un defecto reproducible con impacto y evidencia saneada
+title: "[BUG] "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: resumen
+    attributes:
+      label: Comportamiento observado
+      description: Resume el defecto sin incluir información sensible.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduccion
+    attributes:
+      label: Pasos para reproducir
+      placeholder: "1. ...\n2. ...\n3. ..."
+    validations:
+      required: true
+  - type: textarea
+    id: esperado
+    attributes:
+      label: Comportamiento esperado y actual
+    validations:
+      required: true
+  - type: dropdown
+    id: impacto
+    attributes:
+      label: Impacto observado
+      options:
+        - Bloquea el trabajo
+        - Alto
+        - Medio
+        - Bajo
+        - Por determinar
+    validations:
+      required: true
+  - type: textarea
+    id: evidencia
+    attributes:
+      label: Entorno y evidencia saneada
+      description: Incluye versión y ruta de evidencia redactada; nunca publiques secretos, datos personales ni evidencia cruda.
