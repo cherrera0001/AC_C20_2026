@@ -250,6 +250,12 @@ Duplicados detectados: ninguno. Huérfanas: ninguna dentro de S01. Desorden: #19
 Planificar) se abrieron antes de que existiera el producto que consumen (el alcance); se ordenan
 detrás de la épica S01 sin editarlas.
 
+**Tablero creado (2026-10-21, aprobación expresa del dueño en la compuerta H)**: por decisión del
+dueño, S01 se integró bajo la épica existente #1 y las tareas viajan como checklist dentro de cada
+historia (sin issues de tarea sueltas). Épica S01: #41 (sub-issue de #1). Historias: US1 #42, US2 #43,
+US3 #44, US4 #45 (sub-issues de #41). Campos: Status «In Progress», Fase C4A «Planificar», Sprint
+«S01», prioridad y talla según la tabla anterior. Ninguna issue existente se editó.
+
 ## Notes
 
 - Línea base (T001, 2026-10-21): `python -m unittest discover -s tests` → 24 pruebas, OK.
