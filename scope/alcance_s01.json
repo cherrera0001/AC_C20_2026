@@ -26,7 +26,7 @@
       "declarado": null,
       "estado_aprobacion": "borrador",
       "fuente": "scope/autorizacion.md §1",
-      "huella_fuente": "8cb864b376dee28541c949941161609f896bd3ed57a0e485f8d59cbb26692577",
+      "huella_fuente": "424085d405b52c1126c971832886fd39ab67cfe70d8395e75231cc0cbb8537e2",
       "id": "A-dcfd37ef23",
       "insumo_cambio": false,
       "marca_legal": null,
@@ -34,7 +34,7 @@
       "observacion": "Consta en la autorización; la firma del representante es aparte.",
       "orden": 2,
       "tipo": "parte",
-      "valor": "Comercial Andes Sur SpA (cliente del informe de cierre según PROMPT_SPEC_KIT.md; ejercicio de laboratorio)"
+      "valor": "Comercial Andes Sur SpA (cliente del informe de cierre según docs/PROMPT_SPEC_KIT.md; ejercicio de laboratorio)"
     },
     {
       "atributos": {
@@ -521,7 +521,7 @@
       "declarado": null,
       "estado_aprobacion": "borrador",
       "fuente": "scope/autorizacion.md encabezado y §6",
-      "huella_fuente": "8a0fa0a7628e8ffb74f1ab67cd1aabb964f36c64193d7cd965f949118ca35e12",
+      "huella_fuente": "18db822df9195b4f2f9930ab718e7226c2c69854f9893834ed31a299df73321d",
       "id": "A-a79af3dcc0",
       "insumo_cambio": false,
       "marca_legal": null,
@@ -551,7 +551,7 @@
       "declarado": null,
       "estado_aprobacion": "borrador",
       "fuente": "scope/autorizacion.md §1–§6",
-      "huella_fuente": "02de84f87a4df8380cc3907353adfffa0a450384c0f5bd1d470ffcc75592db79",
+      "huella_fuente": "872f993fa492f890c12e31f5bacaf87d81c2d41714c2a20417a04fb9ed8b2b8b",
       "id": "A-69090a3d64",
       "insumo_cambio": false,
       "marca_legal": null,
@@ -593,7 +593,7 @@
     {
       "archivo": "scope/autorizacion.md",
       "existe": true,
-      "sha256": "2adb647da7b0e554b77e8c052da66fa7e80a5091943ff5239cbdeba75c956f67"
+      "sha256": "b0a8443f3a3c69bf15ef328546a97fde859aeb3f42bb1778b5efb4c1440c6a97"
     }
   ],
   "producto": "S01 — El alcance",

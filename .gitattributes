@@ -1,0 +1,4 @@
+# Integridad verificable (constitución, principio III): la huella SHA-256 del alcance firmado
+# acredita bytes exactos. Sin esto, core.autocrlf=true reescribe los fines de línea al clonar en
+# Windows y la firma deja de verificar. Se fija LF en los insumos y productos de scope/.
+scope/** text eol=lf

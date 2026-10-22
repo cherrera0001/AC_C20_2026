@@ -4,7 +4,7 @@
 > Este alcance delimita qué se audita y qué no: no contiene conclusiones sobre controles.
 
 - **Estado de aprobación**: borrador
-- **Huella SHA-256 de `scope/alcance_s01.json`**: `cebe3837c05e7d353ccb5e81ef2f9815fc595f53c61667cb3e5444545f8dcb66`
+- **Huella SHA-256 de `scope/alcance_s01.json`**: `0cb39a0a26ef03cf63c3b4c058be32c73b8fde695b5e69a55f2558757b60757d`
 - **Firma**: sin firma
 
 ## Insumos
@@ -12,7 +12,7 @@
 | Archivo | Existe | SHA-256 |
 |---|---|---|
 | `scope/alcance.md` | sí | d19a1fd84561dcfe776c4625e11fb9850f4747c0e451113ab2f91a0073343b71 |
-| `scope/autorizacion.md` | sí | 2adb647da7b0e554b77e8c052da66fa7e80a5091943ff5239cbdeba75c956f67 |
+| `scope/autorizacion.md` | sí | b0a8443f3a3c69bf15ef328546a97fde859aeb3f42bb1778b5efb4c1440c6a97 |
 
 ## Compuerta de autorización (fecha de referencia 2026-10-21)
 
@@ -61,7 +61,7 @@ Firmar el alcance no abre la compuerta de autorización. La herramienta solo lee
 
 | Id | Valor | Decisión | Motivo | Fuente | Aprobación | Observación |
 |---|---|---|---|---|---|---|
-| `A-dcfd37ef23` | Comercial Andes Sur SpA (cliente del informe de cierre según PROMPT_SPEC_KIT.md; ejercicio de laboratorio) | incluido | — | scope/autorizacion.md §1 | borrador | Consta en la autorización; la firma del representante es aparte. |
+| `A-dcfd37ef23` | Comercial Andes Sur SpA (cliente del informe de cierre según docs/PROMPT_SPEC_KIT.md; ejercicio de laboratorio) | incluido | — | scope/autorizacion.md §1 | borrador | Consta en la autorización; la firma del representante es aparte. |
 
 ## Marcos de referencia
 
