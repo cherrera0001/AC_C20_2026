@@ -1,6 +1,6 @@
 <!--
 Insumo 2 — Prompt operativo para Claude Code (CLI).
-Uso: claude -p "$(cat AUDIT_PROMPT.md)"   (o pegar como instrucción inicial)
+Uso: claude -p "$(cat docs/AUDIT_PROMPT.md)"   (o pegar como instrucción inicial)
 Las 4 fases corresponden a: Planificar -> Recopilar -> Analizar -> Informar.
 -->
 

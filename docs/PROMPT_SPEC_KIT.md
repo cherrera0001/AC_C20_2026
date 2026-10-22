@@ -25,7 +25,7 @@ Las guías que describen ese trabajo manual están en `F:\Code\Auditoría a la C
 | S09 | Armar el borrador del informe de cierre | El borrador |
 | S10 | Dejar un informe que un tercero recorre hasta la evidencia | El cierre |
 
-Ese hilo es la necesidad. No la reemplaces por las cuatro carpetas `01_plan`, `02_evidencia`, `03_hallazgos` y `04_informe`. Esas carpetas son el lugar donde cae el resultado. `AUDIT_PROMPT.md`, `AGILE_PROJECT.md` y `historia_usuario.md` se leen. Si chocan con este hilo, manda este hilo y la guía.
+Ese hilo es la necesidad. No la reemplaces por las cuatro carpetas `01_plan`, `02_evidencia`, `03_hallazgos` y `04_informe`. Esas carpetas son el lugar donde cae el resultado. `docs/AUDIT_PROMPT.md`, `docs/AGILE_PROJECT.md` y `docs/historia_usuario.md` se leen. Si chocan con este hilo, manda este hilo y la guía.
 
 ## Antes de la primera habilidad
 
@@ -75,7 +75,7 @@ Usa los formularios que ya están:
 - `.github/ISSUE_TEMPLATE/01-historia-usuario.yml` — una issue por historia escrita en la spec. Tipo de trabajo: Historia de usuario. Enlázala a la épica.
 - `.github/ISSUE_TEMPLATE/02-tarea.yml` — una issue por tarea de `tasks.md`, con el mismo orden y la misma dependencia. Tipo de trabajo: Tarea. Enlázala a la historia que la contiene.
 
-Campos, como los define `AGILE_PROJECT.md`: Status, Prioridad, Talla, Fase C4A, Tipo de trabajo, Sprint. La talla es relativa. Si no alcanza para estimarla, queda `Por definir`. No conviertas la talla en horas. No inventes responsables ni fechas. Project: [C4A — Gestión Ágil 2026](https://github.com/users/cherrera0001/projects/7), repositorio `cherrera0001/AC_C20_2026`.
+Campos, como los define `docs/AGILE_PROJECT.md`: Status, Prioridad, Talla, Fase C4A, Tipo de trabajo, Sprint. La talla es relativa. Si no alcanza para estimarla, queda `Por definir`. No conviertas la talla en horas. No inventes responsables ni fechas. Project: [C4A — Gestión Ágil 2026](https://github.com/users/cherrera0001/projects/7), repositorio `cherrera0001/AC_C20_2026`.
 
 El bucle de la issue es el de la tarea: se abre al quedar escrita en `tasks.md`, pasa a In Progress cuando `/speckit-implement` la toma, y se cierra solo si el criterio de aceptación se cumple y `/speckit-converge` no la reabre. Una tarea que converge agrega de nuevo queda abierta.
 

@@ -19,7 +19,7 @@ el alcance firmado, o explícitamente en borrador, que delimita qué hechos se p
 qué activo.
 
 **Lugar en el proceso de auditoría**: S01 corresponde a la fase Planificar del proceso canónico
-(Planificar → Recopilar → Analizar → Informar, `AUDIT_PROMPT.md`). El alcance es la entrada de la
+(Planificar → Recopilar → Analizar → Informar, `docs/AUDIT_PROMPT.md`). El alcance es la entrada de la
 Fase 1 (`01_plan/`): sin alcance no hay plan, y sin plan y autorización firmada y vigente no hay
 Fase 2. La herramienta propone el alcance; el auditor lo corrige y lo firma.
 
@@ -312,10 +312,10 @@ caso y se comprueba la respuesta y la fila citada.
 ## Assumptions
 
 - **Origen de la descripción**: no se usaron las guías del curso. Por decisión del usuario quedan como
-  referencia de autoestudio; la descripción se tomó de la fila S01 de `PROMPT_SPEC_KIT.md`, de
+  referencia de autoestudio; la descripción se tomó de la fila S01 de `docs/PROMPT_SPEC_KIT.md`, de
   `scope/alcance.md` y de `scope/autorizacion.md`.
-- **Contrato de origen confirmado** (`LINEA_ORIGEN.md`): `scope/alcance.md`, `AUDIT_PROMPT.md` e
-  `historia_usuario.md` son el contrato; no vuelven a «VALIDAR».
+- **Contrato de origen confirmado** (`docs/LINEA_ORIGEN.md`): `scope/alcance.md`, `docs/AUDIT_PROMPT.md` e
+  `docs/historia_usuario.md` son el contrato; no vuelven a «VALIDAR».
 - Hay un solo rol humano, el auditor, que corrige y firma (aclarado 2026-10-21). La revisión por un
   segundo par (#33) queda fuera de S01.
 - La firma del alcance es un registro de firmante, fecha y huella SHA-256 de los bytes guardados
@@ -334,7 +334,7 @@ caso y se comprueba la respuesta y la fila citada.
 - Las leyes que hoy menciona el repositorio (Ley 21.663, Ley 21.719 y Ley 21.459 como delimitación
   de lo legalmente permitido) entran como obligaciones candidatas en «VALIDAR». Este sprint no hace
   validación jurídica.
-- El cliente del informe de cierre (Comercial Andes Sur SpA, según `PROMPT_SPEC_KIT.md`) solo se
+- El cliente del informe de cierre (Comercial Andes Sur SpA, según `docs/PROMPT_SPEC_KIT.md`) solo se
   registra como organización auditada si consta en la autorización. Si consta sin la firma de un
   representante con facultad, la fila conserva el valor y la compuerta sigue cerrada.
 - La versión de CIS Controls v8.1 se tomó de la página oficial del CIS; su número de safeguards no

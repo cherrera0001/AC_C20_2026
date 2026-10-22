@@ -11,7 +11,14 @@ base** entregados en un solo acto. Esos tres archivos son el contrato del proyec
 3. `historia_usuario.md` — actor, objetivo, criterios de aceptación y desglose para GitHub Projects.
 
 Los tres fueron creados juntos el **30-sep 21:21** (timestamp idéntico en los tres
-ficheros), lo que confirma que salieron de una única entrega del chat. Antes de ellos
+ficheros), lo que confirma que salieron de una única entrega del chat.
+
+> Nota de ubicación (2026-10-21): la documentación de gobierno e historia del proyecto
+> vive en `docs/`. Ahí están hoy los archivos base `AUDIT_PROMPT.md` e `historia_usuario.md`,
+> este mismo documento y los prompts locales; las menciones sin carpeta del relato
+> histórico se refieren a esos archivos. `scope/alcance.md` conserva su ruta canónica.
+
+Antes de ellos
 hubo un **Insumo 0** (un prompt maestro que reordenó el encargo del usuario) y una
 **verificación normativa** que fijó el estado vigente de la ley chilena. Después de
 ellos, el repositorio creció por maduraciones sucesivas (N1→N4, M1) y por la estación

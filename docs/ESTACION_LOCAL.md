@@ -76,11 +76,11 @@ claude --version
 Ejecutar el prompt consolidado:
 
 ```powershell
-$prompt = Get-Content .\CLAUDE_CODE_PROMPT.md -Raw
+$prompt = Get-Content .\docs\CLAUDE_CODE_PROMPT.md -Raw
 claude -p $prompt
 ```
 
-La forma anterior puede variar según el SKU y la versión del CLI. Si el comando de `claude -p` no acepta el contenido, copie el archivo al prompt de una nueva sesión y use exactamente el contenido de `CLAUDE_CODE_PROMPT.md`.
+La forma anterior puede variar según el SKU y la versión del CLI. Si el comando de `claude -p` no acepta el contenido, copie el archivo al prompt de una nueva sesión y use exactamente el contenido de `docs/CLAUDE_CODE_PROMPT.md`.
 
 ## 6. Estructura de en ejecución
 
@@ -117,7 +117,7 @@ Get-Content .\scope\alcance.md
 Get-Content .\scope\autorizacion.md
 
 # 2. Ejecutar el prompt consolidado
-$prompt = Get-Content .\CLAUDE_CODE_PROMPT.md -Raw
+$prompt = Get-Content .\docs\CLAUDE_CODE_PROMPT.md -Raw
 claude -p $prompt
 
 # 3. Revisar los artefactos y el estado de VALIDAR

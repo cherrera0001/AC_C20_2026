@@ -34,7 +34,7 @@ y las pruebas de SC-001 a SC-008. Las pruebas usan insumos **sintéticos, rotula
 **Purpose**: línea base y preparación de insumos.
 
 - [X] T001 Correr la suite existente desde `platform/` y registrar la línea base (24 pruebas en verde el 2026-10-21) en `specs/001-alcance-auditoria/tasks.md` → sección Notes; si algo falla, detenerse y reportar
-- [X] T002 Completar `scope/autorizacion.md` **solo** con datos que ya constan en el repositorio (decisión 7 del dueño, 2026-10-21): organización auditada según `PROMPT_SPEC_KIT.md`, activo incluido por tipo y rol según `scope/alcance.md` §4, exclusiones según `scope/alcance.md` §5, y una nota de la decisión con fecha. Firmante, facultad, origen del auditor, ventana, contacto de emergencia y firma quedan «por completar»; el encabezado sigue en «NO FIRMADA — COMPUERTA CERRADA»
+- [X] T002 Completar `scope/autorizacion.md` **solo** con datos que ya constan en el repositorio (decisión 7 del dueño, 2026-10-21): organización auditada según `docs/PROMPT_SPEC_KIT.md`, activo incluido por tipo y rol según `scope/alcance.md` §4, exclusiones según `scope/alcance.md` §5, y una nota de la decisión con fecha. Firmante, facultad, origen del auditor, ventana, contacto de emergencia y firma quedan «por completar»; el encabezado sigue en «NO FIRMADA — COMPUERTA CERRADA»
 
 ---
 

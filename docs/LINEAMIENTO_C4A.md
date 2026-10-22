@@ -98,7 +98,7 @@ Prioridad propuesta: corregir dictamen y trazabilidad antes de agregar ejecució
 
 ## Informe final y aceptación
 
-Reutilizar `platform/c4a/report.py` y `04_informe/` para índice, resumen ejecutivo, informe técnico, riesgos, plan de remediación, matrices y registros. [PLANTILLA_CIERRE_C4A.md](04_informe/PLANTILLA_CIERRE_C4A.md) explicita los campos nuevos y no altera los resultados históricos.
+Reutilizar `platform/c4a/report.py` y `04_informe/` para índice, resumen ejecutivo, informe técnico, riesgos, plan de remediación, matrices y registros. [PLANTILLA_CIERRE_C4A.md](../04_informe/PLANTILLA_CIERRE_C4A.md) explicita los campos nuevos y no altera los resultados históricos.
 
 Cada ficha debe incluir marco/versión/control y fuente, requisito aplicable, activo y alcance, prueba y resultado, evidencia/hash, hallazgo/CWE/CVE solo si consta, CVSS con versión, confianza/limitaciones, issue URL/estado, responsable acordado, acción, reevaluación y dictamen humano. Para un control sin hallazgo se conserva la fila y la evidencia; sin prueba suficiente se mantiene pendiente.
 

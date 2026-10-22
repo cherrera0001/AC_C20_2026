@@ -99,7 +99,7 @@ archivo en la compuerta previa a `/speckit-implement`.
 - [x] CHK030 ¿Está documentada la dependencia del modelo de integridad de `platform/c4a`, con su defecto conocido? [Dependency, Spec §Assumptions]
   Evidencia: `spec.md` Assumptions («Dependencias»); `.specify/memory/constitution.md` principio III, fundamento.
 - [x] CHK031 ¿Está validado el supuesto sobre el contrato de origen? [Assumption, Spec §Assumptions]
-  Evidencia: `LINEA_ORIGEN.md` §3 y §7; `spec.md` Assumptions («Contrato de origen confirmado»).
+  Evidencia: `docs/LINEA_ORIGEN.md` §3 y §7; `spec.md` Assumptions («Contrato de origen confirmado»).
 - [x] CHK032 ¿Está documentada la versión de CIS Controls y qué hacer si no se puede obtener? [Assumption]
   Evidencia: `spec.md` Assumptions (CIS v8.1); `.specify/memory/constitution.md` principio IV (si la v8.1 no se puede obtener, se usa la v8 y se declara).
 

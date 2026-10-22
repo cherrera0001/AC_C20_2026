@@ -4,7 +4,7 @@
 
 ## Objetivo y modos de trabajo
 
-Trabaja en el repositorio local de C4A, conectado al repositorio GitHub `https://github.com/cherrera0001/AC_C20_2026`. El proyecto remoto de planificación es [C4A — Gestión Ágil 2026](https://github.com/users/cherrera0001/projects/7). La guía de tallas, Definition of Ready/Done y métricas está en `AGILE_PROJECT.md`; los formularios de issues viven en `.github/ISSUE_TEMPLATE/`.
+Trabaja en el repositorio local de C4A, conectado al repositorio GitHub `https://github.com/cherrera0001/AC_C20_2026`. El proyecto remoto de planificación es [C4A — Gestión Ágil 2026](https://github.com/users/cherrera0001/projects/7). La guía de tallas, Definition of Ready/Done y métricas está en `docs/AGILE_PROJECT.md`; los formularios de issues viven en `.github/ISSUE_TEMPLATE/`.
 
 Primero identifica la solicitud y actúa solo en el modo pertinente:
 
@@ -61,7 +61,7 @@ Antes de analizar, localiza y registra estas fuentes:
 - `entregables/contenido/S04.json` para ubicación en marco.
 - `extraccion/G4.md` como evidencia de la clase v.19 y para confirmar restricciones.
 - `scope/alcance.md` y `scope/autorizacion.md` como contrato de ejecución.
-- `AUDIT_PROMPT.md` como flujo del repositorio.
+- `docs/AUDIT_PROMPT.md` como flujo del repositorio.
 
 Si el archivo de origen no existe en la ubicación esperada, no lo inventes. Registra el estado `VALIDAR` y continúa con los artefactos disponibles.
 
@@ -69,14 +69,14 @@ Si el archivo de origen no existe en la ubicación esperada, no lo inventes. Reg
 
 ### 1. Verificación inicial
 
-- Lee `scope/alcance.md`, `scope/autorizacion.md`, `README.md` y `AUDIT_PROMPT.md`.
+- Lee `scope/alcance.md`, `scope/autorizacion.md`, `README.md` y `docs/AUDIT_PROMPT.md`.
 - Confirma el usuario, el objetivo, la red, la ventana y el representante que autoriza.
 - Registra el estado de la autorización: `FIRMA PENDIENTE`, `FIRMA VIGENTE` o `VALIDAR`.
 - Si la autorización no está firmada, solo haz análisis documental y no ejecutes pruebas de red.
 
 ### 2. Línea de origen
 
-- Crea o actualiza `LINEA_ORIGEN.md`.
+- Crea o actualiza `docs/LINEA_ORIGEN.md`.
 - Lista cada fuente con ruta, propósito, producto esperado y estado.
 - Identifica los tres archivos base exactos si existen en un manifiesto o en una referencia de control.
 - Si no existen, deja una entrada clara: `NO CONFIRMADO`, sin inferir datos.
@@ -135,7 +135,7 @@ Cada artefacto debe incluir:
 
 ## Salidas esperadas
 
-- `LINEA_ORIGEN.md`
+- `docs/LINEA_ORIGEN.md`
 - `01_plan/plan.md`
 - `02_evidencia/inventario.json`
 - `03_hallazgos/`

@@ -33,7 +33,7 @@ __pycache__/
 # Son reproducibles desde su config; no engordan el repo del laboratorio.
 reports/
 
-# Material de clase: no se publica sin autorización (ver ESTACION_LOCAL.md).
+# Material de clase: no se publica sin autorización (ver docs/ESTACION_LOCAL.md).
 *.pdf
 
 # Carpeta del agente (habilidades de Spec Kit, estado local de Claude Code).

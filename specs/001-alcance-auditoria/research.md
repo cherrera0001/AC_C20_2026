@@ -51,7 +51,7 @@ no consta en el repositorio queda «pendiente de confirmar» o «VALIDAR».
 - **Decision**: lector dirigido a la estructura real de `scope/alcance.md` (secciones `## N.`, tablas
   `| Campo | Valor |`, listas) y de `scope/autorizacion.md`. Lo que el lector no reconoce no se
   inventa: genera una fila «pendiente de confirmar» con la observación.
-- **Rationale**: los dos documentos son el contrato confirmado (`LINEA_ORIGEN.md`); un lector general
+- **Rationale**: los dos documentos son el contrato confirmado (`docs/LINEA_ORIGEN.md`); un lector general
   de markdown sería más código sin más garantía.
 - **Alternatives considered**: pedir al auditor un formulario nuevo (rompe la trazabilidad al origen).
 

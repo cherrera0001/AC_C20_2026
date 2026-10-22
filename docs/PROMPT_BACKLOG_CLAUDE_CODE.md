@@ -10,10 +10,10 @@ Actúa como analista de producto ágil y mantenedor de GitHub Projects para C4A.
 
 1. Lee primero y trata como **contrato original del proyecto** estos tres documentos:
    - `scope/alcance.md`: propósito, límites, reglas de enganche y entregables.
-   - `AUDIT_PROMPT.md`: flujo Planificar → Recopilar → Analizar → Informar, entradas, salidas y restricciones.
-   - `historia_usuario.md`: épica inicial, criterios de aceptación, DoD y desglose original.
-2. Lee `LINEA_ORIGEN.md` para comprender la procedencia y jerarquía documental.
-3. Lee los demás Markdown pertinentes, incluidos `README.md`, `CLAUDE_CODE_PROMPT.md`, `AGILE_PROJECT.md`, `platform/README.md`, `platform/ROADMAP.md`, `01_plan/`, `02_evidencia/`, `03_hallazgos/`, `04_informe/`, `scope/autorizacion.md`, `evidence/README.md` y otros documentos Markdown existentes. Usa estos documentos posteriores para conocer implementación, estado reportado, discrepancias y trabajo pendiente; no alteran el contrato de los tres archivos base.
+   - `docs/AUDIT_PROMPT.md`: flujo Planificar → Recopilar → Analizar → Informar, entradas, salidas y restricciones.
+   - `docs/historia_usuario.md`: épica inicial, criterios de aceptación, DoD y desglose original.
+2. Lee `docs/LINEA_ORIGEN.md` para comprender la procedencia y jerarquía documental.
+3. Lee los demás Markdown pertinentes, incluidos `README.md`, `docs/CLAUDE_CODE_PROMPT.md`, `docs/AGILE_PROJECT.md`, `platform/README.md`, `platform/ROADMAP.md`, `01_plan/`, `02_evidencia/`, `03_hallazgos/`, `04_informe/`, `scope/autorizacion.md`, `evidence/README.md` y otros documentos Markdown existentes. Usa estos documentos posteriores para conocer implementación, estado reportado, discrepancias y trabajo pendiente; no alteran el contrato de los tres archivos base.
 4. No infieras hechos desde documentos que no hayas leído. No inventes alcance, requisitos normativos, activos, resultados, esfuerzo, responsables, sprints ni fechas.
 
 ## Límites
@@ -52,7 +52,7 @@ Usa esta estructura como punto de partida, no como lista ciega. Confirma cada el
 
 ### Épica A — Flujo de auditoría C4A de cuatro fases
 
-Objetivo: ofrecer el flujo Planificar → Recopilar → Analizar → Informar con criterios de aceptación, evidencia y entregables trazables, según `AUDIT_PROMPT.md` y `historia_usuario.md`.
+Objetivo: ofrecer el flujo Planificar → Recopilar → Analizar → Informar con criterios de aceptación, evidencia y entregables trazables, según `docs/AUDIT_PROMPT.md` y `docs/historia_usuario.md`.
 
 Historias candidatas:
 - **A1. Planificación y compuerta de autorización:** validar alcance, plan, criterios y compuerta antes de pruebas; separar auditoría estática local de las pruebas de red.
@@ -82,7 +82,7 @@ No incluyas en el backlog DoS, persistencia, exfiltración, acceso fuera del ran
 
 ### Épica D — Gestión ágil, calidad y trazabilidad del backlog
 
-Comprueba si el Project ya tiene campos y procesos descritos en `AGILE_PROJECT.md`. Crea issues solo para brechas todavía pendientes y verificables (por ejemplo, automatización Auto-add únicamente si los Markdown indican que no está activa y se puede comprobar). No crees issues para volver a crear formularios, etiquetas, campos o Project ya existentes.
+Comprueba si el Project ya tiene campos y procesos descritos en `docs/AGILE_PROJECT.md`. Crea issues solo para brechas todavía pendientes y verificables (por ejemplo, automatización Auto-add únicamente si los Markdown indican que no está activa y se puede comprobar). No crees issues para volver a crear formularios, etiquetas, campos o Project ya existentes.
 
 ## Modelo de tickets
 

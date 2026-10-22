@@ -3,7 +3,7 @@
 > **ESTADO: NO FIRMADA — COMPUERTA CERRADA.**
 > Mientras este documento no esté completo y firmado por un representante con
 > facultad, **no se ejecuta ningún comando contra el objetivo**. Solo se permite
-> análisis documental. Esto lo exige el `AUDIT_PROMPT.md` y la Ley 21.459.
+> análisis documental. Esto lo exige el `docs/AUDIT_PROMPT.md` y la Ley 21.459.
 
 > **Decisión del dueño (2026-10-21)**: el dueño del repositorio autoriza el ejercicio por tratarse
 > de un laboratorio de pruebas (Metasploitable2, alcance declarado en `scope/alcance.md`). Se
@@ -16,7 +16,7 @@
 
 | Campo | Valor |
 |---|---|
-| Organización auditada | Comercial Andes Sur SpA (cliente del informe de cierre según `PROMPT_SPEC_KIT.md`; ejercicio de laboratorio) |
+| Organización auditada | Comercial Andes Sur SpA (cliente del informe de cierre según `docs/PROMPT_SPEC_KIT.md`; ejercicio de laboratorio) |
 | Representante que autoriza | _(nombre y cargo)_ |
 | Facultad para autorizar | _(cargo / poder que lo habilita)_ |
 | Auditor responsable | Cristóbal Herrera Jara |
@@ -69,5 +69,5 @@ Fuera de esta ventana: solo análisis documental.
 
 ---
 _Al completar y firmar, cambia el encabezado a **ESTADO: FIRMADA — COMPUERTA
-ABIERTA** con fecha, y recién entonces el flujo del `AUDIT_PROMPT.md` puede pasar
+ABIERTA** con fecha, y recién entonces el flujo del `docs/AUDIT_PROMPT.md` puede pasar
 de la Fase 1 a la Fase 2._

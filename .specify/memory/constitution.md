@@ -104,7 +104,7 @@ persistido. Requisito transversal de todos los sprints.
 - El GitHub Project #7 y las issues de `cherrera0001/AC_C20_2026` reflejan specs y
   `tasks.md` ya escritos. No se duplica backlog ni se crea otro Project.
 - Cada épica, historia y tarea se vincula a su issue existente, o a una nueva creada con
-  los formularios de `.github/ISSUE_TEMPLATE/` y los campos de `AGILE_PROJECT.md`.
+  los formularios de `.github/ISSUE_TEMPLATE/` y los campos de `docs/AGILE_PROJECT.md`.
 - Las tallas son relativas, no horas. No se inventan responsables ni fechas.
 - Una issue en Done exige el criterio demostrado y un vínculo a evidencia revisada; no
   equivale a un control cumplido.
@@ -136,8 +136,8 @@ persistido. Requisito transversal de todos los sprints.
 
 ## Gobernanza
 
-- Esta constitución prevalece sobre los prompts locales (`PROMPT_SPEC_KIT.md`,
-  `AUDIT_PROMPT.md`, `CLAUDE_CODE_PROMPT.md`) y sobre `AGILE_PROJECT.md` cuando choquen.
+- Esta constitución prevalece sobre los prompts locales (`docs/PROMPT_SPEC_KIT.md`,
+  `docs/AUDIT_PROMPT.md`, `docs/CLAUDE_CODE_PROMPT.md`) y sobre `docs/AGILE_PROJECT.md` cuando choquen.
 - Las enmiendas se registran con versión semántica y fecha: MAJOR si se retira o
   redefine un principio; MINOR si se agrega un principio o sección o se amplía
   materialmente; PATCH si se aclara la redacción.
