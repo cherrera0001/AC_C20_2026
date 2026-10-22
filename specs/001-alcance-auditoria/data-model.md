@@ -74,6 +74,7 @@ listan juntas en la vista, con su conteo (FR-019, SC-003).
 | `sha256` | texto | `util.sha256_file` del archivo ya persistido |
 | `firmante` | texto | Obligatorio |
 | `fecha` | ISO-8601 UTC | |
+| `motivo` | texto | Justificación de la firma; obligatoria (principio I) |
 | `pendientes_al_firmar` | entero | Conteo de filas pendientes |
 | `nota` | texto | «Firmar el alcance no abre la compuerta de autorización» |
 
@@ -85,7 +86,7 @@ Se calcula desde las filas `compuerta` y una fecha de referencia.
 |---|---|---|
 | `firma` | `firmada` \| `no firmada` | Encabezado `ESTADO:` de `scope/autorizacion.md` y sección de firma |
 | `completitud` | `completa` \| `incompleta` | Campos «por completar» de `scope/autorizacion.md` |
-| `ventana` | `vigente` \| `vencida` \| `no informada` | Inicio y fin de `scope/autorizacion.md` §3 |
+| `ventana` | `vigente` \| `vencida` \| `no informada` \| `no vigente (aún no comienza)` | Inicio y fin de `scope/autorizacion.md` §3. El cuarto valor extiende FR-008 para una ventana futura; como no es favorable, la compuerta queda cerrada. Una fecha ilegible cuenta como `no informada` |
 | `resultado` | `abierta` \| `cerrada` | Abierta solo si los tres son favorables |
 | `motivos` | lista | Uno por atributo no favorable |
 

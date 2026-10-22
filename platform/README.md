@@ -29,6 +29,32 @@ En Windows, usa `py -3` o `python` y la config con rutas Windows
 (`config/audit.vt.windows.json`). El acceso nativo a `F:\` es más rápido que
 leer `/mnt/f` desde WSL.
 
+## El alcance (S01)
+
+`alcance` deja el producto de S01 en archivos nuevos de `scope/`. La herramienta
+**propone**; el auditor **corrige** y **firma**. Solo lee `scope/alcance.md` y
+`scope/autorizacion.md`; nunca los escribe ni toca la red.
+
+```bash
+cd platform
+python3 -m c4a alcance proponer  --raiz ..        # borrador: scope/alcance_s01.json + .md
+python3 -m c4a alcance compuerta --raiz ..        # firma, completitud y ventana (solo lectura)
+python3 -m c4a alcance corregir  --raiz .. --fila <ID> --campo decision --valor excluido --motivo "..." --autor "..."
+python3 -m c4a alcance revisar   --raiz .. --autor "..." --motivo "..."
+python3 -m c4a alcance firmar    --raiz .. --firmante "..." --motivo "..."
+python3 -m c4a alcance verificar --raiz ..        # huella firmada vs. bytes guardados
+python3 -m c4a alcance consultar --raiz .. --tipo dominio --valor "..."   # dentro | fuera | pendiente
+```
+
+- `alcance_s01.json` es el contenido canónico y determinista; su huella SHA-256 es la que se firma.
+- `alcance_s01.firma.json` guarda firmante, fecha, justificación, huella y pendientes al firmar.
+  Cualquier corrección posterior anula la firma.
+- `alcance_s01.md` es la vista legible, con una sola sección «Pendientes (N)».
+- **Firmar el alcance no abre la compuerta de autorización.** Ninguna prueba técnica
+  corre sin `scope/autorizacion.md` firmada, completa y con ventana vigente.
+
+Contrato completo: `specs/001-alcance-auditoria/contracts/cli-alcance.md`.
+
 ## Cómo funciona el workflow
 
 Cuatro fases, cada una alimenta a la siguiente; todo lo escribe en las carpetas
@@ -161,14 +187,14 @@ el detector observa, el humano concluye, y la conclusión persiste entre corrida
 ```
 platform/
   c4a/
-    cli.py  orchestrator.py  config.py  scope.py  inventory.py
+    cli.py  orchestrator.py  config.py  scope.py  inventory.py  alcance.py
     evidence.py  ledger.py  model.py  cvss.py  risk.py  correlation.py  report.py
     sca.py  reproduction.py
     detectors/  (secrets_files, dependencies, dockerfile, cicd, crypto_config, permissions)
     knowledge/  (cwe.json, cwe_map.json, controls_iso27001.json, normativas.json)
   config/   (audit.example.json, audit.vt*.json, audit.sca-demo.windows.json)
   examples/ (vuln-demo/ — fixture con dependencias vulnerables para el SCA)
-  tests/    (test_cvss.py, test_sca.py, test_smoke.py)
+  tests/    (test_cvss.py, test_sca.py, test_smoke.py, test_alcance_us1..us4.py, alcance_fixtures.py)
 ```
 
 ## Pruebas

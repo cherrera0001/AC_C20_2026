@@ -238,11 +238,12 @@ caso y se comprueba la respuesta y la fila citada.
 - **FR-011**: El auditor MUST poder corregir cualquier fila. Cada corrección registra autor, fecha,
   valor anterior, valor nuevo y motivo obligatorio, y deja el alcance en «revisado».
 - **FR-012**: Solo una acción explícita del auditor MUST dejar el alcance en «firmado». La firma
-  registra nombre del firmante, fecha y huella SHA-256 de los bytes guardados del alcance; no usa
+  registra nombre del firmante, fecha, justificación (principio I) y huella SHA-256 de los bytes
+  guardados del alcance; no usa
   claves ni firma electrónica avanzada. Cualquier cambio posterior invalida la firma y devuelve el
   estado a «revisado». Firmar el alcance MUST NOT abrir la compuerta de autorización. Firmar un alcance
   en «borrador» MUST rechazarse: la firma exige al menos una corrección o una revisión registrada.
-  Firmar sin nombre del firmante MUST rechazarse.
+  Firmar sin nombre del firmante o sin justificación MUST rechazarse.
 - **FR-013**: Al volver a generar el borrador, la herramienta MUST conservar las correcciones del
   auditor. Si los insumos cambiaron, MUST señalar las filas afectadas en lugar de sobrescribirlas.
 - **FR-014**: La huella de integridad publicada del alcance guardado MUST corresponder exactamente a
@@ -275,7 +276,7 @@ caso y se comprueba la respuesta y la fila citada.
 - **Estado de compuerta**: firma, completitud y ventana de la autorización, más el resultado
   (abierta o cerrada) y su motivo. Es de solo lectura para la herramienta.
 - **Corrección**: autor, fecha, fila afectada, valor anterior, valor nuevo y motivo.
-- **Firma**: firmante, fecha y huella del contenido firmado.
+- **Firma**: firmante, fecha, justificación y huella del contenido firmado.
 
 ## Success Criteria *(mandatory)*
 

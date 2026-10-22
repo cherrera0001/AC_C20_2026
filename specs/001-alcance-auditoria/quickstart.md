@@ -42,7 +42,7 @@ incompleta, ventana no informada).
 
 ```text
 python -m c4a alcance corregir --raiz .. --fila <ID> --campo decision --valor excluido --motivo "<motivo>" --autor "<auditor>"
-python -m c4a alcance firmar   --raiz .. --firmante "<auditor>"
+python -m c4a alcance firmar   --raiz .. --firmante "<auditor>" --motivo "<justificación>"
 python -m c4a alcance verificar --raiz ..
 ```
 
@@ -61,6 +61,18 @@ Esperado: «fuera». Un dominio pendiente responde «pendiente», no «dentro».
 
 - SC-003: el auditor abre `scope/alcance_s01.md`, cronometra cuánto tarda en identificar todos los
   pendientes y registra el tiempo en el checklist humano.
-- SC-008: un tercero recorre tres filas al azar hasta la sección citada del insumo.
+- SC-008: un tercero toma una fila de cada tipo presente y la recorre hasta la sección citada del
+  insumo; registra cuántas llegaron en el checklist humano.
 - SC-005: buscar en `scope/alcance_s01.*` direcciones de red, puertos, comandos y credenciales:
   cero coincidencias.
+
+## Resultado de la validación (2026-10-21)
+
+| Paso | Resultado |
+|---|---|
+| 1. Pruebas automáticas | 72 pruebas OK (24 existentes + 48 de S01) |
+| 2. Proponer | 31 filas, 22 pendientes en una sola sección; insumos sin cambios |
+| 3. Compuerta | «cerrada»: no firmada, incompleta, ventana no informada |
+| 4. Corregir, revisar y firmar | Probado sobre fixture sintético: firmar desde «borrador» → código 1; tras corregir, «firmado»; un byte alterado → código 3 |
+| 5. Consulta | Probado sobre fixture sintético: otro activo → «fuera»; dominio pendiente → «pendiente» |
+| 6. Verificación manual | Pendiente: la hace el auditor (T032) |

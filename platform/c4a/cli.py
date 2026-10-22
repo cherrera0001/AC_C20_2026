@@ -6,6 +6,7 @@ Subcomandos:
   reproduce  re-ejecuta y compara con una corrida previa (por id y hash)
   catalog    lista detectores y normativas disponibles
   runs       lista las ejecuciones registradas en el ledger
+  alcance    S01: propone, corrige, firma y consulta el alcance (scope/)
 """
 from __future__ import annotations
 
@@ -19,6 +20,7 @@ from . import config as config_mod
 from . import orchestrator
 from . import reproduction
 from . import triage as triage_mod
+from . import alcance as alcance_mod
 from .detectors import catalog as det_catalog
 from .ledger import Ledger
 
@@ -133,6 +135,90 @@ def _cmd_runs(args) -> int:
     return 0
 
 
+def _cmd_alcance(args) -> int:
+    """S01 — El alcance: la herramienta propone; el auditor corrige y firma."""
+    from datetime import date
+    for flujo in (sys.stdout, sys.stderr):
+        # una consola cp1252 no debe hacer fallar la salida después de una acción ya hecha
+        if hasattr(flujo, "reconfigure"):
+            flujo.reconfigure(errors="replace")
+    raiz = Path(args.raiz)
+    ref = date.fromisoformat(args.fecha_referencia) if getattr(args, "fecha_referencia", "") else None
+    try:
+        if args.accion == "proponer":
+            c = alcance_mod.proponer(raiz, ref)
+            pend = sum(1 for f in c["filas"] if alcance_mod.es_pendiente(f))
+            print(f"✓ alcance propuesto · {len(c['filas'])} filas · {pend} pendientes · estado {alcance_mod.estado_efectivo(raiz)}")
+            print(f"  {alcance_mod.ARCHIVO_JSON} · {alcance_mod.ARCHIVO_MD}")
+            for a in c["avisos"]:
+                print(f"  aviso: {a}")
+        elif args.accion == "corregir":
+            f = alcance_mod.corregir(raiz, args.fila, args.campo, args.valor, args.motivo, args.autor, args.fecha or None)
+            print(f"✓ corrección registrada en {f['id']} ({args.campo}) · alcance «revisado»")
+        elif args.accion == "revisar":
+            alcance_mod.revisar(raiz, args.autor, args.motivo, args.fecha or None)
+            print("✓ alcance «revisado»")
+        elif args.accion == "firmar":
+            r = alcance_mod.firmar(raiz, args.firmante, args.motivo, args.fecha or None)
+            print(f"✓ alcance firmado por {r['firmante']} · sha256 {r['sha256']}")
+            print(f"  pendientes al firmar: {r['pendientes_al_firmar']} · {r['nota']}")
+        elif args.accion == "verificar":
+            v = alcance_mod.verificar(raiz)
+            print(f"{v['estado']} · sha256 actual {v['sha256_actual']}")
+            if v["estado"].startswith("revisado"):
+                return 3
+        elif args.accion == "consultar":
+            r = alcance_mod.consultar(raiz, args.tipo, args.valor)
+            fila = f"{r['fila']['id']} ({r['fila']['fuente']})" if r["fila"] else "ninguna"
+            print(f"{r['respuesta']} · fila: {fila} · firmado: {'sí' if r['firmado'] else 'no'}")
+            if r["motivo"]:
+                print(f"  motivo: {r['motivo']}")
+        elif args.accion == "compuerta":
+            c = alcance_mod.evaluar_compuerta(raiz, ref)
+            print(f"compuerta {c['resultado']} · firma: {c['firma']} · completitud: {c['completitud']} · ventana: {c['ventana']}")
+            for m in c["motivos"]:
+                print(f"  motivo: {m}")
+    except alcance_mod.AlcanceError as e:
+        print(f"✗ {e}", file=sys.stderr)
+        return e.codigo
+    return 0
+
+
+def _parser_alcance(sub) -> None:
+    sp = sub.add_parser("alcance", help="S01 — proponer, corregir, firmar y consultar el alcance")
+    acc = sp.add_subparsers(dest="accion", required=True)
+
+    def nuevo(nombre, ayuda):
+        a = acc.add_parser(nombre, help=ayuda)
+        a.add_argument("--raiz", default="..", help="raíz del repositorio del ejercicio (por defecto ..)")
+        return a
+
+    a = nuevo("proponer", "deriva el borrador desde scope/alcance.md y scope/autorizacion.md")
+    a.add_argument("--fecha-referencia", dest="fecha_referencia", default="", help="AAAA-MM-DD para la ventana")
+    a = nuevo("corregir", "registra una corrección del auditor")
+    a.add_argument("--fila", required=True)
+    a.add_argument("--campo", required=True, choices=list(alcance_mod.CAMPOS_CORREGIBLES))
+    a.add_argument("--valor", required=True)
+    a.add_argument("--motivo", required=True)
+    a.add_argument("--autor", required=True)
+    a.add_argument("--fecha", default="")
+    a = nuevo("revisar", "marca el alcance «revisado» sin cambiar filas")
+    a.add_argument("--autor", required=True)
+    a.add_argument("--motivo", required=True)
+    a.add_argument("--fecha", default="")
+    a = nuevo("firmar", "firma el alcance revisado (no abre la compuerta)")
+    a.add_argument("--firmante", required=True)
+    a.add_argument("--motivo", required=True, help="justificación de la firma (principio I)")
+    a.add_argument("--fecha", default="")
+    nuevo("verificar", "compara la huella firmada con los bytes guardados")
+    a = nuevo("consultar", "¿está dentro, fuera o pendiente?")
+    a.add_argument("--tipo", required=True, choices=["activo", "dominio", "marco", "obligacion", "exclusion"])
+    a.add_argument("--valor", required=True)
+    a = nuevo("compuerta", "evalúa la compuerta de autorización (solo lectura)")
+    a.add_argument("--fecha-referencia", dest="fecha_referencia", default="", help="AAAA-MM-DD")
+    sp.set_defaults(func=_cmd_alcance)
+
+
 def main(argv=None) -> int:
     p = argparse.ArgumentParser(prog="c4a", description="Plataforma de auditoría C4A")
     p.add_argument("--version", action="version", version=f"c4a {__version__}")
@@ -167,6 +253,7 @@ def main(argv=None) -> int:
             sp.add_argument("--reason", default="", help="motivo de la decisión")
             sp.add_argument("--by", default="", help="quién decide")
         sp.set_defaults(func=func)
+    _parser_alcance(sub)
 
     args = p.parse_args(argv)
     return args.func(args)
