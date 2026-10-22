@@ -5,11 +5,18 @@
 > facultad, **no se ejecuta ningún comando contra el objetivo**. Solo se permite
 > análisis documental. Esto lo exige el `AUDIT_PROMPT.md` y la Ley 21.459.
 
+> **Decisión del dueño (2026-10-21)**: el dueño del repositorio autoriza el ejercicio por tratarse
+> de un laboratorio de pruebas (Metasploitable2, alcance declarado en `scope/alcance.md`). Se
+> completaron solo los datos que ya constaban en el repositorio. Firmante, facultad, origen del
+> auditor, ventana, contacto de emergencia y firma siguen por completar, así que la compuerta técnica
+> sigue **cerrada** hasta que el documento esté firmado y con ventana vigente. Esta decisión habilita
+> el ciclo de especificación y construcción; no habilita comandos de red.
+
 ## 1. Partes
 
 | Campo | Valor |
 |---|---|
-| Organización auditada | _(completar)_ |
+| Organización auditada | Comercial Andes Sur SpA (cliente del informe de cierre según `PROMPT_SPEC_KIT.md`; ejercicio de laboratorio) |
 | Representante que autoriza | _(nombre y cargo)_ |
 | Facultad para autorizar | _(cargo / poder que lo habilita)_ |
 | Auditor responsable | Cristóbal Herrera Jara |
@@ -21,8 +28,8 @@
 |---|---|
 | Rango de red objetivo | `192.168.1.0/24` _(laboratorio)_ |
 | Host(s) objetivo | `192.168.1.14` (Metasploitable2) |
-| Activos explícitamente incluidos | _(listar; nada fuera de esta lista se toca)_ |
-| Exclusiones | _(IP/servicios que NO se tocan)_ |
+| Activos explícitamente incluidos | Metasploitable2, host objetivo único del laboratorio (`scope/alcance.md` §4); nada fuera de esta lista se toca |
+| Exclusiones | Todo sistema, dirección o dominio no listado en este documento, y las actividades de `scope/alcance.md` §5 |
 
 ## 3. Ventana temporal
 

@@ -36,5 +36,9 @@ reports/
 # Material de clase: no se publica sin autorización (ver ESTACION_LOCAL.md).
 *.pdf
 
-# Estado local de Claude Code
-.claude/*.lock
+# Carpeta del agente (habilidades de Spec Kit, estado local de Claude Code).
+# Excluida por recomendación de `specify init`: puede guardar credenciales o tokens.
+.claude/
+
+# Herramientas externas de apoyo a la auditoría, no forman parte de C4A.
+.audit-tools/

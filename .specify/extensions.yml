@@ -1,0 +1,18 @@
+# Registro de hooks de extensiones de Spec Kit (versión instalada: 1.2.0).
+#
+# Las habilidades speckit-* leen la clave `hooks.before_<etapa>` y
+# `hooks.after_<etapa>`, con etapa en: constitution, specify, clarify, plan,
+# checklist, tasks, analyze, implement, converge, taskstoissues.
+# Cada entrada admite: extension, command, description, prompt, optional,
+# enabled y condition.
+#
+# Decisión del dueño (2026-10-21): no hay extensiones instaladas en este
+# repositorio, así que no se registran hooks. No agregar entradas que apunten
+# a comandos inexistentes. Ejemplo de forma (comentado a propósito):
+#
+#   before_plan:
+#     - extension: ejemplo
+#       command: speckit.ejemplo.comando
+#       description: Qué hace
+#       optional: true
+hooks: {}

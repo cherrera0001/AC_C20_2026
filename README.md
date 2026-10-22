@@ -13,7 +13,19 @@ salida en disco y la siguiente la consume:
 3. **Analizar** → `03_hallazgos/<id>.md` + `03_hallazgos/matriz_cumplimiento.csv`
 4. **Informar** → `04_informe/` (técnico, resumen ejecutivo, plan de remediación)
 
+Las 4 fases son la definición canónica del proceso de auditoría a la
+ciberseguridad. La herramienta que asiste al auditor se construye aparte, en 10
+sprints (S01–S10), con Spec Kit: cada sprint es una épica con sus historias de
+usuario, y su avance se mide en el Project. El ciclo de construcción está en
+`PROMPT_SPEC_KIT.md` y sus artefactos en `.specify/` y `specs/`. Lo que la
+herramienta produce cae en las carpetas de las 4 fases; no abre un árbol paralelo.
+
 ## Planificación y versionado
+
+- Revisión y propuesta del MVP: [LINEAMIENTO_C4A.md](LINEAMIENTO_C4A.md).
+- Instrucción única: [INSTRUCCION_UNICA_C4A.md](INSTRUCCION_UNICA_C4A.md).
+- Evidencia de verificación: [VERIFICACION_C4A.md](VERIFICACION_C4A.md).
+- Plantilla complementaria de cierre: [PLANTILLA_CIERRE_C4A.md](04_informe/PLANTILLA_CIERRE_C4A.md).
 
 - Project ágil: [C4A — Gestión Ágil 2026](https://github.com/users/cherrera0001/projects/7), enlazado al repositorio GitHub.
 - Método de trabajo, estimación por tallas, métricas y DoR/DoD: `AGILE_PROJECT.md`.

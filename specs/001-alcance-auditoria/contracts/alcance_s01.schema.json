@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "S01 — El alcance (contenido canónico scope/alcance_s01.json)",
+  "type": "object",
+  "required": ["producto", "version_esquema", "insumos", "filas", "estado_aprobacion", "historial", "avisos"],
+  "additionalProperties": false,
+  "properties": {
+    "producto": {"const": "S01 — El alcance"},
+    "version_esquema": {"const": "1"},
+    "insumos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["archivo", "existe", "sha256"],
+        "properties": {
+          "archivo": {"type": "string"},
+          "existe": {"type": "boolean"},
+          "sha256": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "filas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "orden", "tipo", "clave", "valor", "decision", "declarado", "motivo", "fuente",
+                     "huella_fuente", "estado_aprobacion", "marca_legal", "atributos", "observacion", "insumo_cambio"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^A-[0-9a-f]{10}$"},
+          "orden": {"type": "integer"},
+          "tipo": {"enum": ["activo", "parte", "marco", "obligacion", "dominio", "exclusion", "regla", "compuerta"]},
+          "clave": {"type": "string"},
+          "valor": {"type": "string"},
+          "decision": {"enum": ["incluido", "excluido", "pendiente de confirmar"]},
+          "declarado": {"type": ["string", "null"]},
+          "motivo": {"type": "string"},
+          "fuente": {"type": "string"},
+          "huella_fuente": {"type": ["string", "null"]},
+          "estado_aprobacion": {"enum": ["borrador", "revisado"]},
+          "marca_legal": {"enum": ["VALIDAR", null]},
+          "atributos": {"type": "object"},
+          "observacion": {"type": "string"},
+          "insumo_cambio": {"type": "boolean"}
+        }
+      }
+    },
+    "estado_aprobacion": {"enum": ["borrador", "revisado"]},
+    "historial": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["tipo", "autor", "fecha", "motivo"],
+        "properties": {
+          "tipo": {"enum": ["correccion", "revision", "firma_anulada"]},
+          "autor": {"type": "string", "minLength": 1},
+          "fecha": {"type": "string"},
+          "fila": {"type": ["string", "null"]},
+          "campo": {"enum": ["decision", "valor", "motivo", "version"]},
+          "anterior": {"type": "string"},
+          "nuevo": {"type": "string"},
+          "motivo": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "avisos": {"type": "array", "items": {"type": "string"}}
+  }
+}
