@@ -267,6 +267,12 @@ nada en GitHub.**
 
 Duplicados detectados: ninguno. Huérfanas: ninguna.
 
+**Tablero creado (2026-10-22, aprobación expresa del dueño)**: épica S02 #46 (sub-issue de #1) e
+historias US1 #47, US2 #48, US3 #49, US4 #50 (sub-issues de #46), con sus tareas como checklist.
+Campos: Sprint «S02», Fase C4A «Recopilar», épica «In Progress» e historias «Todo». Se comentó la
+relación en #22, #30 y #45. En la misma sesión: rutas de `docs/` corregidas en 44 issues, talla «Por
+definir» en #5 y #8, y #40 cerrada como completada.
+
 ## Notes
 
 - Las tareas humanas (T038, T039) no las marca el agente.
