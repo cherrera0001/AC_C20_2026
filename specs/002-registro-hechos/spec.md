@@ -38,6 +38,13 @@ Un registro no dictamina: anota hechos y vacíos, no cumplimientos.
   no constan y la vista lo muestra.
 - Q: ¿Se mantiene SC-008 (menos de 10 minutos)? → A: Sí, verificable: prueba automática de una sola
   sección con su conteo; el auditor mide y registra los minutos.
+- Evaluación del checklist humano (2026-10-21, a pedido del dueño): el agente corrigió en origen los
+  vacíos que encontró. Decisiones propuestas por el agente y revisables por el dueño: (a) a S03 solo se
+  entregan las entradas vigentes; (b) un descarte se revierte con una acción explícita de
+  restablecer, con motivo; (c) un activo o dominio «pendiente» en el alcance admite evidencia, y sus
+  entradas viajan marcadas «alcance pendiente»; (d) una evidencia alterada deja la entrada
+  «evidencia alterada», fuera de la entrega como hecho, y el registro se informa «firmado con evidencia
+  alterada» hasta que el auditor corrija; (e) el registro no muestra extractos de la evidencia.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -172,8 +179,8 @@ motivo.
   derivada del contenido); no se duplica.
 - La evidencia referencia un archivo del objetivo sin copiarlo: la entrada lo declara y distingue la
   huella del contenido original de la huella de lo guardado.
-- La evidencia contiene datos personales o secretos: el registro no copia el contenido; cita el tipo,
-  la ubicación y la huella. Lo que se muestre como extracto va enmascarado.
+- La evidencia contiene datos personales o secretos: el registro no copia el contenido ni muestra
+  extractos; cita el tipo, el origen, la ubicación y la huella.
 - La evidencia contiene direcciones de red o comandos: el registro no los copia; nombra el tipo de
   evidencia.
 - El alcance cambia o se vuelve a firmar después de abrir el registro: el registro advierte que se
@@ -197,8 +204,12 @@ motivo.
   registro MUST tener al menos una entrada; sin evidencia, la entrada queda «no consta». Lo que el
   alcance responde «fuera» MUST NOT generar entradas.
 - **FR-004**: Cada entrada MUST tener: activo, dominio, lo que se afirma (o «no consta»), resultado
-  técnico (`positivo`, `negativo`, `inconcluso`, `no-ejecutado`), evidencias citadas, motivo,
-  responsable y estado de aprobación (`borrador`, `revisado`, `firmado`).
+  técnico, evidencias citadas, motivo, responsable y estado de aprobación (`borrador`, `revisado`,
+  `firmado`). El resultado técnico vale: `positivo` (la evidencia muestra la condición afirmada),
+  `negativo` (se buscó y la evidencia muestra que la condición no está), `inconcluso` (la evidencia no
+  permite decidir, o las evidencias discrepan) y `no-ejecutado` (no se miró). La entrada del activo
+  recoge los hechos sobre el activo como un todo (por ejemplo, su identificación); las de dominio,
+  los hechos de ese dominio.
 - **FR-005**: Cada evidencia citada MUST registrar su tipo (documental o técnica), origen declarado,
   ubicación, fecha de recolección, responsable y huella SHA-256 de los bytes guardados. Una evidencia
   documental sin origen declarado MUST rechazarse. Si referencia un archivo del
@@ -211,41 +222,53 @@ motivo.
 - **FR-020**: La identidad de una entrada MUST ser activo + dominio + afirmación, con identificador
   derivado del contenido. Aportar de nuevo el mismo hecho agrega la evidencia a la entrada existente;
   no crea otra.
-- **FR-007**: La herramienta MUST rechazar como evidencia de esta auditoría la que pertenece a un
-  activo o dominio que el alcance responde «fuera», a una corrida sobre otro objetivo, o la evidencia
-  técnica recolectada sin autorización firmada, completa y con ventana vigente en su fecha. Cada
-  rechazo MUST quedar anotado con su motivo.
+- **FR-007**: La herramienta MUST rechazar como evidencia de esta auditoría: la de un activo o
+  dominio que el alcance responde «fuera»; la de una corrida de la herramienta cuyo objetivo registrado
+  no es el activo del alcance («otro objetivo»); la evidencia técnica cuya fecha de recolección,
+  declarada por el auditor, cae sin autorización firmada, completa y con ventana vigente; y la
+  evidencia documental sin origen declarado. Cada rechazo MUST quedar anotado con su motivo.
+- **FR-021**: Un activo o dominio que el alcance responde «pendiente» MUST admitir evidencia; sus
+  entradas MUST llevar la marca «alcance pendiente» y conservarla en la entrega a S03.
 - **FR-008**: Una verificación independiente MUST recalcular la huella de cada evidencia citada y del
   registro guardado, y detectar cualquier alteración. Una evidencia alterada MUST dejar de acreditar su
-  hecho.
+  hecho: la entrada se informa «evidencia alterada», no se entrega a S03 como hecho, y un registro
+  firmado se informa «firmado con evidencia alterada» hasta que el auditor corrija.
 - **FR-009**: Con la compuerta de autorización cerrada, las entradas de dominios técnicos sin
   evidencia MUST quedar con resultado `no-ejecutado` y motivo «compuerta cerrada». La herramienta MUST
   NOT abrir la compuerta ni ejecutar pruebas.
 - **FR-010**: Los dominios que requieren políticas, personas o procesos MUST quedar «no consta» con la
-  nota de solicitud documental cuando no tengan evidencia documental.
+  nota de solicitud documental cuando no tengan evidencia documental. La clasificación sale de la fila
+  del alcance de S01: los dominios técnicos son los declarados como tales, y un dominio de control con
+  la observación de políticas, personas o procesos requiere solicitud documental.
 - **FR-011**: El registro MUST NOT contener estados de cumplimiento (`cumple`, `parcial`, `no-cumple`,
   `no-evaluado`, `no-aplica`) ni conclusiones sobre controles. «Sin hechos positivos» MUST NOT
   presentarse como «sin hallazgos» ni como «cumple».
 - **FR-012**: El registro MUST NOT copiar contenido crudo de la evidencia, direcciones de red,
   comandos, puertos, credenciales ni datos personales. Nombra el tipo de evidencia y su ubicación.
-- **FR-013**: El auditor MUST poder corregir cualquier entrada y descartarla. Cada corrección o
-  descarte registra autor, fecha, valor anterior, valor nuevo y motivo obligatorio, y deja la entrada
-  en «revisado». Ninguna entrada se borra.
+- **FR-013**: El auditor MUST poder corregir la afirmación, el resultado técnico y el motivo de
+  cualquier entrada, descartarla y restablecer una descartada. Las evidencias no se corrigen: se aporta
+  otra. Cada corrección, descarte o restablecimiento registra autor, fecha, valor anterior, valor nuevo
+  y motivo obligatorio, y deja la entrada en «revisado». Ninguna entrada se borra.
 - **FR-014**: Solo una acción explícita del auditor MUST dejar el registro en «firmado». La firma
   registra firmante, fecha, justificación y huella de los bytes guardados; cualquier cambio posterior
   la anula. Firmar el registro MUST NOT abrir la compuerta. Se puede firmar con entradas «no consta»;
-  el registro de firma guarda cuántas había.
+  el registro de firma guarda cuántas había. Firmar un registro en «borrador», sin firmante o sin
+  justificación MUST rechazarse.
 - **FR-015**: Al regenerar, la herramienta MUST conservar las entradas, evidencias y correcciones
   previas. Si el alcance cambió, MUST señalar las entradas afectadas en lugar de sobrescribirlas.
 - **FR-016**: El registro MUST agrupar en una sola sección las entradas «no consta», con su conteo, y
   en otra los rechazos, con su motivo.
 - **FR-017**: El registro MUST guardarse en archivos nuevos dentro de `02_evidencia/`, sin crear un
   árbol paralelo ni sobrescribir `02_evidencia/inventario.json`, y ser legible por un tercero sin la
-  herramienta.
+  herramienta. La copia de cada evidencia aportada MUST guardarse en `evidence/`, la carpeta de crudos
+  que no entra a git; el registro cita su ubicación y su huella.
 - **FR-018**: Con el mismo alcance, las mismas evidencias y las mismas correcciones, la herramienta
   MUST producir el mismo registro.
-- **FR-019**: La herramienta MUST entregar a S03 las entradas con hecho afirmado y las «no consta»,
-  cada una con su activo, dominio, evidencia y huella, e indicar si el registro está firmado.
+- **FR-019**: La herramienta MUST entregar a S03 las entradas vigentes: los hechos no descartados,
+  dentro del alcance vigente y sin evidencia alterada, y las «no consta» que ningún hecho superó; cada
+  una con su activo, dominio, resultado, marcas, evidencias y huellas, e indicar si el registro está
+  firmado. Las entradas descartadas, superadas o fuera del alcance vigente se conservan en el registro
+  y no se entregan.
 
 ### Key Entities
 
@@ -255,13 +278,14 @@ motivo.
 - **Entrada**: un hecho afirmable o un vacío, identificada por activo + dominio + afirmación. Tiene
   activo, dominio, afirmación (o «no consta»),
   resultado técnico, evidencias citadas, motivo, responsable, estado de aprobación y marcas (descartada,
-  afectada por cambio de alcance).
+  superada, fuera del alcance vigente, alcance pendiente, evidencia alterada).
 - **Evidencia citada**: tipo (documental o técnica), origen declarado, ubicación, fecha y responsable de la recolección,
   huella de lo guardado, huella del contenido original cuando difiere, y si es una referencia sin copia.
 - **Rechazo**: evidencia que se intentó aportar y no acredita esta auditoría, con su motivo y la regla
   o fila del alcance que lo decide.
 - **Corrección**: autor, fecha, entrada afectada, valor anterior, valor nuevo y motivo.
-- **Firma**: firmante, fecha, justificación y huella del registro guardado.
+- **Firma**: firmante, fecha, justificación, huella del registro guardado y cuántas entradas «no
+  consta» había al firmar.
 
 ## Success Criteria *(mandatory)*
 
@@ -271,8 +295,9 @@ motivo.
   evidencia, el registro tiene exactamente N + 1 entradas «no consta» y cero hechos afirmados.
 - **SC-002**: El 100 % de las entradas con hecho afirmado citan al menos una evidencia con tipo,
   ubicación, fecha, responsable y huella.
-- **SC-003**: El 100 % de las evidencias de prueba de otro activo, de otra corrida, de un dominio fuera
-  o técnicas sin autorización vigente se rechazan, cada una con su motivo.
+- **SC-003**: El 100 % de las evidencias de prueba de cada causa de rechazo (otro activo, dominio
+  fuera, corrida sobre otro objetivo, técnica sin autorización vigente en su fecha, documental sin
+  origen declarado) se rechazan, cada una con su motivo.
 - **SC-004**: La alteración de un solo byte de una evidencia citada o del registro guardado se detecta
   en el 100 % de los casos.
 - **SC-005**: Una búsqueda sobre el registro generado encuentra cero direcciones de red, comandos,
@@ -284,8 +309,16 @@ motivo.
   sección con su conteo, sin abrir otros archivos. Verificación automática: existe una sola sección
   «no consta» y su conteo coincide con las entradas. Verificación manual: el auditor mide y registra el
   tiempo.
-- **SC-009**: Un tercero que no estuvo en la sala recorre una entrada de cada dominio hasta su
-  evidencia y comprueba su huella sin ayuda.
+- **SC-009**: Un tercero que no estuvo en la sala toma una entrada con evidencia de cada dominio, la
+  recorre hasta su evidencia y comprueba su huella sin ayuda; el resultado (entradas recorridas y
+  cuántas verificaron) se registra en el checklist humano.
+- **SC-010**: La entrega a S03 contiene exactamente las entradas vigentes de FR-019 y ninguna
+  descartada, superada, fuera del alcance vigente ni con evidencia alterada.
+- **SC-011**: Aportar dos veces el mismo hecho deja una sola entrada con las dos evidencias (FR-020).
+- **SC-012**: Abrir y alimentar el registro solo crea archivos nuevos en `02_evidencia/` y `evidence/`;
+  `02_evidencia/inventario.json` y `scope/` quedan sin cambios (FR-017).
+- **SC-013**: Una evidencia de un activo o dominio «pendiente» se acepta y su entrada lleva la marca
+  «alcance pendiente» (FR-021).
 
 ## Assumptions
 
@@ -300,7 +333,10 @@ motivo.
   aportada con origen declarado y obtenida sin tocar el objetivo (aclarado 2026-10-21); los dominios
   técnicos quedan `no-ejecutado`. S02 no ejecuta pruebas ni las dispara.
 - Las corridas existentes del análisis estático en `evidence/` y `02_evidencia/inventario.json`
-  corresponden a otro objetivo (un repositorio), no a Metasploitable 2; no acreditan esta auditoría.
+  corresponden a otro objetivo, no a Metasploitable 2: el registro local de corridas de la
+  herramienta anota como objetivo rutas de repositorios. No acreditan esta auditoría.
+- Que una evidencia documental se obtuvo «sin tocar el objetivo» es una declaración del auditor. La
+  herramienta no puede comprobarla; registra quién lo declaró y cuándo.
 - La evidencia cruda sigue fuera de git (`evidence/` está ignorado); el registro solo cita ubicación y
   huella. El cifrado de custodia no es parte de S02 (#23).
 - El defecto conocido de `platform/c4a/evidence.py::from_command` (la huella no corresponde al archivo

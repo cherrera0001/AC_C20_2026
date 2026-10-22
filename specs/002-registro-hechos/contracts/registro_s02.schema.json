@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "S02 — El registro (contenido canónico 02_evidencia/registro_s02.json)",
+  "type": "object",
+  "required": ["producto", "version_esquema", "alcance", "entradas", "rechazos", "estado_aprobacion", "historial", "avisos"],
+  "additionalProperties": false,
+  "properties": {
+    "producto": {"const": "S02 — El registro"},
+    "version_esquema": {"const": "1"},
+    "alcance": {
+      "type": "object",
+      "required": ["archivo", "sha256", "firmado", "minimo_de_referencia"],
+      "properties": {
+        "archivo": {"type": "string"},
+        "sha256": {"type": ["string", "null"]},
+        "firmado": {"type": "boolean"},
+        "minimo_de_referencia": {"type": "boolean"}
+      }
+    },
+    "entradas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "clase", "activo", "dominio", "afirmacion", "resultado", "motivo", "evidencias",
+                     "responsable", "estado_aprobacion", "marcas"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[HN]-[0-9a-f]{10}$"},
+          "clase": {"enum": ["hecho", "no consta"]},
+          "activo": {"type": "string"},
+          "dominio": {"type": "object", "required": ["fila", "valor"]},
+          "afirmacion": {"type": "string"},
+          "resultado": {"enum": ["positivo", "negativo", "inconcluso", "no-ejecutado"]},
+          "motivo": {"type": "string"},
+          "evidencias": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "tipo", "origen", "ubicacion_original", "copia", "sin_copia", "sha256_original",
+                           "sha256_guardado", "fecha_recoleccion", "responsable", "resultado", "corrida"],
+              "properties": {
+                "id": {"type": "string", "pattern": "^E-[0-9a-f]{10}$"},
+                "tipo": {"enum": ["documental", "tecnica"]},
+                "sin_copia": {"type": "boolean"},
+                "resultado": {"enum": ["positivo", "negativo", "inconcluso"]}
+              }
+            }
+          },
+          "responsable": {"type": "string"},
+          "estado_aprobacion": {"enum": ["borrador", "revisado"]},
+          "marcas": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "rechazos": {"type": "array", "items": {"type": "object", "required": ["motivo", "regla"]}},
+    "estado_aprobacion": {"enum": ["borrador", "revisado"]},
+    "historial": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["tipo", "autor", "fecha"],
+        "properties": {
+          "tipo": {"enum": ["aporte", "rechazo", "correccion", "descarte", "restablecimiento", "revision", "firma_anulada"]}
+        }
+      }
+    },
+    "avisos": {"type": "array", "items": {"type": "string"}}
+  }
+}
