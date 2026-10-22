@@ -12,7 +12,7 @@ S02 deja **el registro**: lo que se puede afirmar sobre el activo del alcance, c
 evidencia y su huella, y lo que no consta, en la fase Recopilar. La herramienta **abre** el registro a
 partir del alcance de S01 (una entrada «no consta» por activo y dominio dentro o pendiente),
 **propone** entradas cuando el auditor aporta una evidencia, **rechaza** la evidencia que no acredita
-esta auditoría y deja al auditor **corregir**, **descartar** y **firmar**. Entrega a S03 los hechos y
+esta auditoría y deja al auditor **corregir**, **descartar**, **restablecer** y **firmar**. Entrega a S03 los hechos y
 los vacíos.
 
 Enfoque técnico: un módulo nuevo `platform/c4a/registro.py` y un subcomando `registro` en
@@ -55,7 +55,7 @@ acredita bytes exactos).
 
 | Principio | Exigencia aplicable a S02 | Cómo la cumple el diseño | Estado |
 |---|---|---|---|
-| I. Propone / firma | Ningún rol de la herramienta firma; decisión con quién, cuándo y justificación | `abrir` y `aportar` producen «borrador»; `corregir` y `descartar` exigen autor y motivo; `firmar` exige firmante y justificación | PASA |
+| I. Propone / firma | Ningún rol de la herramienta firma; decisión con quién, cuándo y justificación | `abrir` y `aportar` producen «borrador»; `corregir`, `descartar` y `restablecer` exigen autor y motivo; `firmar` exige firmante y justificación | PASA |
 | II. Separación técnico / cumplimiento / aprobación | Resultado técnico en su vocabulario; «sin hallazgos» ≠ «cumple» | Cada entrada usa solo `positivo`, `negativo`, `inconcluso`, `no-ejecutado` y aprobación; cero estados de cumplimiento (FR-011, prueba); el resumen cuenta «no consta», nunca dice «sin hallazgos» | PASA |
 | III. Integridad verificable | Hash = bytes persistidos; original vs guardado; referencia sin copia declarada; otra corrida u otro activo no acredita; fixtures rotulados | La evidencia se copia a `evidence/registro_s02/` y se hashea la copia ya escrita; se registra también la huella del original; `--sin-copia` declara la referencia; `verificar` recalcula todo; rechazo de otro activo y de corridas de otro objetivo (ledger) | PASA |
 | IV. Controles con marco y versión | No aplica a S02 (no cita controles) | El registro no cita controles ni marcos; eso es S04 | PASA (no aplica) |
@@ -97,8 +97,9 @@ specs/002-registro-hechos/
 │   ├── cli-registro.md
 │   └── registro_s02.schema.json
 ├── checklists/
-│   └── requirements.md
-└── tasks.md             # /speckit-tasks
+│   ├── requirements.md
+│   └── registro.md
+└── tasks.md
 ```
 
 ### Source Code (repository root)

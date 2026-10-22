@@ -56,7 +56,9 @@ de diseño con fundamento y alternativas.
 
 ## D6. Cambio del alcance
 
-- **Decision**: el registro guarda la huella del `scope/alcance_s01.json` del que derivó. Si cambia,
+- **Decision**: el registro guarda la huella del `scope/alcance_s01.json` del que derivó, la de
+  `scope/autorizacion.md` y el estado de la compuerta con su fecha de evaluación (así la misma entrada
+  produce los mismos bytes, FR-018). Si alguno cambia,
   `abrir` avisa; las entradas cuyo dominio ahora es «fuera» quedan marcadas «fuera del alcance
   vigente» y no se entregan a S03. Si el registro está firmado y el alcance cambió, no se escribe
   (código 4), como en S01.

@@ -45,6 +45,11 @@ Un registro no dictamina: anota hechos y vacíos, no cumplimientos.
   entradas viajan marcadas «alcance pendiente»; (d) una evidencia alterada deja la entrada
   «evidencia alterada», fuera de la entrega como hecho, y el registro se informa «firmado con evidencia
   alterada» hasta que el auditor corrija; (e) el registro no muestra extractos de la evidencia.
+- Corrección tras `/speckit-analyze` (2026-10-22, aprobada por el dueño): (f) si el hecho que superó
+  una «no consta» se descarta, la «no consta» vuelve a valer; (g) un aporte posterior a la revisión
+  devuelve el registro a «borrador»; (h) cualquier escritura posterior a la firma, incluidos un
+  rechazo y una revisión, la anula; (i) un cambio en `scope/autorizacion.md` o en el estado de la
+  compuerta se trata como un cambio del alcance (FR-015).
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -253,9 +258,12 @@ motivo.
   registra firmante, fecha, justificación y huella de los bytes guardados; cualquier cambio posterior
   la anula. Firmar el registro MUST NOT abrir la compuerta. Se puede firmar con entradas «no consta»;
   el registro de firma guarda cuántas había. Firmar un registro en «borrador», sin firmante o sin
-  justificación MUST rechazarse.
+  justificación MUST rechazarse. Un aporte posterior a la revisión devuelve el registro a «borrador»:
+  hay que revisarlo de nuevo antes de firmar.
 - **FR-015**: Al regenerar, la herramienta MUST conservar las entradas, evidencias y correcciones
-  previas. Si el alcance cambió, MUST señalar las entradas afectadas en lugar de sobrescribirlas.
+  previas. Si el alcance cambió, MUST señalar las entradas afectadas en lugar de sobrescribirlas. El
+  registro guarda la huella de `scope/autorizacion.md` y el estado de la compuerta con su fecha de
+  evaluación; si cambian, cuenta como cambio del alcance.
 - **FR-016**: El registro MUST agrupar en una sola sección las entradas «no consta», con su conteo, y
   en otra los rechazos, con su motivo.
 - **FR-017**: El registro MUST guardarse en archivos nuevos dentro de `02_evidencia/`, sin crear un
@@ -265,7 +273,8 @@ motivo.
 - **FR-018**: Con el mismo alcance, las mismas evidencias y las mismas correcciones, la herramienta
   MUST producir el mismo registro.
 - **FR-019**: La herramienta MUST entregar a S03 las entradas vigentes: los hechos no descartados,
-  dentro del alcance vigente y sin evidencia alterada, y las «no consta» que ningún hecho superó; cada
+  dentro del alcance vigente y sin evidencia alterada, y las «no consta» que ningún hecho vigente superó (si el hecho que la superó se descarta, la «no
+  consta» vuelve a valer); cada
   una con su activo, dominio, resultado, marcas, evidencias y huellas, e indicar si el registro está
   firmado. Las entradas descartadas, superadas o fuera del alcance vigente se conservan en el registro
   y no se entregan.

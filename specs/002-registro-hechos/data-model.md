@@ -17,7 +17,7 @@ Esquema formal: [contracts/registro_s02.schema.json](contracts/registro_s02.sche
 |---|---|---|
 | `producto` | texto | `"S02 — El registro"` |
 | `version_esquema` | texto | `"1"` |
-| `alcance` | objeto | `{archivo, sha256, firmado, minimo_de_referencia}`; `minimo_de_referencia` verdadero si no había `scope/alcance_s01.json` |
+| `alcance` | objeto | `{archivo, sha256, firmado, minimo_de_referencia, autorizacion_sha256, compuerta, compuerta_fecha}`; `minimo_de_referencia` verdadero si no había `scope/alcance_s01.json`; `compuerta` es `abierta` o `cerrada`, evaluada en `compuerta_fecha` |
 | `entradas` | lista de Entrada | Ordenadas: «no consta» y hechos por activo, dominio |
 | `rechazos` | lista de Rechazo | Derivados del historial |
 | `estado_aprobacion` | `borrador` \| `revisado` | «firmado» se deriva de una firma válida |
@@ -37,7 +37,7 @@ Esquema formal: [contracts/registro_s02.schema.json](contracts/registro_s02.sche
 | `evidencias` | lista de Evidencia citada | Al menos una en `hecho` (FR-006) |
 | `responsable` | texto | Quien aportó |
 | `estado_aprobacion` | `borrador` \| `revisado` | |
-| `marcas` | lista | `descartada`, `superada por H-…`, `fuera del alcance vigente`, `alcance pendiente`, `evidencia alterada` |
+| `marcas` | lista | Persistidas: `descartada`, `superada por H-…` (solo por un hecho vigente), `fuera del alcance vigente`, `alcance pendiente`. Calculada al verificar, no persistida: `evidencia alterada` |
 
 ## Evidencia citada
 
@@ -82,6 +82,8 @@ abrir ─▶ borrador ─aportar─▶ borrador ─corregir/descartar/revisar─
 ```
 
 - `firmar` exige «revisado», firmante y justificación; guarda `no_consta_al_firmar`.
-- Un aporte, corrección, descarte o restablecimiento posterior a la firma la anula (evento `firma_anulada`).
+- Toda escritura posterior a la firma (aporte, rechazo, corrección, descarte, restablecimiento o revisión) la anula (evento `firma_anulada`).
+- Un aporte sobre un registro «revisado» lo devuelve a «borrador».
+- Si el hecho que superó una «no consta» se descarta, la «no consta» vuelve a valer.
 - `verificar` con una evidencia alterada: la entrada se informa «evidencia alterada» y sale de la entrega; si el registro está firmado, se informa «firmado con evidencia alterada».
 - `abrir` sobre un registro firmado cuyo alcance cambió: aviso, código 4, no escribe.

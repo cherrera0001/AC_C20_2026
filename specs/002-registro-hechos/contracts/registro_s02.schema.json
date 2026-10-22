@@ -9,12 +9,15 @@
     "version_esquema": {"const": "1"},
     "alcance": {
       "type": "object",
-      "required": ["archivo", "sha256", "firmado", "minimo_de_referencia"],
+      "required": ["archivo", "sha256", "firmado", "minimo_de_referencia", "autorizacion_sha256", "compuerta", "compuerta_fecha"],
       "properties": {
         "archivo": {"type": "string"},
         "sha256": {"type": ["string", "null"]},
         "firmado": {"type": "boolean"},
-        "minimo_de_referencia": {"type": "boolean"}
+        "minimo_de_referencia": {"type": "boolean"},
+        "autorizacion_sha256": {"type": ["string", "null"]},
+        "compuerta": {"enum": ["abierta", "cerrada"]},
+        "compuerta_fecha": {"type": "string"}
       }
     },
     "entradas": {

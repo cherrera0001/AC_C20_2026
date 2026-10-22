@@ -2,3 +2,6 @@
 # acredita bytes exactos. Sin esto, core.autocrlf=true reescribe los fines de línea al clonar en
 # Windows y la firma deja de verificar. Se fija LF en los insumos y productos de scope/.
 scope/** text eol=lf
+
+# Artefactos de Spec Kit: LF fijo para evitar diffs falsos con core.autocrlf=true.
+specs/** text eol=lf
