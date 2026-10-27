@@ -1,0 +1,215 @@
+{
+  "avisos": [],
+  "cadena": {
+    "S01": {
+      "archivo": "scope/alcance_s01.json",
+      "estado": "borrador",
+      "sha256": "0cb39a0a26ef03cf63c3b4c058be32c73b8fde695b5e69a55f2558757b60757d"
+    },
+    "S02": {
+      "archivo": "02_evidencia/registro_s02.json",
+      "estado": "borrador",
+      "sha256": "810db8b8afab348649a8b9b5265f1d07c10f3c03c19c0c5c6c37c7723d086394"
+    },
+    "S03": {
+      "archivo": "03_hallazgos/enunciados_s03.json",
+      "estado": "borrador",
+      "sha256": "f7b8d1e13704ae58c86e15e9c30be63cd3d3c20621b8bb3c22d7c7b1a3253941"
+    },
+    "S04": {
+      "archivo": "03_hallazgos/citas_s04.json",
+      "estado": "borrador",
+      "sha256": "caa20b0f97e984a102b401ff5d166f20d36675d732fe56c6393c163ac351b967"
+    },
+    "S05": {
+      "archivo": "03_hallazgos/perfil_s05.json",
+      "estado": "borrador",
+      "sha256": "a08fefb6dda1cca8362eef93e6f53f614f36bb94a14b22d4ae95ed4434d163f2"
+    },
+    "S06": {
+      "archivo": "03_hallazgos/lista_s06.json",
+      "estado": "borrador",
+      "sha256": "1b2767827262d643a0c44af2cca45be45cf51b48f58dab0ca9fd45d047a76097"
+    }
+  },
+  "contados": {
+    "condicionados": 7,
+    "no_repetibles": 0,
+    "pasos": 12,
+    "repetibles": 5
+  },
+  "estado_aprobacion": "borrador",
+  "historial": [
+    {
+      "autor": "C4A (propuesta de la herramienta)",
+      "fecha": "2026-10-27T02:12:13Z",
+      "motivo": "Propuesta del encargo a partir de la cadena vigente S01–S06.",
+      "tipo": "propuesta"
+    }
+  ],
+  "nota": "Este encargo no abre ni transporta la autorización: la corrida que repite verifica scope/autorizacion.md firmada y con ventana vigente antes de cualquier paso técnico.",
+  "pasos": [
+    {
+      "condicion": null,
+      "correcciones": [],
+      "descripcion": "Fijar el alcance del ejercicio: activo «Metasploitable2», 0 dominios dentro y 7 pendientes.",
+      "entrada": "scope/alcance.md y scope/autorizacion.md",
+      "estado_aprobacion": "borrador",
+      "huella_origen": "0cb39a0a26ef03cf63c3b4c058be32c73b8fde695b5e69a55f2558757b60757d",
+      "id": "E-156d138e1e",
+      "repetibilidad": "inmediata",
+      "salida_esperada": "alcance firmado o en borrador",
+      "sprint": "S01"
+    },
+    {
+      "condicion": "verificar cuando conste evidencia admisible para este dominio",
+      "correcciones": [],
+      "descripcion": "Verificar el dominio «Superficie de red y servicios expuestos (puertos, versiones, banners)»: aportar evidencia del tipo que corresponda al dominio (técnica si la compuerta está vigente, documental con origen declarado).",
+      "entrada": "evidencia del dominio",
+      "estado_aprobacion": "borrador",
+      "huella_origen": "810db8b8afab348649a8b9b5265f1d07c10f3c03c19c0c5c6c37c7723d086394",
+      "id": "E-3601ef79e8",
+      "repetibilidad": "condicionada",
+      "salida_esperada": "hechos del dominio en el registro",
+      "sprint": "S02"
+    },
+    {
+      "condicion": "verificar cuando conste evidencia admisible para este dominio",
+      "correcciones": [],
+      "descripcion": "Verificar el dominio «Organizacionales (A.5): gestión de incidentes, políticas, proveedores»: aportar evidencia del tipo que corresponda al dominio (técnica si la compuerta está vigente, documental con origen declarado).",
+      "entrada": "evidencia del dominio",
+      "estado_aprobacion": "borrador",
+      "huella_origen": "810db8b8afab348649a8b9b5265f1d07c10f3c03c19c0c5c6c37c7723d086394",
+      "id": "E-3adad4e8ef",
+      "repetibilidad": "condicionada",
+      "salida_esperada": "hechos del dominio en el registro",
+      "sprint": "S02"
+    },
+    {
+      "condicion": "verificar cuando conste evidencia admisible para este dominio",
+      "correcciones": [],
+      "descripcion": "Verificar el dominio «Cifrado en tránsito (TLS/SSH) y exposición de datos»: aportar evidencia del tipo que corresponda al dominio (técnica si la compuerta está vigente, documental con origen declarado).",
+      "entrada": "evidencia del dominio",
+      "estado_aprobacion": "borrador",
+      "huella_origen": "810db8b8afab348649a8b9b5265f1d07c10f3c03c19c0c5c6c37c7723d086394",
+      "id": "E-5f0f370a56",
+      "repetibilidad": "condicionada",
+      "salida_esperada": "hechos del dominio en el registro",
+      "sprint": "S02"
+    },
+    {
+      "condicion": "verificar cuando conste evidencia admisible para este dominio",
+      "correcciones": [],
+      "descripcion": "Verificar el dominio «Autenticación, credenciales por defecto y débiles»: aportar evidencia del tipo que corresponda al dominio (técnica si la compuerta está vigente, documental con origen declarado).",
+      "entrada": "evidencia del dominio",
+      "estado_aprobacion": "borrador",
+      "huella_origen": "810db8b8afab348649a8b9b5265f1d07c10f3c03c19c0c5c6c37c7723d086394",
+      "id": "E-769783a840",
+      "repetibilidad": "condicionada",
+      "salida_esperada": "hechos del dominio en el registro",
+      "sprint": "S02"
+    },
+    {
+      "condicion": "verificar cuando conste evidencia admisible para este dominio",
+      "correcciones": [],
+      "descripcion": "Verificar el dominio «Vulnerabilidades conocidas (CVE) y configuraciones inseguras»: aportar evidencia del tipo que corresponda al dominio (técnica si la compuerta está vigente, documental con origen declarado).",
+      "entrada": "evidencia del dominio",
+      "estado_aprobacion": "borrador",
+      "huella_origen": "810db8b8afab348649a8b9b5265f1d07c10f3c03c19c0c5c6c37c7723d086394",
+      "id": "E-a46e8ca5f5",
+      "repetibilidad": "condicionada",
+      "salida_esperada": "hechos del dominio en el registro",
+      "sprint": "S02"
+    },
+    {
+      "condicion": "verificar cuando conste evidencia admisible para este dominio",
+      "correcciones": [],
+      "descripcion": "Verificar el dominio «Tecnológicos (A.8): gestión de vulnerabilidades, hardening, criptografía, logging»: aportar evidencia del tipo que corresponda al dominio (técnica si la compuerta está vigente, documental con origen declarado).",
+      "entrada": "evidencia del dominio",
+      "estado_aprobacion": "borrador",
+      "huella_origen": "810db8b8afab348649a8b9b5265f1d07c10f3c03c19c0c5c6c37c7723d086394",
+      "id": "E-abdd19494a",
+      "repetibilidad": "condicionada",
+      "salida_esperada": "hechos del dominio en el registro",
+      "sprint": "S02"
+    },
+    {
+      "condicion": "verificar cuando conste evidencia admisible para este dominio",
+      "correcciones": [],
+      "descripcion": "Verificar el dominio «Validación controlada de explotabilidad (solo prueba de concepto, no disrupción)»: aportar evidencia del tipo que corresponda al dominio (técnica si la compuerta está vigente, documental con origen declarado).",
+      "entrada": "evidencia del dominio",
+      "estado_aprobacion": "borrador",
+      "huella_origen": "810db8b8afab348649a8b9b5265f1d07c10f3c03c19c0c5c6c37c7723d086394",
+      "id": "E-d1baeeb536",
+      "repetibilidad": "condicionada",
+      "salida_esperada": "hechos del dominio en el registro",
+      "sprint": "S02"
+    },
+    {
+      "condicion": null,
+      "correcciones": [],
+      "descripcion": "Enunciar el riesgo de cada hecho vigente (0 hoy); los 8 vacíos quedan como condición, no se rellenan.",
+      "entrada": "entrega de S02",
+      "estado_aprobacion": "borrador",
+      "huella_origen": "f7b8d1e13704ae58c86e15e9c30be63cd3d3c20621b8bb3c22d7c7b1a3253941",
+      "id": "E-dc14dfddbc",
+      "repetibilidad": "inmediata",
+      "salida_esperada": "enunciados de riesgo con criterio, impacto y lo que falta",
+      "sprint": "S03"
+    },
+    {
+      "condicion": null,
+      "correcciones": [],
+      "descripcion": "Citar cada riesgo en un marco con nombre y versión (0 riesgos); los identificadores que no consten quedan pendientes de confirmar.",
+      "entrada": "entrega de S03",
+      "estado_aprobacion": "borrador",
+      "huella_origen": "caa20b0f97e984a102b401ff5d166f20d36675d732fe56c6393c163ac351b967",
+      "id": "E-7b286b492d",
+      "repetibilidad": "inmediata",
+      "salida_esperada": "citas con marco, versión e identificador o su pendiente",
+      "sprint": "S04"
+    },
+    {
+      "condicion": null,
+      "correcciones": [],
+      "descripcion": "Perfilar el activo con las seis funciones del NIST CSF 2.0 (Gobernar, Identificar, Proteger, Detectar, Responder, Recuperar).",
+      "entrada": "entrega de S04",
+      "estado_aprobacion": "borrador",
+      "huella_origen": "a08fefb6dda1cca8362eef93e6f53f614f36bb94a14b22d4ae95ed4434d163f2",
+      "id": "E-ad94c6997c",
+      "repetibilidad": "inmediata",
+      "salida_esperada": "perfil por función con síntesis del auditor",
+      "sprint": "S05"
+    },
+    {
+      "condicion": null,
+      "correcciones": [],
+      "descripcion": "Listar los CIS Controls que aplican partiendo por el inventario (13 seleccionados hoy, 3 pendientes).",
+      "entrada": "entrega de S05",
+      "estado_aprobacion": "borrador",
+      "huella_origen": "1b2767827262d643a0c44af2cca45be45cf51b48f58dab0ca9fd45d047a76097",
+      "id": "E-8b50345b66",
+      "repetibilidad": "inmediata",
+      "salida_esperada": "lista de controles aplicables con justificación",
+      "sprint": "S06"
+    }
+  ],
+  "producto": "S07 — El encargo",
+  "resumen": {
+    "activo": "Metasploitable2",
+    "citas": 0,
+    "controles_pendientes": 3,
+    "controles_seleccionados": 13,
+    "dominios": 7,
+    "funciones_con_material": 0,
+    "hechos": 0,
+    "riesgos": 0,
+    "vacios": 8,
+    "vacios_causas": [
+      "compuerta cerrada",
+      "requiere solicitud documental",
+      "sin evidencia"
+    ]
+  },
+  "version_esquema": "1"
+}
