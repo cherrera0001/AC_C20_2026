@@ -48,3 +48,16 @@ python -m c4a registro verificar --raiz ..
 
 - SC-008: cronometrar la identificación de todo lo que no consta en `02_evidencia/registro_s02.md`.
 - SC-009: recorrer una entrada por dominio hasta su evidencia y comprobar la huella.
+
+## Resultado de la validación (2026-10-22)
+
+- Paso 1: `python -m unittest discover -s tests` → 124 pruebas OK (78 existentes + 46 de S02).
+- Paso 2 (ejercicio real): `registro abrir` → 8 entradas «no consta» (el activo y 7 dominios), 0
+  hechos, 0 rechazos, estado «borrador», aviso «alcance no firmado». Motivos: 5 «compuerta cerrada»
+  (dominios técnicos), 1 «requiere solicitud documental», 2 «sin evidencia». Huellas de `scope/` y de
+  `02_evidencia/inventario.json` iguales antes y después. Cero direcciones de red y cero estados de
+  cumplimiento en el registro.
+- Pasos 3 a 5: validados con fixtures sintéticos rotulados en `platform/tests/test_registro_us2.py`,
+  `test_registro_us4.py` y `test_registro_cli.py` (aporte documental, las cinco causas de rechazo,
+  corrección, firma, verificación y códigos de salida 0 a 4). En el ejercicio real no se aportó
+  evidencia: eso lo hace el auditor (T039).

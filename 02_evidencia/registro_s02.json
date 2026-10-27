@@ -1,0 +1,163 @@
+{
+  "alcance": {
+    "archivo": "scope/alcance_s01.json",
+    "autorizacion_sha256": "b0a8443f3a3c69bf15ef328546a97fde859aeb3f42bb1778b5efb4c1440c6a97",
+    "compuerta": "cerrada",
+    "compuerta_fecha": "2026-10-22",
+    "firmado": false,
+    "minimo_de_referencia": false,
+    "sha256": "0cb39a0a26ef03cf63c3b4c058be32c73b8fde695b5e69a55f2558757b60757d"
+  },
+  "avisos": [
+    "El registro se basa en un alcance no firmado."
+  ],
+  "entradas": [
+    {
+      "activo": "Metasploitable2",
+      "afirmacion": "no consta",
+      "clase": "no consta",
+      "dominio": {
+        "fila": null,
+        "valor": "(el activo como un todo)"
+      },
+      "estado_aprobacion": "borrador",
+      "evidencias": [],
+      "id": "N-14dab2a5a2",
+      "marcas": [],
+      "motivo": "sin evidencia",
+      "responsable": "C4A (propuesta de la herramienta)",
+      "resultado": "no-ejecutado"
+    },
+    {
+      "activo": "Metasploitable2",
+      "afirmacion": "no consta",
+      "clase": "no consta",
+      "dominio": {
+        "fila": "A-0aea6c19e2",
+        "valor": "Validación controlada de explotabilidad (solo prueba de concepto, no disrupción)"
+      },
+      "estado_aprobacion": "borrador",
+      "evidencias": [],
+      "id": "N-aa4ab6a0b6",
+      "marcas": [
+        "alcance pendiente"
+      ],
+      "motivo": "compuerta cerrada",
+      "responsable": "C4A (propuesta de la herramienta)",
+      "resultado": "no-ejecutado"
+    },
+    {
+      "activo": "Metasploitable2",
+      "afirmacion": "no consta",
+      "clase": "no consta",
+      "dominio": {
+        "fila": "A-25010a8801",
+        "valor": "Tecnológicos (A.8): gestión de vulnerabilidades, hardening, criptografía, logging"
+      },
+      "estado_aprobacion": "borrador",
+      "evidencias": [],
+      "id": "N-a7de244d2f",
+      "marcas": [
+        "alcance pendiente"
+      ],
+      "motivo": "sin evidencia",
+      "responsable": "C4A (propuesta de la herramienta)",
+      "resultado": "no-ejecutado"
+    },
+    {
+      "activo": "Metasploitable2",
+      "afirmacion": "no consta",
+      "clase": "no consta",
+      "dominio": {
+        "fila": "A-7f614b0027",
+        "valor": "Superficie de red y servicios expuestos (puertos, versiones, banners)"
+      },
+      "estado_aprobacion": "borrador",
+      "evidencias": [],
+      "id": "N-fa2c174a34",
+      "marcas": [
+        "alcance pendiente"
+      ],
+      "motivo": "compuerta cerrada",
+      "responsable": "C4A (propuesta de la herramienta)",
+      "resultado": "no-ejecutado"
+    },
+    {
+      "activo": "Metasploitable2",
+      "afirmacion": "no consta",
+      "clase": "no consta",
+      "dominio": {
+        "fila": "A-813b10bb1c",
+        "valor": "Organizacionales (A.5): gestión de incidentes, políticas, proveedores"
+      },
+      "estado_aprobacion": "borrador",
+      "evidencias": [],
+      "id": "N-e67d5a69f4",
+      "marcas": [
+        "alcance pendiente"
+      ],
+      "motivo": "requiere solicitud documental",
+      "responsable": "C4A (propuesta de la herramienta)",
+      "resultado": "no-ejecutado"
+    },
+    {
+      "activo": "Metasploitable2",
+      "afirmacion": "no consta",
+      "clase": "no consta",
+      "dominio": {
+        "fila": "A-ad0247cfde",
+        "valor": "Cifrado en tránsito (TLS/SSH) y exposición de datos"
+      },
+      "estado_aprobacion": "borrador",
+      "evidencias": [],
+      "id": "N-7ed136fffd",
+      "marcas": [
+        "alcance pendiente"
+      ],
+      "motivo": "compuerta cerrada",
+      "responsable": "C4A (propuesta de la herramienta)",
+      "resultado": "no-ejecutado"
+    },
+    {
+      "activo": "Metasploitable2",
+      "afirmacion": "no consta",
+      "clase": "no consta",
+      "dominio": {
+        "fila": "A-ca09b441f3",
+        "valor": "Vulnerabilidades conocidas (CVE) y configuraciones inseguras"
+      },
+      "estado_aprobacion": "borrador",
+      "evidencias": [],
+      "id": "N-6fe7ab3a93",
+      "marcas": [
+        "alcance pendiente"
+      ],
+      "motivo": "compuerta cerrada",
+      "responsable": "C4A (propuesta de la herramienta)",
+      "resultado": "no-ejecutado"
+    },
+    {
+      "activo": "Metasploitable2",
+      "afirmacion": "no consta",
+      "clase": "no consta",
+      "dominio": {
+        "fila": "A-f1a1774093",
+        "valor": "Autenticación, credenciales por defecto y débiles"
+      },
+      "estado_aprobacion": "borrador",
+      "evidencias": [],
+      "id": "N-196c7c4a76",
+      "marcas": [
+        "alcance pendiente"
+      ],
+      "motivo": "compuerta cerrada",
+      "responsable": "C4A (propuesta de la herramienta)",
+      "resultado": "no-ejecutado"
+    }
+  ],
+  "estado_aprobacion": "borrador",
+  "historial": [],
+  "producto": "S02 — El registro",
+  "rechazos": [],
+  "version_esquema": "1"
+}

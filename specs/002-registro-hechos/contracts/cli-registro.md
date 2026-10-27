@@ -15,7 +15,9 @@ ni escribe en `scope/` ni en `02_evidencia/inventario.json`.
 | `verificar` | — | Recalcula la huella del registro y de cada evidencia copiada; informa las entradas con «evidencia alterada» |
 | `entregar` | `[--json]` | Lista para S03: entradas vigentes con evidencias, huellas y si está firmado |
 
-`--dominio` acepta el id de la fila del alcance (`A-…`) o un texto que `alcance.consultar` resuelva.
+`--dominio` acepta el id de la fila del alcance (`A-…`), un texto que `alcance.consultar` resuelva, o
+`activo` para la entrada del activo como un todo. `abrir` acepta `--fecha-referencia AAAA-MM-DD` para
+reevaluar la compuerta; sin ella conserva la guardada (FR-018).
 
 ## Códigos de salida
 
