@@ -1,0 +1,23 @@
+{
+  "_nota": "Catálogo de referencia CIS Controls v8.1 (18 controles). Títulos en castellano; la numeración es la de la versión 8, que la v8.1 mantiene. La herramienta propone aplicabilidad como sugerencia explicada anclada en hechos del registro: seleccionar un control no es un dictamen de cumplimiento.",
+  "_fuente": "CIS Controls v8.1 (Center for Internet Security), fuente oficial del CIS",
+  "_version": "v8.1",
+  "1": {"titulo": "Inventario y control de activos", "terminos": "inventario activo activos superficie exposicion", "documental": false},
+  "2": {"titulo": "Inventario y control de software", "terminos": "software aplicaciones versiones componentes", "documental": false},
+  "3": {"titulo": "Protección de datos", "terminos": "datos cifrado criptografia exposicion informacion", "documental": false},
+  "4": {"titulo": "Configuración segura de activos y software", "terminos": "configuracion endurecimiento parche parches tls ssh servicios", "documental": false},
+  "5": {"titulo": "Gestión de cuentas", "terminos": "cuentas credenciales acceso privilegiado autenticacion", "documental": false},
+  "6": {"titulo": "Gestión de accesos", "terminos": "acceso autenticacion autorizacion privilegios", "documental": false},
+  "7": {"titulo": "Gestión continua de vulnerabilidades", "terminos": "vulnerabilidad vulnerabilidades gestion de vulnerabilidades", "documental": false},
+  "8": {"titulo": "Gestión de registros de auditoría", "terminos": "registros logs auditoria monitoreo", "documental": false},
+  "9": {"titulo": "Protección de correo y navegadores", "terminos": "correo navegador phishing", "documental": true},
+  "10": {"titulo": "Defensas contra malware", "terminos": "malware", "documental": false},
+  "11": {"titulo": "Recuperación de datos", "terminos": "copia respaldo recuperacion restauracion", "documental": false},
+  "12": {"titulo": "Gestión de infraestructura de red", "terminos": "red segmentacion infraestructura", "documental": false},
+  "13": {"titulo": "Monitoreo y defensa de red", "terminos": "monitoreo deteccion red anomalia", "documental": false},
+  "14": {"titulo": "Concienciación y capacitación", "terminos": "capacitacion concienciacion personal usuarios politicas", "documental": true},
+  "15": {"titulo": "Gestión de proveedores de servicios", "terminos": "proveedor proveedores terceros procesos", "documental": true},
+  "16": {"titulo": "Seguridad de aplicaciones", "terminos": "aplicacion codigo desarrollo codificacion", "documental": false},
+  "17": {"titulo": "Gestión de respuesta a incidentes", "terminos": "incidente incidentes respuesta procesos", "documental": true},
+  "18": {"titulo": "Pruebas de penetración", "terminos": "penetracion pruebas", "documental": false}
+}

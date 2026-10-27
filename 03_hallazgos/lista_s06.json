@@ -1,0 +1,381 @@
+{
+  "avisos": [
+    "La lista se basa en un perfil no firmado."
+  ],
+  "estado_aprobacion": "borrador",
+  "filas": [
+    {
+      "anclajes": [
+        {
+          "id": "N-e67d5a69f4",
+          "texto": "Gobernar Organizacionales (A.5): gestión de incidentes, políticas, proveedores requiere solicitud documental",
+          "tipo": "vacio"
+        },
+        {
+          "id": "N-a7de244d2f",
+          "texto": "Identificar Tecnológicos (A.8): gestión de vulnerabilidades, hardening, criptografía, logging sin evidencia",
+          "tipo": "vacio"
+        },
+        {
+          "id": "N-196c7c4a76",
+          "texto": "Proteger Autenticación, credenciales por defecto y débiles compuerta cerrada",
+          "tipo": "vacio"
+        }
+      ],
+      "control": "Control 5: Gestión de cuentas",
+      "correcciones": [],
+      "estado_aplicabilidad": "propuesto",
+      "estado_aprobacion": "borrador",
+      "estado_confirmacion": "confirmado",
+      "evidencias": [],
+      "fuente": null,
+      "id": "L-060fb07a97",
+      "identificador": "5",
+      "justificacion": "Se propone porque el inventario y el perfil tratan «gestión de cuentas»: vacio N-e67d5a69f4; vacio N-a7de244d2f; vacio N-196c7c4a76. Sugerencia explicada, no dictamen.",
+      "marcas": [],
+      "marco": "CIS Controls",
+      "version": "v8.1"
+    },
+    {
+      "anclajes": [
+        {
+          "id": "N-7ed136fffd",
+          "texto": "Identificar Cifrado en tránsito (TLS/SSH) y exposición de datos compuerta cerrada",
+          "tipo": "vacio"
+        }
+      ],
+      "control": "Control 11: Recuperación de datos",
+      "correcciones": [],
+      "estado_aplicabilidad": "propuesto",
+      "estado_aprobacion": "borrador",
+      "estado_confirmacion": "confirmado",
+      "evidencias": [],
+      "fuente": null,
+      "id": "L-165be82155",
+      "identificador": "11",
+      "justificacion": "Se propone porque el inventario y el perfil tratan «recuperación de datos»: vacio N-7ed136fffd. Sugerencia explicada, no dictamen.",
+      "marcas": [],
+      "marco": "CIS Controls",
+      "version": "v8.1"
+    },
+    {
+      "anclajes": [
+        {
+          "id": "N-e67d5a69f4",
+          "texto": "Gobernar Organizacionales (A.5): gestión de incidentes, políticas, proveedores requiere solicitud documental",
+          "tipo": "vacio"
+        }
+      ],
+      "control": "Control 14: Concienciación y capacitación",
+      "correcciones": [],
+      "estado_aplicabilidad": "propuesto",
+      "estado_aprobacion": "borrador",
+      "estado_confirmacion": "pendiente-documental",
+      "evidencias": [],
+      "fuente": null,
+      "id": "L-1f6cf73015",
+      "identificador": "14",
+      "justificacion": "Se propone porque el inventario y el perfil tratan «concienciación y capacitación»: vacio N-e67d5a69f4. Sugerencia explicada, no dictamen.",
+      "marcas": [],
+      "marco": "CIS Controls",
+      "version": "v8.1"
+    },
+    {
+      "anclajes": [
+        {
+          "id": "N-e67d5a69f4",
+          "texto": "Gobernar Organizacionales (A.5): gestión de incidentes, políticas, proveedores requiere solicitud documental",
+          "tipo": "vacio"
+        },
+        {
+          "id": "N-a7de244d2f",
+          "texto": "Identificar Tecnológicos (A.8): gestión de vulnerabilidades, hardening, criptografía, logging sin evidencia",
+          "tipo": "vacio"
+        }
+      ],
+      "control": "Control 8: Gestión de registros de auditoría",
+      "correcciones": [],
+      "estado_aplicabilidad": "propuesto",
+      "estado_aprobacion": "borrador",
+      "estado_confirmacion": "confirmado",
+      "evidencias": [],
+      "fuente": null,
+      "id": "L-35a794de91",
+      "identificador": "8",
+      "justificacion": "Se propone porque el inventario y el perfil tratan «gestión de registros de auditoría»: vacio N-e67d5a69f4; vacio N-a7de244d2f. Sugerencia explicada, no dictamen.",
+      "marcas": [],
+      "marco": "CIS Controls",
+      "version": "v8.1"
+    },
+    {
+      "anclajes": [
+        {
+          "id": "N-e67d5a69f4",
+          "texto": "Gobernar Organizacionales (A.5): gestión de incidentes, políticas, proveedores requiere solicitud documental",
+          "tipo": "vacio"
+        },
+        {
+          "id": "N-a7de244d2f",
+          "texto": "Identificar Tecnológicos (A.8): gestión de vulnerabilidades, hardening, criptografía, logging sin evidencia",
+          "tipo": "vacio"
+        }
+      ],
+      "control": "Control 12: Gestión de infraestructura de red",
+      "correcciones": [],
+      "estado_aplicabilidad": "propuesto",
+      "estado_aprobacion": "borrador",
+      "estado_confirmacion": "confirmado",
+      "evidencias": [],
+      "fuente": null,
+      "id": "L-4432bc7206",
+      "identificador": "12",
+      "justificacion": "Se propone porque el inventario y el perfil tratan «gestión de infraestructura de red»: vacio N-e67d5a69f4; vacio N-a7de244d2f. Sugerencia explicada, no dictamen.",
+      "marcas": [],
+      "marco": "CIS Controls",
+      "version": "v8.1"
+    },
+    {
+      "anclajes": [
+        {
+          "id": "N-fa2c174a34",
+          "texto": "Identificar Superficie de red y servicios expuestos (puertos, versiones, banners) compuerta cerrada",
+          "tipo": "vacio"
+        }
+      ],
+      "control": "Control 4: Configuración segura de activos y software",
+      "correcciones": [],
+      "estado_aplicabilidad": "propuesto",
+      "estado_aprobacion": "borrador",
+      "estado_confirmacion": "confirmado",
+      "evidencias": [],
+      "fuente": null,
+      "id": "L-570a33b460",
+      "identificador": "4",
+      "justificacion": "Se propone porque el inventario y el perfil tratan «configuración segura de activos y software»: vacio N-fa2c174a34. Sugerencia explicada, no dictamen.",
+      "marcas": [],
+      "marco": "CIS Controls",
+      "version": "v8.1"
+    },
+    {
+      "anclajes": [
+        {
+          "id": "N-fa2c174a34",
+          "texto": "Identificar Superficie de red y servicios expuestos (puertos, versiones, banners) compuerta cerrada",
+          "tipo": "vacio"
+        }
+      ],
+      "control": "Control 2: Inventario y control de software",
+      "correcciones": [],
+      "estado_aplicabilidad": "propuesto",
+      "estado_aprobacion": "borrador",
+      "estado_confirmacion": "confirmado",
+      "evidencias": [],
+      "fuente": null,
+      "id": "L-8c00eab398",
+      "identificador": "2",
+      "justificacion": "Se propone porque el inventario y el perfil tratan «inventario y control de software»: vacio N-fa2c174a34. Sugerencia explicada, no dictamen.",
+      "marcas": [],
+      "marco": "CIS Controls",
+      "version": "v8.1"
+    },
+    {
+      "anclajes": [
+        {
+          "id": "N-e67d5a69f4",
+          "texto": "Gobernar Organizacionales (A.5): gestión de incidentes, políticas, proveedores requiere solicitud documental",
+          "tipo": "vacio"
+        },
+        {
+          "id": "N-a7de244d2f",
+          "texto": "Identificar Tecnológicos (A.8): gestión de vulnerabilidades, hardening, criptografía, logging sin evidencia",
+          "tipo": "vacio"
+        },
+        {
+          "id": "N-fa2c174a34",
+          "texto": "Identificar Superficie de red y servicios expuestos (puertos, versiones, banners) compuerta cerrada",
+          "tipo": "vacio"
+        }
+      ],
+      "control": "Control 15: Gestión de proveedores de servicios",
+      "correcciones": [],
+      "estado_aplicabilidad": "propuesto",
+      "estado_aprobacion": "borrador",
+      "estado_confirmacion": "pendiente-documental",
+      "evidencias": [],
+      "fuente": null,
+      "id": "L-a00088f5f2",
+      "identificador": "15",
+      "justificacion": "Se propone porque el inventario y el perfil tratan «gestión de proveedores de servicios»: vacio N-e67d5a69f4; vacio N-a7de244d2f; vacio N-fa2c174a34. Sugerencia explicada, no dictamen.",
+      "marcas": [],
+      "marco": "CIS Controls",
+      "version": "v8.1"
+    },
+    {
+      "anclajes": [
+        {
+          "id": "N-7ed136fffd",
+          "texto": "Identificar Cifrado en tránsito (TLS/SSH) y exposición de datos compuerta cerrada",
+          "tipo": "vacio"
+        },
+        {
+          "id": "N-fa2c174a34",
+          "texto": "Identificar Superficie de red y servicios expuestos (puertos, versiones, banners) compuerta cerrada",
+          "tipo": "vacio"
+        },
+        {
+          "id": "N-14dab2a5a2",
+          "texto": "(el activo como un todo) sin evidencia",
+          "tipo": "vacio"
+        }
+      ],
+      "control": "Control 1: Inventario y control de activos",
+      "correcciones": [],
+      "estado_aplicabilidad": "propuesto",
+      "estado_aprobacion": "borrador",
+      "estado_confirmacion": "confirmado",
+      "evidencias": [],
+      "fuente": null,
+      "id": "L-bdfb5d54d9",
+      "identificador": "1",
+      "justificacion": "Se propone porque el inventario y el perfil tratan «inventario y control de activos»: vacio N-7ed136fffd; vacio N-fa2c174a34; vacio N-14dab2a5a2. Sugerencia explicada, no dictamen.",
+      "marcas": [],
+      "marco": "CIS Controls",
+      "version": "v8.1"
+    },
+    {
+      "anclajes": [
+        {
+          "id": "N-7ed136fffd",
+          "texto": "Identificar Cifrado en tránsito (TLS/SSH) y exposición de datos compuerta cerrada",
+          "tipo": "vacio"
+        },
+        {
+          "id": "N-a7de244d2f",
+          "texto": "Identificar Tecnológicos (A.8): gestión de vulnerabilidades, hardening, criptografía, logging sin evidencia",
+          "tipo": "vacio"
+        }
+      ],
+      "control": "Control 3: Protección de datos",
+      "correcciones": [],
+      "estado_aplicabilidad": "propuesto",
+      "estado_aprobacion": "borrador",
+      "estado_confirmacion": "confirmado",
+      "evidencias": [],
+      "fuente": null,
+      "id": "L-da83bde81e",
+      "identificador": "3",
+      "justificacion": "Se propone porque el inventario y el perfil tratan «protección de datos»: vacio N-7ed136fffd; vacio N-a7de244d2f. Sugerencia explicada, no dictamen.",
+      "marcas": [],
+      "marco": "CIS Controls",
+      "version": "v8.1"
+    },
+    {
+      "anclajes": [
+        {
+          "id": "N-e67d5a69f4",
+          "texto": "Gobernar Organizacionales (A.5): gestión de incidentes, políticas, proveedores requiere solicitud documental",
+          "tipo": "vacio"
+        },
+        {
+          "id": "N-6fe7ab3a93",
+          "texto": "Identificar Vulnerabilidades conocidas (CVE) y configuraciones inseguras compuerta cerrada",
+          "tipo": "vacio"
+        },
+        {
+          "id": "N-a7de244d2f",
+          "texto": "Identificar Tecnológicos (A.8): gestión de vulnerabilidades, hardening, criptografía, logging sin evidencia",
+          "tipo": "vacio"
+        }
+      ],
+      "control": "Control 7: Gestión continua de vulnerabilidades",
+      "correcciones": [],
+      "estado_aplicabilidad": "propuesto",
+      "estado_aprobacion": "borrador",
+      "estado_confirmacion": "confirmado",
+      "evidencias": [],
+      "fuente": null,
+      "id": "L-e2062eeafa",
+      "identificador": "7",
+      "justificacion": "Se propone porque el inventario y el perfil tratan «gestión continua de vulnerabilidades»: vacio N-e67d5a69f4; vacio N-6fe7ab3a93; vacio N-a7de244d2f. Sugerencia explicada, no dictamen.",
+      "marcas": [],
+      "marco": "CIS Controls",
+      "version": "v8.1"
+    },
+    {
+      "anclajes": [
+        {
+          "id": "N-e67d5a69f4",
+          "texto": "Gobernar Organizacionales (A.5): gestión de incidentes, políticas, proveedores requiere solicitud documental",
+          "tipo": "vacio"
+        },
+        {
+          "id": "N-a7de244d2f",
+          "texto": "Identificar Tecnológicos (A.8): gestión de vulnerabilidades, hardening, criptografía, logging sin evidencia",
+          "tipo": "vacio"
+        }
+      ],
+      "control": "Control 17: Gestión de respuesta a incidentes",
+      "correcciones": [],
+      "estado_aplicabilidad": "propuesto",
+      "estado_aprobacion": "borrador",
+      "estado_confirmacion": "pendiente-documental",
+      "evidencias": [],
+      "fuente": null,
+      "id": "L-f8c69839d6",
+      "identificador": "17",
+      "justificacion": "Se propone porque el inventario y el perfil tratan «gestión de respuesta a incidentes»: vacio N-e67d5a69f4; vacio N-a7de244d2f. Sugerencia explicada, no dictamen.",
+      "marcas": [],
+      "marco": "CIS Controls",
+      "version": "v8.1"
+    },
+    {
+      "anclajes": [
+        {
+          "id": "N-e67d5a69f4",
+          "texto": "Gobernar Organizacionales (A.5): gestión de incidentes, políticas, proveedores requiere solicitud documental",
+          "tipo": "vacio"
+        },
+        {
+          "id": "N-a7de244d2f",
+          "texto": "Identificar Tecnológicos (A.8): gestión de vulnerabilidades, hardening, criptografía, logging sin evidencia",
+          "tipo": "vacio"
+        },
+        {
+          "id": "N-196c7c4a76",
+          "texto": "Proteger Autenticación, credenciales por defecto y débiles compuerta cerrada",
+          "tipo": "vacio"
+        }
+      ],
+      "control": "Control 6: Gestión de accesos",
+      "correcciones": [],
+      "estado_aplicabilidad": "propuesto",
+      "estado_aprobacion": "borrador",
+      "estado_confirmacion": "confirmado",
+      "evidencias": [],
+      "fuente": null,
+      "id": "L-fafe46c7ac",
+      "identificador": "6",
+      "justificacion": "Se propone porque el inventario y el perfil tratan «gestión de accesos»: vacio N-e67d5a69f4; vacio N-a7de244d2f; vacio N-196c7c4a76. Sugerencia explicada, no dictamen.",
+      "marcas": [],
+      "marco": "CIS Controls",
+      "version": "v8.1"
+    }
+  ],
+  "historial": [
+    {
+      "autor": "C4A (propuesta de la herramienta)",
+      "fecha": "2026-10-27T02:12:11Z",
+      "motivo": "Propuesta de controles CIS aplicables a partir del inventario y el perfil.",
+      "tipo": "propuesta"
+    }
+  ],
+  "origen": {
+    "archivo": "03_hallazgos/perfil_s05.json",
+    "entrega_sha256": "0ebe03761282a2e6636095303e3d049c7f5c14cdb850f37e3af99f7eac2bd2dd",
+    "estado": "sin firma",
+    "firmado": false,
+    "sha256": "a08fefb6dda1cca8362eef93e6f53f614f36bb94a14b22d4ae95ed4434d163f2"
+  },
+  "producto": "S06 — La lista",
+  "version_esquema": "1"
+}
