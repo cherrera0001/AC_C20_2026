@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "enunciados_s03",
+  "description": "Producto canónico de S03 — El enunciado (C4A). La huella SHA-256 de estos bytes es la que se firma.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["producto", "version_esquema", "registro", "enunciados", "vacios", "estado_aprobacion", "historial", "avisos"],
+  "properties": {
+    "producto": {"const": "S03 — El enunciado"},
+    "version_esquema": {"const": "1"},
+    "registro": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["archivo", "sha256", "entrega_sha256", "firmado", "estado"],
+      "properties": {
+        "archivo": {"const": "02_evidencia/registro_s02.json"},
+        "sha256": {"type": ["string", "null"]},
+        "entrega_sha256": {"type": "string"},
+        "firmado": {"type": "boolean"},
+        "estado": {"type": "string"}
+      }
+    },
+    "enunciados": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "activo", "dominio", "hecho", "condicion", "consecuencia", "criterio",
+                     "impacto", "falta", "evidencias", "estado_aprobacion", "marcas", "correcciones"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^R-[0-9a-f]{10}$"},
+          "activo": {"type": "string"},
+          "dominio": {"type": "object"},
+          "hecho": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "afirmacion", "resultado"],
+            "properties": {
+              "id": {"type": "string"},
+              "afirmacion": {"type": "string"},
+              "resultado": {"enum": ["positivo", "negativo", "inconcluso", "no-ejecutado"]}
+            }
+          },
+          "condicion": {"type": "string"},
+          "consecuencia": {"type": "string"},
+          "criterio": {"type": "string"},
+          "impacto": {"type": "string"},
+          "falta": {"type": "array", "items": {"type": "string"}},
+          "evidencias": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "tipo", "ubicacion_original", "copia", "sha256_original", "sha256_guardado"],
+              "properties": {
+                "id": {"type": "string"},
+                "tipo": {"enum": ["documental", "tecnica"]},
+                "ubicacion_original": {"type": "string"},
+                "copia": {"type": ["string", "null"]},
+                "sha256_original": {"type": ["string", "null"]},
+                "sha256_guardado": {"type": ["string", "null"]}
+              }
+            }
+          },
+          "estado_aprobacion": {"enum": ["borrador", "revisado"]},
+          "marcas": {"type": "array", "items": {"type": "string"}},
+          "correcciones": {"type": "array"}
+        }
+      }
+    },
+    "vacios": {"type": "array"},
+    "estado_aprobacion": {"enum": ["borrador", "revisado"]},
+    "historial": {"type": "array"},
+    "avisos": {"type": "array", "items": {"type": "string"}}
+  }
+}
