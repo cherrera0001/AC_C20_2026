@@ -14,6 +14,7 @@ from .crypto_config import CryptoConfigDetector
 from .dependencies import DependenciesDetector
 from .dockerfile import DockerfileDetector
 from .permissions import PermissionsDetector
+from .php_shell import PhpShellDetector
 from .secrets_files import SecretsDetector
 
 _ALL: List[Type[Detector]] = [
@@ -23,6 +24,7 @@ _ALL: List[Type[Detector]] = [
     CicdDetector,
     CryptoConfigDetector,
     PermissionsDetector,
+    PhpShellDetector,
 ]
 
 REGISTRY: Dict[str, Type[Detector]] = {d.id: d for d in _ALL}
