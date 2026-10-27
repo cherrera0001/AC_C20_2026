@@ -1,0 +1,86 @@
+> Borrador del informe de cierre — Comercial Andes Sur SpA. Producto de la herramienta C4A: propone; el auditor corrige y firma.
+> El borrador presenta el trabajo registrado y citado: no contiene conclusiones de cumplimiento ni responsables ni fechas inventados.
+
+- Estado: borrador · huella `afab7fe9e36fb1a089e5936b5f2f782e6723e93e35f1e33c60da9fad9725233e`
+- Origen: `04_informe/frases_s08.json` (huella `fab606c3d9ccd8aa204e002add9682e8cb6f8b8b18db71cf8755191098e52f76`)
+
+---
+
+Informe de cierre — Comercial Andes Sur SpA
+
+Activo auditado: Metasploitable2.
+Alcance: `scope/alcance_s01.json` (huella `0cb39a0a26ef03cf63c3b4c058be32c73b8fde695b5e69a55f2558757b60757d`).
+Cliente: Comercial Andes Sur SpA.
+Cadena de productos: S01–S08, con huellas en el anexo de trazabilidad.
+
+---
+
+La revisión de Metasploitable2 no dejó riesgos sobre lo verificado. Quedan 8 vacíos por verificar (compuerta cerrada; requiere solicitud documental). El resultado se organizó con las seis funciones del NIST CSF 2.0 y se proponen 13 medidas de protección aplicables (3 pendientes de confirmar). El detalle técnico y las acciones para quien corrige van en la parte técnica del informe.
+
+---
+
+Riesgos citados (0):
+- no consta: sin riesgos citados.
+
+Perfil por funciones del NIST CSF 2.0:
+- Gobernar: 0 riesgo(s) citado(s)
+- Identificar: 0 riesgo(s) citado(s)
+- Proteger: 0 riesgo(s) citado(s)
+- Detectar: 0 riesgo(s) citado(s) · «no consta»
+- Responder: 0 riesgo(s) citado(s) · «no consta»
+- Recuperar: 0 riesgo(s) citado(s) · «no consta»
+
+Controles CIS propuestos (13, 3 pendientes):
+- Control 5: Gestión de cuentas (confirmado)
+- Control 11: Recuperación de datos (confirmado)
+- Control 14: Concienciación y capacitación (pendiente-documental)
+- Control 8: Gestión de registros de auditoría (confirmado)
+- Control 12: Gestión de infraestructura de red (confirmado)
+- Control 4: Configuración segura de activos y software (confirmado)
+- Control 2: Inventario y control de software (confirmado)
+- Control 15: Gestión de proveedores de servicios (pendiente-documental)
+- Control 1: Inventario y control de activos (confirmado)
+- Control 3: Protección de datos (confirmado)
+- Control 7: Gestión continua de vulnerabilidades (confirmado)
+- Control 17: Gestión de respuesta a incidentes (pendiente-documental)
+- Control 6: Gestión de accesos (confirmado)
+
+---
+
+Resultado técnico de la revisión de Metasploitable2 (huella del encargo: 1b2767827262d643…).
+
+Se enunciaron 0 riesgos (fichas en 03_hallazgos/enunciado-*.md y cita-*.md).
+Citas con marco y versión: 0; funciones del perfil con material: 0 de 6.
+Controles CIS propuestos: 13 (3 pendientes de confirmar o documentales).
+
+Vacíos declarados (misma causa en ambos registros):
+- 8 vacíos: compuerta cerrada; requiere solicitud documental
+
+Quien corrige: cada riesgo remite a su ficha y a sus evidencias con huella; lo que falta por verificar quedó escrito como condición en el encargo (01_plan/encargo_s07.json).
+
+Acciones sugeridas para quien corrige (sin responsables ni fechas: los define quien ejecuta):
+- Verificar según el paso `E-3601ef79e8`: Verificar el dominio «Superficie de red y servicios expuestos (puertos, versiones, banners)»: aportar evidencia del tipo que corresponda al dominio (técnica si la compuerta está vigente, documental con origen declarado).
+- Verificar según el paso `E-3adad4e8ef`: Verificar el dominio «Organizacionales (A.5): gestión de incidentes, políticas, proveedores»: aportar evidencia del tipo que corresponda al dominio (técnica si la compuerta está vigente, documental con origen declarado).
+- Verificar según el paso `E-5f0f370a56`: Verificar el dominio «Cifrado en tránsito (TLS/SSH) y exposición de datos»: aportar evidencia del tipo que corresponda al dominio (técnica si la compuerta está vigente, documental con origen declarado).
+- Verificar según el paso `E-769783a840`: Verificar el dominio «Autenticación, credenciales por defecto y débiles»: aportar evidencia del tipo que corresponda al dominio (técnica si la compuerta está vigente, documental con origen declarado).
+- Verificar según el paso `E-a46e8ca5f5`: Verificar el dominio «Vulnerabilidades conocidas (CVE) y configuraciones inseguras»: aportar evidencia del tipo que corresponda al dominio (técnica si la compuerta está vigente, documental con origen declarado).
+- Verificar según el paso `E-abdd19494a`: Verificar el dominio «Tecnológicos (A.8): gestión de vulnerabilidades, hardening, criptografía, logging»: aportar evidencia del tipo que corresponda al dominio (técnica si la compuerta está vigente, documental con origen declarado).
+- Verificar según el paso `E-d1baeeb536`: Verificar el dominio «Validación controlada de explotabilidad (solo prueba de concepto, no disrupción)»: aportar evidencia del tipo que corresponda al dominio (técnica si la compuerta está vigente, documental con origen declarado).
+
+---
+
+Vacíos declarados: 8.
+Causas: compuerta cerrada; requiere solicitud documental; sin evidencia.
+Los vacíos no se presentan como resultado favorable: son trabajo pendiente.
+
+---
+
+Trazabilidad de las entregas de las que deriva este borrador (huellas SHA-256 sobre los bytes guardados):
+- `scope/alcance_s01.json` · `0cb39a0a26ef03cf63c3b4c058be32c73b8fde695b5e69a55f2558757b60757d`
+- `02_evidencia/registro_s02.json` · `810db8b8afab348649a8b9b5265f1d07c10f3c03c19c0c5c6c37c7723d086394`
+- `03_hallazgos/enunciados_s03.json` · `f7b8d1e13704ae58c86e15e9c30be63cd3d3c20621b8bb3c22d7c7b1a3253941`
+- `03_hallazgos/citas_s04.json` · `caa20b0f97e984a102b401ff5d166f20d36675d732fe56c6393c163ac351b967`
+- `03_hallazgos/perfil_s05.json` · `a08fefb6dda1cca8362eef93e6f53f614f36bb94a14b22d4ae95ed4434d163f2`
+- `03_hallazgos/lista_s06.json` · `1b2767827262d643a0c44af2cca45be45cf51b48f58dab0ca9fd45d047a76097`
+- `01_plan/encargo_s07.json` · `f7964ec8d55097a2856d689195c11f21ddf13df1a6736bfa0457b757730c7c6c`
+- `04_informe/frases_s08.json` · `fab606c3d9ccd8aa204e002add9682e8cb6f8b8b18db71cf8755191098e52f76`
