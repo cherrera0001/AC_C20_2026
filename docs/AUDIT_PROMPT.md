@@ -1,4 +1,7 @@
 <!--
+VIGENCIA (2026-10-26): la Fase 2 (reconocimiento de red, nmap) queda SUSPENDIDA; la tesis
+canónica es el copiloto de docs/PROMPT_SPEC_KIT.md (ver docs/DECISION_TESIS_CANONICA.md).
+Las Fases 1, 3 y 4 solo aportan formato de salida. La constitución prevalece sobre este archivo.
 Insumo 2 — Prompt operativo para Claude Code (CLI).
 Uso: claude -p "$(cat docs/AUDIT_PROMPT.md)"   (o pegar como instrucción inicial)
 Las 4 fases corresponden a: Planificar -> Recopilar -> Analizar -> Informar.

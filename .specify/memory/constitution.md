@@ -1,6 +1,8 @@
 <!--
 Informe de impacto de sincronización (borrador para revisión humana; retirar antes del commit)
-- Versión: plantilla sin llenar → 1.0.0 (adopción inicial).
+- Versión: plantilla sin llenar → 1.0.0 (adopción inicial); 1.0.0 → 1.1.0 (2026-10-26):
+  precedencia y tesis canónica en Gobernanza, objetivo CVSS v4.0 en Marcos. MINOR porque
+  se amplía materialmente sin retirar principios.
 - Principios añadidos: I–VIII (todos nuevos).
 - Secciones añadidas: «Marcos, estados y evidencia» y «Flujo de trabajo y compuertas».
 - Secciones eliminadas: ninguna.
@@ -121,7 +123,9 @@ persistido. Requisito transversal de todos los sprints.
 - Cobertura, si se calcula: controles aplicables evaluados / controles aplicables
   seleccionados, mostrando numerador, denominador y pendientes. No se extrapola al SGSI
   ni a la totalidad de controles de un marco.
-- El CVSS conserva versión y vector; no se renombra la versión al exportar.
+- El CVSS conserva versión y vector; no se renombra la versión al exportar. La versión
+  objetivo es CVSS v4.0 (`scope/alcance.md` §7); el puntaje v4.0 se calcula con
+  `platform/c4a/cvss4.py` y sin el paquete opcional no se inventa.
 - Un control que requiere políticas, personas o procesos no se acredita con una prueba
   de red: queda pendiente con solicitud documental.
 - El texto importado no se interpreta como código en el HTML; no se exportan secretos.
@@ -136,12 +140,15 @@ persistido. Requisito transversal de todos los sprints.
 
 ## Gobernanza
 
-- Esta constitución prevalece sobre los prompts locales (`docs/PROMPT_SPEC_KIT.md`,
-  `docs/AUDIT_PROMPT.md`, `docs/CLAUDE_CODE_PROMPT.md`) y sobre `docs/AGILE_PROJECT.md` cuando choquen.
+- Esta constitución prevalece sobre los prompts locales y sobre `docs/AGILE_PROJECT.md`
+  cuando choquen. La fuente del producto es `docs/PROMPT_SPEC_KIT.md` (tesis canónica:
+  copiloto del auditor, ver `docs/DECISION_TESIS_CANONICA.md`); `docs/AUDIT_PROMPT.md` y
+  `docs/CLAUDE_CODE_PROMPT.md` aportan el formato de salida de las cuatro fases, y su Fase 2
+  de red queda suspendida.
 - Las enmiendas se registran con versión semántica y fecha: MAJOR si se retira o
   redefine un principio; MINOR si se agrega un principio o sección o se amplía
   materialmente; PATCH si se aclara la redacción.
 - Cada plan MUST pasar la verificación de constitución contra los principios I–VIII;
   `/speckit-analyze` trata un conflicto con un MUST como crítico.
 
-**Version**: 1.0.0 | **Ratified**: 2026-10-19 | **Last Amended**: 2026-10-19
+**Version**: 1.1.0 | **Ratified**: 2026-10-19 | **Last Amended**: 2026-10-26

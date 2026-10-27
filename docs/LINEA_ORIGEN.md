@@ -10,8 +10,10 @@ base** entregados en un solo acto. Esos tres archivos son el contrato del proyec
 2. `AUDIT_PROMPT.md` — rol, reglas, orden de las cuatro fases y estructura de salida.
 3. `historia_usuario.md` — actor, objetivo, criterios de aceptación y desglose para GitHub Projects.
 
-Los tres fueron creados juntos el **30-sep 21:21** (timestamp idéntico en los tres
-ficheros), lo que confirma que salieron de una única entrega del chat.
+Los tres aparecen por primera vez juntos en el commit **`be93fd3`** (2026-10-05,
+"Estructura inicial del laboratorio C4A de 4 fases"), que es la evidencia verificable en el
+repositorio. Que hayan salido de una única entrega del chat es lo que **declara el dueño**; el
+timestamp de sistema de archivos (30-sep 21:21) no se puede verificar desde el repositorio.
 
 > Nota de ubicación (2026-10-21): la documentación de gobierno e historia del proyecto
 > vive en `docs/`. Ahí están hoy los archivos base `AUDIT_PROMPT.md` e `historia_usuario.md`,
@@ -43,7 +45,7 @@ Reconstrucción de lo que ocurrió en el chat, en orden:
 | 7 | Entrega | Pedido del usuario: "entregar los 3 insumos por separado como archivos markdown" | Se crearon y compartieron **3 archivos**: `alcance.md`, `AUDIT_PROMPT.md`, `historia_usuario.md` |
 
 El paso 7 es el momento exacto de nacimiento del repositorio: los tres ficheros con
-timestamp 30-sep 21:21.
+timestamp de sistema de archivos declarado (30-sep 21:21), no verificable; ver commit be93fd3.
 
 ## 2. Diagrama de génesis (cómo nacieron los tres archivos)
 
@@ -75,7 +77,7 @@ timestamp 30-sep 21:21.
       │              │                    │
       └──────────────┼────────────────────┘
                      ▼
-         Entrega: 3 archivos .md  (30-sep 21:21)
+         Entrega: 3 archivos .md  (declarado 30-sep; commit be93fd3, 2026-10-05)
          scope/alcance.md · AUDIT_PROMPT.md · historia_usuario.md
 ```
 
@@ -83,13 +85,14 @@ timestamp 30-sep 21:21.
 
 | Archivo | Insumo | Rol en el proyecto | Timestamp | Estado |
 |---------|--------|--------------------|-----------|--------|
-| `scope/alcance.md` | Insumo 1 | Define qué se audita, criterios y fuera de alcance | 30-sep 21:21 | Confirmado |
-| `AUDIT_PROMPT.md` | Insumo 2 | Define rol, reglas, 4 fases y estructura de salida | 30-sep 21:21 | Confirmado |
-| `historia_usuario.md` | Insumo 3 | Define actor, objetivo, aceptación y seguimiento | 30-sep 21:21 | Confirmado |
+| `scope/alcance.md` | Insumo 1 | Define qué se audita, criterios y fuera de alcance | commit be93fd3 (2026-10-05) | Presencia en git confirmada; origen en el chat declarado |
+| `AUDIT_PROMPT.md` | Insumo 2 | Define rol, reglas, 4 fases y estructura de salida | commit be93fd3 (2026-10-05) | Presencia en git confirmada; origen en el chat declarado |
+| `historia_usuario.md` | Insumo 3 | Define actor, objetivo, aceptación y seguimiento | commit be93fd3 (2026-10-05) | Presencia en git confirmada; origen en el chat declarado |
 
-El timestamp idéntico en los tres es la evidencia de que fueron una única entrega
-del chat, no tres creaciones separadas. Esto resuelve y cierra la incógnita que la
-versión anterior dejaba en `VALIDAR`.
+La evidencia verificable es la presencia conjunta en el commit `be93fd3`. Un timestamp
+idéntico de sistema de archivos no prueba una única entrega: un copiado o una sincronización
+de OneDrive puede igualarlo. Por eso la entrega única desde el chat queda como **declarada**,
+no confirmada.
 
 ## 4. Del diagrama de 4 cajas a las 4 fases del prompt
 
@@ -115,7 +118,7 @@ Los tres archivos base son el **contrato**. El repositorio actual es el resultad
 aplicar ese contrato y madurarlo. Capas, en orden de aparición:
 
 ```text
-  [1] GÉNESIS (chat, 30-sep)
+  [1] GÉNESIS (chat, declarado; commit be93fd3, 2026-10-05)
       scope/alcance.md · AUDIT_PROMPT.md · historia_usuario.md
                  │
                  ▼
@@ -150,7 +153,7 @@ Con la secuencia del chat y los tres archivos base se afirma:
 - El origen es **este chat**, no un repositorio previo ni un manifiesto externo.
 - Hubo un **Insumo 0** (prompt maestro) del que derivan coherentemente los tres insumos.
 - Los **tres archivos base** son `alcance.md`, `AUDIT_PROMPT.md` e `historia_usuario.md`,
-  entregados juntos el 30-sep 21:21.
+  presentes juntos desde el commit be93fd3 (2026-10-05); la entrega única desde el chat es declarada.
 - El estado normativo (21.663 exigible, 21.719 en preparación postergable) fue
   **verificado en origen** y quedó reflejado en el alcance.
 
@@ -165,12 +168,12 @@ Sigue sin poder afirmarse solo desde el origen (pertenece a la ejecución, no al
 
 | Fuente o capa | Estado | Explicación |
 |---|---|---|
-| `historia_usuario.md` | Confirmado | Insumo 3 del chat; objetivo y aceptación (30-sep 21:21) |
-| `AUDIT_PROMPT.md` | Confirmado | Insumo 2 del chat; rol, fases y restricciones (30-sep 21:21) |
-| `scope/alcance.md` | Confirmado | Insumo 1 del chat; alcance y criterios (30-sep 21:21) |
-| Insumo 0 (prompt maestro) | Confirmado | Reordenamiento del encargo; vive en el historial del chat, no como fichero |
-| Verificación normativa | Confirmado | Búsqueda web en origen; fijó el estado de 21.663 y 21.719 |
-| **Tres archivos base exactos** | **Confirmado** | Son los tres insumos; timestamp idéntico 30-sep 21:21 |
+| `historia_usuario.md` | Confirmado en git | Insumo 3 del chat; objetivo y aceptación (origen en chat declarado) |
+| `AUDIT_PROMPT.md` | Confirmado en git | Insumo 2 del chat; rol, fases y restricciones (origen en chat declarado) |
+| `scope/alcance.md` | Confirmado en git | Insumo 1 del chat; alcance y criterios (origen en chat declarado) |
+| Insumo 0 (prompt maestro) | Declarado | Reordenamiento del encargo; vive en el historial del chat, no como fichero |
+| Verificación normativa | Declarado | Búsqueda web en origen; fijó el estado de 21.663 y 21.719 |
+| **Tres archivos base exactos** | **Confirmado** | Son los tres insumos; presencia conjunta en be93fd3 |
 | `scope/autorizacion.md` | Confirmado (sin firmar) | Plantilla de autorización creada después (05-oct) |
 | `CLAUDE_CODE_PROMPT.md` | Confirmado | Consolidación del Insumo 2 para la estación local |
 | `platform/c4a/` | Confirmado | Implementación técnica del motor |

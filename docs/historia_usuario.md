@@ -1,5 +1,10 @@
 # Historia de Usuario — Motor de Auditoría de 4 fases (GitHub Projects)
 
+> **Vigencia (2026-10-26)**: los escenarios Gherkin de autorización y de orden de fases siguen
+> vigentes como requisitos del copiloto. La Definition of Done de «4 fases de punta a punta sobre
+> 192.168.1.14» y el escenario de hallazgos con CVSS v4 + control + artículo quedan suspendidos
+> hasta que el copiloto los reemplace (ver `docs/DECISION_TESIS_CANONICA.md`).
+
 ## Épica
 
 ```

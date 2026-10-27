@@ -1,5 +1,10 @@
 # Definición de Alcance — Auditoría de Ciberseguridad de Cumplimiento (C4A)
 
+> **Vigencia (2026-10-26)**: insumo de solo lectura para el copiloto (`docs/PROMPT_SPEC_KIT.md`),
+> según `docs/DECISION_TESIS_CANONICA.md`. Las §4 y §6 valen para el ejercicio de laboratorio:
+> la compuerta de autorización aplica a **cualquier acción de red contra un objetivo**; el análisis
+> estático de archivos locales no la requiere. La versión CVSS objetivo es v4.0 (§7).
+
 ## 1. Identificación y propósito
 
 | Campo | Valor |
