@@ -19,6 +19,12 @@ esta instrucción, con el dueño como autorizador.
 
 ## Equipo de trabajo
 
+> Definición completa y gobernada del equipo —roles, RACI, MCP con su activación, regla
+> «la herramienta propone, el auditor firma»— en [`docs/EQUIPO_C4A.md`](EQUIPO_C4A.md).
+> Catálogo justificado de herramientas (familias, brechas P0/P1/P2) en
+> [`docs/CATALOGO_HERRAMIENTAS_AUDITORIA.md`](CATALOGO_HERRAMIENTAS_AUDITORIA.md).
+> Esta sección resume y manda el documento de equipo.
+
 ### Roles de agente (construcción y análisis)
 
 | Agente | Rol | Toca el objetivo | Skills / MCP que usa |
@@ -26,32 +32,57 @@ esta instrucción, con el dueño como autorizador.
 | **coordinador** | Orquesta el encargo, abre y cierra fases, mantiene el ledger de corrida | Nunca | `speckit-*` para el ciclo SDD; `platform/c4a` (run, ledger) |
 | **alcance** (S01) | Deriva el alcance del nuevo objetivo: activo (plataforma del curso), dominios, exclusiones | No | `alcance` (CLI S01) |
 | **autorizador** (humano) | Completa y firma `scope/autorizacion.md`; decide la ventana | Sí (es el dueño) | Ninguno: es una persona |
-| **diagnostico** | Fase 1: reproduce el fallo del curso con la cuenta del auditor, caracteriza síntomas, captura mensajes de error y códigos de estado. Solo lectura | Solo lectura (GET/ navegación) | REA (capturas web pasivas, `inspect_web_page`), navegador del auditor |
-| **estatica-php** | Analiza el código de la plataforma **aportado por el cliente** (no se extrae del objetivo): patrones de ejecución remota, superficie de entrada, dependencias | No | `platform/c4a` detectores, `composer audit`, greps de patrones (anexo A), REA para binarios si aplica (`reverse-engineer-anything`) |
+| **diagnostico** | Fase 1: reproduce el fallo del curso con la cuenta del auditor, caracteriza síntomas, captura mensajes de error y códigos de estado. Solo lectura | Solo lectura (GET/ navegación) | Skill `diagnostico-curso`; MCP Playwright (headless) y REA (capturas web pasivas, `inspect_web_page`); scripts `platform/tools/` |
+| **estatica-php** | Analiza el código de la plataforma **aportado por el cliente** (no se extrae del objetivo): patrones de ejecución remota, superficie de entrada, dependencias | No | Skill `auditoria-php`; `platform/c4a` detectores, `composer audit`, greps de patrones (anexo A), REA para binarios si aplica (`reverse-engineer-anything`) |
 | **estatica-riesgo** | Cruza hallazgos con catálogo de vulnerabilidades y CWE; perfil de riesgo | No | `platform/c4a` (cwe.json, cwe_map.json, cvss4), `cvss` |
 | **dinamico** | Fase 3: verificación controlada de hallazgos, solo con compuerta abierta y dentro de ventana | Sí, activo limitado | `platform/c4a` con compuerta; REA (capturas de escenario con consentimiento) |
-| **cumplimiento** | Cadena S03–S06 sobre los hechos: enunciado, cita, perfil, lista | No | módulos `enunciado`…`lista` (CLI) |
+| **cumplimiento** | Cadena S03–S06 sobre los hechos: enunciado, cita, perfil, lista | No | Skill `correlacion-cumplimiento`; módulos `enunciado`…`lista` (CLI) |
 | **informe** | Frases, borrador y cierre del informe para el cliente del curso | No | módulos `frases`, `borrador`, `cierre` |
+| **custodio-evidencia** | Custodia: hash sobre bytes persistidos, manifiesto, verificación independiente | No | Skill `evidencia-integridad`; CLI `c4a verify` / `c4a reproduce` |
 
 ### Skills del equipo
 
 - **Existentes**: `speckit-specify` … `speckit-converge` (ciclo SDD por sprint, si el dueño
   ordena especificar este encargo como S11); `reverse-engineer-anything` (artefactos
   binarios o empaquetados si el cliente los aporta).
-- **Nueva skill a crear**: `auditoria-php` — análisis estático de código PHP propio:
-  patrones de ejecución de comandos, deserialización insegura, carga de archivos, inclusión
-  de archivos con ruta de entrada, concatenación SQL, funciones ofuscadas; y su contraparte
+- **`auditoria-php`** (creada): análisis estático de código PHP/Python propio — patrones de
+  ejecución de comandos, deserialización insegura, carga de archivos, inclusión de
+  archivos con ruta de entrada, concatenación SQL, funciones ofuscadas; contraparte
   Python (`subprocess` con `shell=True`, `pickle`, `eval/exec`). Salida: hallazgos con
   archivo, línea y patrón (sin explotación).
+- **`diagnostico-curso`** (creada): operación de Fase 1 con `platform/tools/` — login
+  autenticado, captura del síntoma y recon pasivo, todo enmascarado.
+- **`correlacion-cumplimiento`** (creada): hecho → enunciado → cita (marco+versión+
+  identificador) → perfil NIST CSF 2.0 → lista CIS v8.1; obligaciones legales con ficha
+  completa o «VALIDAR».
+- **`evidencia-integridad`** (creada): cadena de custodia verificable; distingue hash del
+  original y del artefacto guardado; invalida evidencia alterada.
 
 ### MCPs del equipo
 
-- **REA** (ya configurado): observación pasiva web, análisis de artefactos, capturas de
-  escenario. Uso permitido: Fase 1 (solo lectura) y análisis de aportes. Uso restringido:
-  cualquier acción activa contra el objetivo exige compuerta abierta.
+- **REA** (ya configurado en `~/.kimi-code/mcp.json`): observación pasiva web, análisis
+  de artefactos, capturas de escenario. Uso permitido: Fase 1 (solo lectura) y análisis
+  de aportes. Uso restringido: cualquier acción activa contra el objetivo exige compuerta
+  abierta.
+- **Playwright** (ya configurado, modo headless): navegación autenticada del diagnóstico;
+  expone ir a URL, snapshot, clic y captura. Es la base programática de
+  `platform/tools/diagnostico_curso.py`.
 - **GitHub** (vía `gh`): issues del encargo, solo después de `tasks.md`, como manda
   `docs/PROMPT_SPEC_KIT.md`.
-- Ningún otro MCP se conecta al objetivo.
+- Ningún otro MCP se conecta al objetivo. Inventario y respaldo timestamped:
+  `docs/EQUIPO_C4A.md` (sección MCP).
+
+### Instrumental por fase (resumen operativo)
+
+| Fase | Agente principal | Skill / MCP / CLI / script | Compuerta |
+|---|---|---|---|
+| 0. Encargo | coordinador | `speckit-*` si se especifica como S11; CLI `c4a` | Orden del dueño |
+| 0b. Autorización | autorizador (humano) | Documento en `scope/` | Firma + ventana = compuerta abierta |
+| 1. Diagnóstico | diagnostico | `diagnostico-curso`; Playwright + REA; `platform/tools/*.py` | Solo lectura (no exige firma) |
+| 2. Análisis estático | estatica-php | `auditoria-php`; detector `php-shell`; `composer/pip audit`; REA (binarios) | Código aportado |
+| 3. Verificación dinámica | dinamico | CLI `c4a` + custodio (`evidencia-integridad`) | **Compuerta abierta** |
+| 4. Riesgo y cumplimiento | estatica-riesgo, cumplimiento | `correlacion-cumplimiento`; `cita/perfil/lista`; `sca`, `cvss4` | Hechos registrados |
+| 5. Informe | informe | `frases/borrador/cierre`; `report.py`, `htmlmap.py`, `sarif.py` | Cadena firmada; publicación = dueño |
 
 ## Fases y compuertas
 

@@ -54,6 +54,18 @@ Toda la documentación de gobierno, historia y prompts del proyecto vive en
 | [`docs/CLAUDE_CODE_PROMPT.md`](docs/CLAUDE_CODE_PROMPT.md) | Prompt consolidado para Claude Code (auditoría, GitHub y gestión ágil) |
 | [`docs/ESTACION_LOCAL.md`](docs/ESTACION_LOCAL.md) | Estación local del auditor y su instrumental |
 | [`docs/PROMPT_BACKLOG_CLAUDE_CODE.md`](docs/PROMPT_BACKLOG_CLAUDE_CODE.md) | Prompt para levantar el backlog desde los documentos |
+| [`docs/EQUIPO_C4A.md`](docs/EQUIPO_C4A.md) | Equipo del proceso: roles de agente, RACI, MCP con su activación y regla «la herramienta propone, el auditor firma» |
+| [`docs/CATALOGO_HERRAMIENTAS_AUDITORIA.md`](docs/CATALOGO_HERRAMIENTAS_AUDITORIA.md) | Catálogo justificado del instrumental por fase: qué entra, qué queda fuera y por qué, brechas P0/P1/P2 |
+
+## Equipo e instrumental
+
+El proceso opera con un equipo de roles definido —agentes propuestos, **auditor humano
+que firma**— descrito en [`docs/EQUIPO_C4A.md`](docs/EQUIPO_C4A.md), y con un
+instrumental elegido por criterio de fase y trazabilidad, justificado en
+[`docs/CATALOGO_HERRAMIENTAS_AUDITORIA.md`](docs/CATALOGO_HERRAMIENTAS_AUDITORIA.md).
+Skills del equipo: `auditoria-php`, `diagnostico-curso`, `correlacion-cumplimiento`,
+`evidencia-integridad` y las `speckit-*`. MCP: REA y Playwright (navegación de
+diagnóstico). Scripts locales: `platform/tools/`.
 
 Orden de autoridad cuando dos documentos chocan:
 `.specify/memory/constitution.md` → `docs/LINEA_ORIGEN.md` →

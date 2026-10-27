@@ -288,3 +288,12 @@ platform/
 ```bash
 cd platform && python3 -m unittest discover -s tests -v
 ```
+
+## Equipo e instrumental
+
+Esta plataforma es el núcleo del instrumental C4A. Los roles que la operan (agente
+propone, auditor humano firma), los skills (`auditoria-php`, `diagnostico-curso`,
+`correlacion-cumplimiento`, `evidencia-integridad`, `speckit-*`), los MCP configurados
+(REA, Playwright) y los scripts locales de diagnóstico (`tools/`) están definidos en
+[`../docs/EQUIPO_C4A.md`](../docs/EQUIPO_C4A.md) y justificados por fase en
+[`../docs/CATALOGO_HERRAMIENTAS_AUDITORIA.md`](../docs/CATALOGO_HERRAMIENTAS_AUDITORIA.md).
