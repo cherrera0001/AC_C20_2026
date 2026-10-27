@@ -37,7 +37,7 @@ modifica los archivos previos de esa carpeta.
 
 - [X] T001 Correr la suite existente desde `platform/` y registrar la línea base (129 pruebas en
   verde el 2026-10-26) en Notes; si algo falla, detenerse y reportar
-- [ ] T002 Extender `.gitattributes` con `03_hallazgos/enunciados_s03.* text eol=lf` y
+- [X] T002 Extender `.gitattributes` con `03_hallazgos/enunciados_s03.* text eol=lf` y
   `03_hallazgos/enunciado-*.md text eol=lf`, con un comentario que cite el principio III
 
 ---
@@ -46,7 +46,7 @@ modifica los archivos previos de esa carpeta.
 
 **Purpose**: base común de las cuatro historias. Ninguna historia empieza antes.
 
-- [ ] T003 Crear `platform/c4a/enunciado.py` con: `EnunciadoError(mensaje, codigo)` (como
+- [X] T003 Crear `platform/c4a/enunciado.py` con: `EnunciadoError(mensaje, codigo)` (como
   `RegistroError`); constantes `PRODUCTO = "S03 — El enunciado"`, `VERSION_ESQUEMA = "1"`,
   `APROBACION = ("borrador", "revisado")`, `CAMPOS_CORREGIBLES = ("condicion", "consecuencia",
   "criterio", "impacto")`, `EVENTOS = ("propuesta", "correccion", "descarte", "restablecimiento",
@@ -54,17 +54,17 @@ modifica los archivos previos de esa carpeta.
   rutas `03_hallazgos/enunciados_s03.json`, `.md`, `.firma.json` y prefijo de fichas
   `enunciado-`; mismo filtro de textos libres que S02 (FR-016) reutilizando `registro._PROHIBIDOS`
   y `alcance.limpiar`
-- [ ] T004 En `platform/c4a/enunciado.py`, `cargar(raiz)` y `_escribir(raiz, contenido)`
+- [X] T004 En `platform/c4a/enunciado.py`, `cargar(raiz)` y `_escribir(raiz, contenido)`
   reutilizando `alcance.serializar`; el contenido canónico tiene exactamente las claves `producto`,
   `version_esquema`, `registro`, `enunciados`, `vacios`, `estado_aprobacion`, `historial`,
   `avisos` de `contracts/enunciados_s03.schema.json` (FR-011)
-- [ ] T005 En `platform/c4a/enunciado.py`, contexto de origen `_contexto(raiz, previo)`: exige el
+- [X] T005 En `platform/c4a/enunciado.py`, contexto de origen `_contexto(raiz, previo)`: exige el
   registro de S02 (código 2 si falta), calcula `sha256` de `02_evidencia/registro_s02.json` y
   `entrega_sha256` como huella canónica de `registro.entregar(raiz)` (serialización determinista
   del dict de entrega), más `firmado` y `estado` (FR-002)
-- [ ] T006 En `platform/c4a/enunciado.py`, identificadores con `util.short_id`: enunciado
+- [X] T006 En `platform/c4a/enunciado.py`, identificadores con `util.short_id`: enunciado
   `short_id("R", hecho_id)` (patrón `^R-[0-9a-f]{10}$`), estable ante correcciones de texto
-- [ ] T007 [P] Crear `platform/tests/enunciado_fixtures.py`: reutiliza `registro_fixtures` para
+- [X] T007 [P] Crear `platform/tests/enunciado_fixtures.py`: reutiliza `registro_fixtures` para
   dejar un registro de S02 **sintético rotulado** con H hechos (uno por resultado: positivo,
   negativo, inconcluso) y M «no consta», más variantes: sin `registro_s02.json`, con evidencia
   `sin_copia`, con un hecho marcado «alcance pendiente», y un registro firmado; expone `N_HECHOS`
@@ -85,7 +85,7 @@ contiene estados de cumplimiento.
 
 ### Tests for User Story 1
 
-- [ ] T008 [P] [US1] Escribir `platform/tests/test_enunciado_us1.py`: US1 escenarios 1 a 4; SC-001
+- [X] T008 [P] [US1] Escribir `platform/tests/test_enunciado_us1.py`: US1 escenarios 1 a 4; SC-001
   (H hechos y M «no consta» → exactamente H enunciados y M vacíos); FR-001 (sin
   `registro_s02.json` → código 2, nada escrito en `03_hallazgos/`); FR-002 (registro firmado →
   cita la huella de la entrega y `firmado: true`); FR-003 (hecho fuera/descartado → sin
@@ -98,20 +98,20 @@ contiene estados de cumplimiento.
 
 ### Implementation for User Story 1
 
-- [ ] T009 [US1] En `platform/c4a/enunciado.py`, `abrir(raiz, fecha=None)`: deriva el contexto
+- [X] T009 [US1] En `platform/c4a/enunciado.py`, `abrir(raiz, fecha=None)`: deriva el contexto
   (T005), propone un enunciado por hecho vigente (T010-T012), conserva el historial previo y
   escribe el JSON y la vista; si el producto previo está firmado y los nuevos bytes difieren,
   rechaza con código 4 (FR-014)
-- [ ] T010 [US1] En `platform/c4a/enunciado.py`, `_proponer(entrada, registro_firmado)`: condición
+- [X] T010 [US1] En `platform/c4a/enunciado.py`, `_proponer(entrada, registro_firmado)`: condición
   desde la afirmación; consecuencia por resultado (positivo/negativo/inconcluso); criterio
   cualitativo (tipo de evidencia y resultado; sin identificadores de controles); impacto vacío;
   `falta` derivado de marcas y resultado: «alcance pendiente» → confirmar el alcance; `inconcluso`
   → evidencia adicional; `negativo` → reevaluar en una próxima revisión; evidencia `sin_copia` →
   verificar el original; registro no firmado → declararlo (FR-005)
-- [ ] T011 [US1] En `platform/c4a/enunciado.py`, `_derivar(entrega, historial, registro_firmado)`:
+- [X] T011 [US1] En `platform/c4a/enunciado.py`, `_derivar(entrega, historial, registro_firmado)`:
   una propuesta por hecho (id estable T006), aplicando correcciones/descartes/restablecimientos del
   historial en orden; ordena por id; nada se borra (FR-007, FR-010)
-- [ ] T012 [US1] En `platform/c4a/enunciado.py`, `vista(raiz)` y `_escribir_vista(raiz)`: título
+- [X] T012 [US1] En `platform/c4a/enunciado.py`, `vista(raiz)` y `_escribir_vista(raiz)`: título
   con estado, resumen (huella de la entrega de origen, firmado o no, conteos de enunciados y
   vacíos), sección «Enunciados (N)» con todos los campos, sección «Vacíos heredados del registro
   (M)» con la nota de que no son riesgos enunciados, historial y huella del JSON leída del
@@ -133,7 +133,7 @@ ningún otro camino llega a «firmado».
 
 ### Tests for User Story 2
 
-- [ ] T013 [P] [US2] Escribir `platform/tests/test_enunciado_us2.py`: US2 escenarios 1 a 5; FR-007
+- [X] T013 [P] [US2] Escribir `platform/tests/test_enunciado_us2.py`: US2 escenarios 1 a 5; FR-007
   (corregir los cuatro campos; campo no corregible, sin motivo o sin autor → código 1 y sin
   escritura; descartar y restablecer con motivo; nada desaparece); FR-008 (firmar desde
   «borrador», sin firmante o sin motivo → código 1; firmar con impacto vacío → código 1
@@ -143,18 +143,18 @@ ningún otro camino llega a «firmado».
 
 ### Implementation for User Story 2
 
-- [ ] T014 [US2] En `platform/c4a/enunciado.py`, `corregir(raiz, enunciado, campo, valor, motivo,
+- [X] T014 [US2] En `platform/c4a/enunciado.py`, `corregir(raiz, enunciado, campo, valor, motivo,
   autor, fecha=None)`: campo en `CAMPOS_CORREGIBLES`; motivo y autor obligatorios; valor filtrado;
   entrada inexistente → código 1; evento con campo, anterior y nuevo; el enunciado y el producto
   pasan a «revisado» (FR-007)
-- [ ] T015 [US2] En `platform/c4a/enunciado.py`, `descartar(raiz, enunciado, motivo, autor,
+- [X] T015 [US2] En `platform/c4a/enunciado.py`, `descartar(raiz, enunciado, motivo, autor,
   fecha=None)` y `restablecer(raiz, enunciado, motivo, autor, fecha=None)` (solo sobre un
   descartado), con marca `descartado` persistente y eventos (FR-007)
-- [ ] T016 [US2] En `platform/c4a/enunciado.py`, `_guardar(raiz, contenido, evento)`: único punto
+- [X] T016 [US2] En `platform/c4a/enunciado.py`, `_guardar(raiz, contenido, evento)`: único punto
   de escritura de las acciones del auditor; agrega el evento, anula una firma previa y recompone
   los enunciados; `_cargar_vigente(raiz)` exige que el registro de origen no haya cambiado (código
   4) (FR-015, análisis I1 de S02)
-- [ ] T017 [US2] En `platform/c4a/enunciado.py`, `revisar(raiz, autor, motivo, fecha=None)` y
+- [X] T017 [US2] En `platform/c4a/enunciado.py`, `revisar(raiz, autor, motivo, fecha=None)` y
   `firmar(raiz, firmante, motivo, fecha=None)`: firmar exige «revisado», firmante, justificación y
   criterio/impacto no vacíos en cada enunciado vigente; escribe `enunciados_s03.firma.json` con
   `archivo`, `sha256` de los bytes ya guardados, `firmante`, `fecha`, `motivo`, conteos y
@@ -174,17 +174,17 @@ no-cumplimiento y «lo que falta» derivado; ningún archivo contiene estados de
 
 ### Tests for User Story 3
 
-- [ ] T018 [P] [US3] Escribir `platform/tests/test_enunciado_us3.py`: US3 escenarios 1 a 4; FR-006
+- [X] T018 [P] [US3] Escribir `platform/tests/test_enunciado_us3.py`: US3 escenarios 1 a 4; FR-006
   (negativo → nota fija de no-cumplimiento y reevaluación en `falta`; inconcluso → evidencia
   adicional en `falta`; cero estados de cumplimiento en JSON, vista y fichas); SC-011 (100 % de
   negativos con nota)
 
 ### Implementation for User Story 3
 
-- [ ] T019 [US3] En `platform/c4a/enunciado.py`, nota fija en la consecuencia del negativo («esto
+- [X] T019 [US3] En `platform/c4a/enunciado.py`, nota fija en la consecuencia del negativo («esto
   no acredita cumplimiento ni descarta su reaparición») y en la vista la frase de que un riesgo
   acotado no es una evaluación de controles (FR-006)
-- [ ] T020 [US3] En `platform/c4a/enunciado.py`, `falta` del inconcluso incluye «evidencia
+- [X] T020 [US3] En `platform/c4a/enunciado.py`, `falta` del inconcluso incluye «evidencia
   adicional para decidir» y la vista mantiene la sección única de vacíos con conteo (SC-008 parte
   automática)
 
@@ -203,7 +203,7 @@ vigentes.
 
 ### Tests for User Story 4
 
-- [ ] T021 [P] [US4] Escribir `platform/tests/test_enunciado_us4.py`: US4 escenarios 1 a 4; SC-004
+- [X] T021 [P] [US4] Escribir `platform/tests/test_enunciado_us4.py`: US4 escenarios 1 a 4; SC-004
   (alterar un byte del JSON → `verificar` informa alteración y código 3); SC-005 (alterar un byte
   de una copia → enunciado «evidencia alterada», fuera de la entrega; firmado → «firmado con
   evidencia alterada»); FR-009 (hecho que sale de la entrega → «hecho no vigente»); SC-009 (la
@@ -213,18 +213,18 @@ vigentes.
 
 ### Implementation for User Story 4
 
-- [ ] T022 [US4] En `platform/c4a/enunciado.py`, `verificar(raiz)`: recalcula la huella del JSON
+- [X] T022 [US4] En `platform/c4a/enunciado.py`, `verificar(raiz)`: recalcula la huella del JSON
   contra la firma; recalcula `entrega_sha256` actual y compara con la registrada; recalcula la
   huella de cada evidencia citada sobre su copia (o su original si es referencia sin copia y sigue
   accesible); devuelve `huella_ok`, `entrega_ok`, `evidencias_alteradas[]`, `hechos_no_vigentes[]`,
   `estado` y `estado_informado` (FR-009)
-- [ ] T023 [US4] En `platform/c4a/enunciado.py`, `_cargar_vigente` además exige que la huella de
+- [X] T023 [US4] En `platform/c4a/enunciado.py`, `_cargar_vigente` además exige que la huella de
   `registro_s02.json` y la entrega sigan iguales (código 4) (FR-015)
-- [ ] T024 [US4] En `platform/c4a/enunciado.py`, `entregar(raiz) -> dict` para S04: enunciados
+- [X] T024 [US4] En `platform/c4a/enunciado.py`, `entregar(raiz) -> dict` para S04: enunciados
   vigentes (no descartados, con hecho en la entrega vigente y sin evidencia alterada), cada uno con
   activo, dominio, condición, consecuencia, criterio, impacto, falta, hecho y evidencias con
   huellas; más `vacios` y `firmado` según `estado_efectivo` (FR-013)
-- [ ] T025 [US4] En `platform/c4a/enunciado.py`, `estado_efectivo(raiz) -> str`: `borrador`,
+- [X] T025 [US4] En `platform/c4a/enunciado.py`, `estado_efectivo(raiz) -> str`: `borrador`,
   `revisado` o `firmado` (huella del JSON contra la firma, principio III)
 
 **Checkpoint**: las cuatro historias funcionan.
@@ -233,19 +233,19 @@ vigentes.
 
 ## Phase 7: Polish & Cross-Cutting Concerns
 
-- [ ] T026 [P] Escribir `platform/tests/test_enunciado_cli.py`: invoca `c4a.cli.main` sobre un
+- [X] T026 [P] Escribir `platform/tests/test_enunciado_cli.py`: invoca `c4a.cli.main` sobre un
   fixture sintético y comprueba los códigos de salida 0, 1, 2 y 4 de `contracts/cli-enunciado.md`
-- [ ] T027 [P] Agregar a `platform/tests/test_enunciado_us1.py` la prueba de las fichas: una
+- [X] T027 [P] Agregar a `platform/tests/test_enunciado_us1.py` la prueba de las fichas: una
   `enunciado-<id>.md` por enunciado, sin extractos de evidencia y con los mismos campos que el
   JSON (FR-012)
-- [ ] T028 Correr la suite completa desde `platform/`; si una prueba que antes pasaba falla,
+- [X] T028 Correr la suite completa desde `platform/`; si una prueba que antes pasaba falla,
   detenerse y reportar
-- [ ] T029 Generar el producto real con `enunciado abrir` sobre la raíz del repositorio y registrar
+- [X] T029 Generar el producto real con `enunciado abrir` sobre la raíz del repositorio y registrar
   en Notes el conteo de enunciados y vacíos; comprobar SC-003 (búsqueda limpia) y SC-010 (huellas
   de los archivos previos sin cambios). No se corrige ni firma nada: eso es del auditor
-- [ ] T030 [P] Documentar el subcomando `enunciado` en `platform/README.md` (uso, archivos que
+- [X] T030 [P] Documentar el subcomando `enunciado` en `platform/README.md` (uso, archivos que
   produce, que firmar no abre la compuerta y que un negativo no acredita cumplimiento)
-- [ ] T031 [P] Registrar en `specs/003-enunciado-riesgo/quickstart.md` el resultado de la
+- [X] T031 [P] Registrar en `specs/003-enunciado-riesgo/quickstart.md` el resultado de la
   validación de punta a punta
 - [ ] T032 Acción humana: el auditor mide SC-008 y un tercero hace el recorrido de SC-009; ambos
   resultados se registran en `specs/003-enunciado-riesgo/checklists/enunciado.md` → Notes

@@ -89,6 +89,58 @@ python3 -m c4a registro entregar  --raiz .. --json # entradas vigentes para S03
 
 Contrato completo: `specs/002-registro-hechos/contracts/cli-registro.md`.
 
+## El ciclo de productos S03–S10
+
+Cada sprint deja su producto con la misma forma: la herramienta **propone** (`abrir`),
+el auditor **corrige** (`corregir` u su acción propia), **revisa** y **firma**; `verificar`
+recalcula huellas y `entregar` da la lista vigente al sprint siguiente. Todo es
+determinista (mismos insumos → mismos bytes), nada se borra y los archivos previos de
+cada carpeta quedan intactos.
+
+```bash
+cd platform
+python3 -m c4a enunciado abrir --raiz ..     # S03: un riesgo por hecho vigente (03_hallazgos/)
+python3 -m c4a cita abrir --raiz ..          # S04: cada riesgo en un marco, con nombre y versión
+python3 -m c4a perfil abrir --raiz ..        # S05: seis funciones del NIST CSF 2.0
+python3 -m c4a lista abrir --raiz ..         # S06: CIS Controls v8.1 aplicables, partiendo por el inventario
+python3 -m c4a encargo abrir --raiz ..       # S07: el trabajo escrito para repetir, SIN firmar (01_plan/)
+python3 -m c4a frases abrir --raiz ..        # S08: el mismo resultado para gerencia y para quien corrige
+python3 -m c4a borrador abrir --raiz ..      # S09: borrador del informe de cierre (04_informe/)
+python3 -m c4a cierre abrir --raiz ..        # S10: exige el borrador FIRMADO (código 5 si no lo está)
+```
+
+Lo específico de cada producto:
+
+- **enunciado**: propone condición, consecuencia, criterio y «lo que falta»; un hecho
+  negativo lleva nota fija de que no acredita cumplimiento. Firmar exige criterio e
+  impacto completados por el auditor.
+- **cita**: la correspondencia riesgo ↔ control es sugerencia explicada; el identificador
+  solo se propone si consta en la base de conocimiento — si no, queda «pendiente de
+  confirmar». Se puede corregir marco/versión/identificador/fundamento y añadir
+  correspondencias.
+- **perfil**: propone la asignación riesgo ↔ función a partir del dominio y el fundamento;
+  el auditor reasigna con motivo. Una función sin material queda «no consta», nunca
+  «sin hallazgos». Firmar exige las seis síntesis.
+- **lista**: propone controles CIS anclados en hechos del inventario; los que requieren
+  políticas, personas o procesos quedan «pendiente-documental». Se pueden descartar,
+  recuperar y añadir a mano con fuente.
+- **encargo**: sin firma de aprobación (la guía S07 es «sin firmar»): lleva autoría y una
+  huella de integridad. Nunca contiene comandos, direcciones de red, puertos ni
+  credenciales, y no abre ni transporta la autorización: la corrida que repite verifica
+  `scope/autorizacion.md` por sí misma.
+- **frases**: las dos frases deben decir el mismo resultado (mismos conteos, mismos
+  vacíos con la misma causa); una corrección que rompe la consistencia se rechaza, y la
+  de gerencia no lleva identificadores de controles.
+- **borrador**: ensambla encabezado (cliente Comercial Andes Sur SpA), resumen,
+  desarrollo, acciones sin responsables ni fechas inventados, vacíos y anexo de
+  trazabilidad. Solo archivos nuevos en `04_informe/`.
+- **cierre**: tabla de recorrido (afirmación → ficha → huella); el tercero recorre y se
+  registra con `cierre registrar --tercero ...` (la herramienta no simula el recorrido).
+  Firmar exige los enlaces resueltos. **El cierre no publica ni entrega el informe:**
+  eso es decisión del dueño.
+
+Especificaciones: `specs/003-enunciado-riesgo/` a `specs/010-cierre/`.
+
 ## Cómo funciona el workflow
 
 Cuatro fases, cada una alimenta a la siguiente; todo lo escribe en las carpetas

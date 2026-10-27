@@ -51,4 +51,11 @@ python -m c4a enunciado entregar --raiz <tmp> --json
 
 ## 5. Resultado de la validación
 
-*(se completa al cerrar las tareas)*
+Validación de punta a punta sobre la raíz del repositorio (2026-10-26): suite completa
+`python -m unittest discover -s tests` → 239 pruebas en verde (línea base 129 + 110 de
+S03 y los sprints S04–S10 construidos en la misma jornada, por orden del dueño). Con el
+registro real vigente (0 hechos, 8 «no consta» por compuerta cerrada): `enunciado abrir`
+produjo 0 enunciados y 8 vacíos heredados, con aviso de registro no firmado; los archivos
+previos de `03_hallazgos/` quedaron con huella idéntica (SC-010) y una búsqueda sobre los
+archivos generados no encontró estados de cumplimiento ni direcciones de red (SC-003).
+No se corrigió ni firmó nada: eso es del auditor (T033 pendiente, acción humana).
