@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Citas S04 — La cita (03_hallazgos/citas_s04.json)",
+  "type": "object",
+  "required": ["producto", "version_esquema", "entrega", "citas", "vacios", "estado_aprobacion", "historial", "avisos"],
+  "additionalProperties": false,
+  "properties": {
+    "producto": { "const": "S04 — La cita" },
+    "version_esquema": { "const": "1" },
+    "entrega": {
+      "type": "object",
+      "required": ["archivo", "sha256", "entrega_sha256", "firmado"],
+      "additionalProperties": false,
+      "properties": {
+        "archivo": { "const": "03_hallazgos/enunciados_s03.json" },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "entrega_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "firmado": { "type": "boolean" }
+      }
+    },
+    "citas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "riesgo", "marco", "control", "identificador", "fundamento", "estado_aprobacion", "marcas", "evidencias", "correcciones"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^C-[0-9a-f]{10}$" },
+          "riesgo": {
+            "type": "object",
+            "required": ["id", "condicion"],
+            "additionalProperties": false,
+            "properties": { "id": { "type": "string", "pattern": "^R-[0-9a-f]{10}$" }, "condicion": { "type": "string" } }
+          },
+          "marco": { "enum": ["ISO-27001:2022", "NIST-CSF:2.0", "CIS-v8.1", "aporte del auditor"] },
+          "control": { "type": ["string", "null"] },
+          "identificador": {
+            "type": "object",
+            "required": ["estado", "fuente"],
+            "additionalProperties": false,
+            "properties": {
+              "estado": { "enum": ["confirmado", "pendiente-confirmar"] },
+              "fuente": { "type": ["string", "null"] }
+            }
+          },
+          "fundamento": { "type": "string", "minLength": 1 },
+          "correspondencias_adicionales": { "type": "array" },
+          "estado_aprobacion": { "enum": ["borrador", "revisado"] },
+          "marcas": { "type": "array", "items": { "enum": ["descartado", "riesgo no vigente", "evidencia alterada"] } },
+          "evidencias": { "type": "array" },
+          "correcciones": { "type": "array" }
+        }
+      }
+    },
+    "vacios": { "type": "array" },
+    "estado_aprobacion": { "enum": ["borrador", "revisado"] },
+    "historial": { "type": "array" },
+    "avisos": { "type": "array", "items": { "type": "string" } }
+  }
+}

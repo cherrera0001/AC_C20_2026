@@ -5,3 +5,26 @@ scope/** text eol=lf
 
 # Artefactos de Spec Kit: LF fijo para evitar diffs falsos con core.autocrlf=true.
 specs/** text eol=lf
+
+# Integridad verificable (principio III): la huella del registro firmado de S02 acredita bytes exactos.
+02_evidencia/registro_s02.* text eol=lf
+
+# Integridad verificable (principio III): la huella de la cita firmada de S04 acredita bytes exactos.
+03_hallazgos/citas_s04.* text eol=lf
+03_hallazgos/cita-*.md text eol=lf
+
+# Integridad verificable (principio III): huellas de los productos S03 y S05 a S10.
+03_hallazgos/enunciados_s03.* text eol=lf
+03_hallazgos/enunciado-*.md text eol=lf
+03_hallazgos/perfil_s05.* text eol=lf
+03_hallazgos/perfil-*.md text eol=lf
+03_hallazgos/lista_s06.* text eol=lf
+03_hallazgos/lista-*.md text eol=lf
+01_plan/encargo_s07.* text eol=lf
+01_plan/encargo-*.md text eol=lf
+04_informe/frases_s08.* text eol=lf
+04_informe/frase-*.md text eol=lf
+04_informe/borrador_s09.* text eol=lf
+04_informe/borrador-informe-cierre.md text eol=lf
+04_informe/cierre_s10.* text eol=lf
+04_informe/informe-cierre.md text eol=lf
