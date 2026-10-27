@@ -55,6 +55,40 @@ python3 -m c4a alcance consultar --raiz .. --tipo dominio --valor "..."   # dent
 
 Contrato completo: `specs/001-alcance-auditoria/contracts/cli-alcance.md`.
 
+## El registro (S02)
+
+`registro` deja el producto de S02 en archivos nuevos de `02_evidencia/`: lo que se puede
+afirmar sobre el activo, cada hecho con su evidencia y su huella, y lo que no consta. La
+herramienta **propone**; el auditor **corrige**, **descarta**, **restablece** y **firma**. Lee el
+alcance de S01 y la compuerta en solo lectura; no ejecuta pruebas ni toca la red.
+
+```bash
+cd platform
+python3 -m c4a registro abrir     --raiz ..        # una entrada «no consta» por activo y dominio
+python3 -m c4a registro aportar   --raiz .. --activo "..." --dominio <A-…|texto|activo> --afirmacion "..." \
+        --resultado positivo --evidencia <ruta> --tipo documental --origen "..." --fecha-recoleccion AAAA-MM-DD --autor "..."
+python3 -m c4a registro corregir  --raiz .. --entrada <ID> --campo resultado --valor inconcluso --motivo "..." --autor "..."
+python3 -m c4a registro descartar --raiz .. --entrada <ID> --motivo "..." --autor "..."   # restablecer: igual
+python3 -m c4a registro revisar   --raiz .. --autor "..." --motivo "..."
+python3 -m c4a registro firmar    --raiz .. --firmante "..." --motivo "..."
+python3 -m c4a registro verificar --raiz ..        # huella del registro y de cada evidencia
+python3 -m c4a registro entregar  --raiz .. --json # entradas vigentes para S03
+```
+
+- `registro_s02.json` es el contenido canónico y determinista; su huella SHA-256 es la que se firma.
+  `registro_s02.firma.json` guarda firmante, fecha, justificación, huella y cuántas «no consta» había.
+  Cualquier escritura posterior anula la firma.
+- `registro_s02.md` es la vista legible, con una sola sección «No consta (N)» y otra de rechazos.
+- Cada evidencia aportada se copia a `evidence/registro_s02/` (fuera de git) y se registra la huella
+  del original y la de la copia guardada. `--sin-copia` declara una referencia sin copia.
+- Se rechaza, con su motivo, la evidencia de otro activo, de un dominio fuera del alcance, de una
+  corrida sobre otro objetivo, la técnica sin autorización vigente en su fecha y la documental sin
+  origen declarado.
+- **«No consta» no es «sin hallazgos».** Quiere decir que no se miró o que falta evidencia.
+- **Firmar el registro no abre la compuerta de autorización.**
+
+Contrato completo: `specs/002-registro-hechos/contracts/cli-registro.md`.
+
 ## Cómo funciona el workflow
 
 Cuatro fases, cada una alimenta a la siguiente; todo lo escribe en las carpetas

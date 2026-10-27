@@ -25,11 +25,11 @@ es Comercial Andes Sur SpA.
 | Componente | Estado |
 |---|---|
 | Proceso de 4 fases | Definido y con entregables de ejecución en `01_plan/` a `04_informe/` |
-| Plataforma `platform/c4a` | Operativa: auditoría estática de repositorio, SCA con CVE reales, SARIF, mapa HTML, triaje humano, reproducción por hash |
+| Plataforma `platform/c4a` | Operativa: auditoría estática de repositorio, SCA con CVE reales, SARIF, mapa HTML, triaje humano, reproducción por hash, alcance (S01) y registro (S02) |
 | Spec Kit (SDD) | Inicializado en `.specify/`; constitución 1.0.0 con principios I–VIII |
 | Sprint S01 «El alcance» | Implementado: spec, plan, tareas, checklists, contratos y módulo `alcance` con CLI. Quedan **2 acciones humanas**: medir SC-003/SC-008 y firmar el alcance |
-| Sprint S02 «El registro» | Especificado y planificado: spec (con clarificaciones), plan, research, data-model, contracts, quickstart, checklists y 39 tareas; tablero creado como épica #46 con historias #47–#50. Implementación **no** iniciada |
-| Sprints S03–S10 | No iniciados |
+| Sprint S02 «El registro» | Implementado: spec, plan, tareas, checklists, contratos, módulo `registro` con CLI y producto real en `02_evidencia/registro_s02.*`. 129 pruebas en verde. Queda **sin commit** (a la espera de la aprobación del dueño) y **2 acciones humanas**: medir SC-008/SC-009 y firmar el registro |
+| Sprints S03–S10 | S03 especificado e implementado en `specs/003-enunciado-riesgo/` y `platform/c4a/enunciado.py` (ver sección S03 abajo). S04–S10 no iniciados |
 | Compuerta de autorización | **Cerrada.** `scope/autorizacion.md` está sin firmar y sin ventana vigente: no se ejecuta ningún comando contra el objetivo |
 | Equipo técnico de red | **Nuevo (2026-10-28).** Agentes en `.claude/agents/`, skills `net-*` en `.agents/skills/` y MCP en `.mcp.json`, todos gobernados por la compuerta |
 | Tablero | [C4A — Gestión Ágil 2026](https://github.com/users/cherrera0001/projects/7), repo `cherrera0001/AC_C20_2026` |
@@ -172,17 +172,37 @@ inventadas.
 
 ### S02 «El registro» — dónde va
 
-- Spec y artefactos: `specs/002-registro-hechos/` (`spec.md`, `plan.md`,
-  `research.md`, `data-model.md`, `quickstart.md`, `contracts/`,
-  `checklists/`, `tasks.md` con 39 tareas).
-- Diseñado para no depender de la firma de S01: abre el registro con el
-  alcance firmado o en borrador, y registra «no consta» por activo y dominio
-  si el alcance aún no existe (FR-001). Es trabajo documental: ninguna tarea
-  toca la red ni escribe en `scope/` ni en `02_evidencia/inventario.json`.
-- Reutiliza de S01 `alcance.py` sin cambios (`cargar`, `consultar`,
-  `evaluar_compuerta`); la implementación del módulo `registro` **no** ha
-  comenzado.
-- Tablero: épica #46 con historias US1 #47, US2 #48, US3 #49 y US4 #50.
+- Spec y artefactos: `specs/002-registro-hechos/` (spec con clarificaciones
+  2026-10-21/22, plan, research, data-model, quickstart, contracts, checklists,
+  tasks con fase de convergencia).
+- Implementación: `platform/c4a/registro.py` + CLI
+  (`registro abrir | aportar | corregir | descartar | restablecer | revisar |
+  firmar | verificar | entregar`) y producto en `02_evidencia/registro_s02.md`
+  / `.json`. 129 pruebas en verde (78 de S01/plataforma + 51 de S02).
+- Producto real generado (T035): 8 entradas «no consta» (el activo y 7
+  dominios), 0 hechos, 0 rechazos, estado «borrador», alcance no firmado,
+  compuerta «cerrada». Cero direcciones de red, comandos, puertos,
+  credenciales ni estados de cumplimiento.
+- Pendiente humano: medir SC-008/SC-009 y firmar el registro (T038, T039).
+- El trabajo está **implementado pero sin commit**: 20 archivos nuevos o
+  modificados (`registro.py`, 9 archivos de prueba, `cli.py`, README,
+  contratos, `.gitattributes`, producto de `02_evidencia/`). El commit
+  espera la aprobación explícita del dueño.
+
+### S03 «El enunciado» — dónde va
+
+- Spec y artefactos: `specs/003-enunciado-riesgo/` (spec, plan, data-model,
+  quickstart, contracts, checklists, tasks).
+- Implementación: `platform/c4a/enunciado.py` + CLI
+  (`enunciado abrir | corregir | descartar | restablecer | revisar | firmar |
+  verificar | entregar`).
+- Consume la entrega de S02 (`registro entregar`: hechos y «no consta»
+  vigentes, con evidencias y huellas) y propone, en `03_hallazgos/`, un
+  enunciado de riesgo por hecho: condición, consecuencia, criterio, impacto
+  y lo que falta. Nada dictamina cumplimiento (principio II).
+- **Desviación de compuerta declarada**: la constitución ordena no
+  especificar S03 hasta que S02 converja; el dueño ordenó construir la
+  herramienta y esta sesión lo hace con las acciones humanas aún pendientes.
 
 ---
 
@@ -268,12 +288,14 @@ compuerta abierta.
 
 ## Qué sigue
 
-1. El auditor mide SC-003/SC-008 y firma el alcance S01 (`alcance firmar`).
-2. `/speckit-converge` declara la convergencia de S01 y se reconcilia su
-   tablero contra `tasks.md`.
-3. Se implementa S02 «El registro» con `/speckit-implement`, siguiendo
-   `specs/002-registro-hechos/tasks.md` (39 tareas; reutiliza `alcance.py`
-   sin cambios y no toca la red).
+1. El dueño aprueba el commit del trabajo de S02 (20 archivos listos en el
+   árbol de trabajo) y decide si se marca la convergencia de S01 y S02.
+2. El auditor mide SC-003/SC-008 (S01) y SC-008/SC-009 (S02), aporta su
+   evidencia documental, corrige y firma el alcance y el registro
+   (`alcance firmar`, `registro firmar`).
+3. S03 queda listo para su validación de punta a punta y su commit; el
+   tablero se reconcilia contra `tasks.md` (issues de S03) y se abre S04
+   «La cita» con `/speckit-specify`.
 
 Lo que no conste queda siempre declarado: `pendiente de confirmar` o
 `VALIDAR`. Nunca se rellena con un valor inventado.
