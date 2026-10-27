@@ -1,0 +1,24 @@
+{
+  "audit_name": "Analisis estatico del codigo aportado de la plataforma del curso",
+  "auditor": "Cristobal Herrera Jara",
+  "person": "Cristobal Herrera Jara",
+  "target": "../evidence/codigo_aportado",
+  "output_root": "../evidence",
+  "normativas": ["ISO-27001", "LEY-21663", "LEY-21719"],
+  "detectors": ["php-shell", "secrets-files", "dependencies"],
+  "sca": {
+    "enabled": false,
+    "engine": "auto",
+    "allow_network": false,
+    "timeout": 180,
+    "max_packages": 200,
+    "_ayuda": "Se activa con 'enabled': true cuando existan manifiestos aportados (composer.lock, requirements.txt). 'auto' usa osv-scanner/trivy local si existe; 'osv-api' consulta OSV.dev por red (requiere allow_network: true)."
+  },
+  "scope": {
+    "read_only": true,
+    "max_file_bytes": 1500000,
+    "exclude_dirs": [".git", "node_modules", "vendor"],
+    "exclude_globs": ["*.pdf"]
+  },
+  "_nota": "Config de ejemplo para la Fase 2 del encargo del curso 848. El objetivo es el directorio de codigo APORTADO por el cliente (evidence/codigo_aportado/), no el objetivo en red. Sin codigo aportado no se corre: no se inventan hallazgos. Complementar dependencias con 'composer audit' y 'pip audit' sobre los manifiestos aportados."
+}

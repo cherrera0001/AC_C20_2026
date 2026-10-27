@@ -1,0 +1,45 @@
+{
+  "producto": "alcance-curso-848",
+  "version": "1.0.0-borrador",
+  "fecha": "2026-10-27",
+  "estado": "borrador",
+  "principio": "La herramienta propone; el auditor firma (constitucion I)",
+  "objetivo": {
+    "tipo": "LMS Moodle (aula virtual del ejercicio)",
+    "url_ref": "clave URL_CURSO de .env (valor nunca versionado)",
+    "curso_en_examen": 848,
+    "cuenta_trabajo": "cuenta del auditor (claves USUARIO/CLAVE de .env; runtime enmascarado)"
+  },
+  "dominios_incluidos": [
+    "integridad del curso 848 (vista, referencias internas, error 500 invalidcoursemodule)",
+    "autenticacion y sesion del aula con la cuenta del auditor",
+    "superficie web del aula en solo lectura (navegacion GET, huellas pasivas)",
+    "codigo aportado por el cliente: analisis estatico (nucleo, plugins formato/tema, manifiestos)"
+  ],
+  "exclusiones": [
+    "trafico activo sin scope/autorizacion.md firmada y ventana vigente",
+    "denegacion de servicio, tecnicas disruptivas, modificacion, borrado o exfiltracion de datos",
+    "pivoting fuera del aula",
+    "otros cursos salvo contraste de solo lectura",
+    "datos personales de terceros sin minimizacion/enmascaramiento",
+    "sistemas ajenos al aula"
+  ],
+  "metodo_sin_compuerta": [
+    "diagnostico de solo lectura autenticado (Fase 1, ejecutada)",
+    "analisis estatico de codigo aportado (Fase 2)",
+    "correlacion de hechos a riesgo y cumplimiento (Fase 4)"
+  ],
+  "decisiones": [
+    {"id": "D1", "texto": "segundo objetivo sin tocar alcance del laboratorio", "estado": "propuesta"},
+    {"id": "D2", "texto": "activo por tipo/rol, sin inventario activo", "estado": "propuesta"},
+    {"id": "D3", "texto": "cursos hermanos solo como contraste pasivo", "estado": "propuesta"},
+    {"id": "D4", "texto": "H4 manipulacion queda pendiente de confirmar", "estado": "propuesta"}
+  ],
+  "pendientes": [
+    {"id": "P1", "texto": "representante con facultad para autorizar el nuevo objetivo"},
+    {"id": "P2", "texto": "encargo como S11 del ciclo SDD o auditoria puntual (decision humana)"},
+    {"id": "P3", "texto": "recepcion del codigo de la plataforma para Fase 2"}
+  ],
+  "compuerta": "CERRADA (scope/autorizacion.md sin firmar; este documento no la abre)",
+  "nota": "Sin direcciones de red, comandos, puertos, credenciales ni procedimientos de explotacion (principio V)."
+}
