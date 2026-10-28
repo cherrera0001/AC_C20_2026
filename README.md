@@ -28,8 +28,10 @@ es Comercial Andes Sur SpA.
 | Plataforma `platform/c4a` | Operativa: auditoría estática de repositorio, SCA con CVE reales, SARIF, mapa HTML, triaje humano, reproducción por hash |
 | Spec Kit (SDD) | Inicializado en `.specify/`; constitución 1.0.0 con principios I–VIII |
 | Sprint S01 «El alcance» | Implementado: spec, plan, tareas, checklists, contratos y módulo `alcance` con CLI. Quedan **2 acciones humanas**: medir SC-003/SC-008 y firmar el alcance |
-| Sprints S02–S10 | No iniciados. No se especifica el siguiente hasta que S01 converja |
+| Sprint S02 «El registro» | Especificado y planificado: spec (con clarificaciones), plan, research, data-model, contracts, quickstart, checklists y 39 tareas; tablero creado como épica #46 con historias #47–#50. Implementación **no** iniciada |
+| Sprints S03–S10 | No iniciados |
 | Compuerta de autorización | **Cerrada.** `scope/autorizacion.md` está sin firmar y sin ventana vigente: no se ejecuta ningún comando contra el objetivo |
+| Equipo técnico de red | **Nuevo (2026-10-28).** Agentes en `.claude/agents/`, skills `net-*` en `.agents/skills/` y MCP en `.mcp.json`, todos gobernados por la compuerta |
 | Tablero | [C4A — Gestión Ágil 2026](https://github.com/users/cherrera0001/projects/7), repo `cherrera0001/AC_C20_2026` |
 
 ---
@@ -78,9 +80,14 @@ AC_C20_2026/
 ├── platform/                  ← la herramienta (paquete Python `c4a`)
 ├── .specify/                  ← Spec Kit: constitución, plantillas, scripts
 ├── specs/                     ← especificaciones por sprint
-│   └── 001-alcance-auditoria/ ← S01: spec, plan, research, data-model,
-│                                quickstart, contracts, checklists, tasks
-├── .agents/skills/            ← habilidades speckit-* del agente
+│   ├── 001-alcance-auditoria/ ← S01: spec, plan, research, data-model,
+│   │                            quickstart, contracts, checklists, tasks
+│   └── 002-registro-hechos/   ← S02: idem (spec con clarificaciones)
+├── .agents/skills/            ← habilidades del agente: speckit-* y net-*
+├── .claude/agents/            ← agentes técnicos de red (guardián, diagnóstico,
+│                                custodio, redactor); gobernados por la compuerta
+├── .mcp.json                  ← MCP sin credenciales: filesystem acotado a
+│                                evidence/, docs/ y scope/, más fetch
 ├── .github/ISSUE_TEMPLATE/    ← formularios de épica, historia, tarea y bug
 └── triage/                    ← decisiones humanas de triaje persistidas
 ```
@@ -158,10 +165,24 @@ inventadas.
   compuerta | corregir | revisar | firmar | verificar | consultar`)
   y producto en `scope/alcance_s01.md` / `scope/alcance_s01.json`.
 - Pendiente humano: medir SC-003 y SC-008 y firmar el alcance
-  (tareas T032 y T033). Sin eso, S01 no converge y **S02 no se abre**.
+  (tareas T032 y T033). Sin eso, S01 no converge.
 - Tablero: S01 se integró bajo la épica existente #1 como épica #41, con
   historias US1 #42, US2 #43, US3 #44 y US4 #45 (tareas como checklist dentro
   de cada historia, sin issues de tarea sueltas).
+
+### S02 «El registro» — dónde va
+
+- Spec y artefactos: `specs/002-registro-hechos/` (`spec.md`, `plan.md`,
+  `research.md`, `data-model.md`, `quickstart.md`, `contracts/`,
+  `checklists/`, `tasks.md` con 39 tareas).
+- Diseñado para no depender de la firma de S01: abre el registro con el
+  alcance firmado o en borrador, y registra «no consta» por activo y dominio
+  si el alcance aún no existe (FR-001). Es trabajo documental: ninguna tarea
+  toca la red ni escribe en `scope/` ni en `02_evidencia/inventario.json`.
+- Reutiliza de S01 `alcance.py` sin cambios (`cargar`, `consultar`,
+  `evaluar_compuerta`); la implementación del módulo `registro` **no** ha
+  comenzado.
+- Tablero: épica #46 con historias US1 #47, US2 #48, US3 #49 y US4 #50.
 
 ---
 
@@ -208,6 +229,28 @@ procedimientos de explotación — nombrar el tipo de evidencia alcanza.
 
 ---
 
+## Equipo técnico de red (agentes, skills y MCP)
+
+Desde el 2026-10-28 la estación del auditor tiene un equipo técnico con roles
+acotados, todos gobernados por la misma compuerta:
+
+| Rol | Archivo | Qué hace |
+|---|---|---|
+| Guardián del alcance | `.claude/agents/guardian-alcance.md` | Decide si una actividad de red está permitida leyendo `scope/alcance.md` y `scope/autorizacion.md`; responde ABIERTA o CERRADA con motivo. No ejecuta pruebas |
+| Diagnóstico de red | `.claude/agents/diagnostico-red.md` | Mide y explica fallos de conectividad de la estación (DNS, latencia, pérdida, MTU, IPv4/IPv6, rutas) y analiza capturas pcap. Solo lee y mide; no modifica nada |
+| Custodio de evidencia | `.claude/agents/custodio-evidencia.md` | Registra salidas y capturas en `evidence/` con comando, fecha, zona horaria, ejecutor y SHA-256 de los bytes guardados, y mantiene `evidence/MANIFEST.md` |
+| Redactor de hallazgos | `.claude/agents/redactor-hallazgos.md` | Convierte evidencia registrada en borradores de fichas para `03_hallazgos/`, separando resultado técnico, cumplimiento y aprobación. Nunca firma |
+
+Las skills de red en `.agents/skills/` (`net-compuerta`, `net-diagnostico`,
+`net-pcap-analisis`) documentan el procedimiento de cada rol. El MCP de
+`.mcp.json` conecta dos servidores **sin credenciales**: `evidencia`
+(filesystem acotado a `evidence/`, `docs/` y `scope/`) y `fetch` (contenido
+web). El diagnóstico de la estación local no es evidencia C4A: al expediente
+solo entra lo que el custodio registra de un activo en alcance con la
+compuerta abierta.
+
+---
+
 ## Gestión ágil y versionado
 
 - **Project**: [C4A — Gestión Ágil 2026](https://github.com/users/cherrera0001/projects/7)
@@ -226,9 +269,11 @@ procedimientos de explotación — nombrar el tipo de evidencia alcanza.
 ## Qué sigue
 
 1. El auditor mide SC-003/SC-008 y firma el alcance S01 (`alcance firmar`).
-2. `/speckit-converge` declara la convergencia de S01.
-3. Recién entonces se reconcilia el tablero de S01 contra `tasks.md` y se
-   abre S02 «El registro» con `/speckit-specify`.
+2. `/speckit-converge` declara la convergencia de S01 y se reconcilia su
+   tablero contra `tasks.md`.
+3. Se implementa S02 «El registro» con `/speckit-implement`, siguiendo
+   `specs/002-registro-hechos/tasks.md` (39 tareas; reutiliza `alcance.py`
+   sin cambios y no toca la red).
 
 Lo que no conste queda siempre declarado: `pendiente de confirmar` o
 `VALIDAR`. Nunca se rellena con un valor inventado.
