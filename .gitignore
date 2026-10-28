@@ -38,7 +38,9 @@ reports/
 
 # Carpeta del agente (habilidades de Spec Kit, estado local de Claude Code).
 # Excluida por recomendación de `specify init`: puede guardar credenciales o tokens.
-.claude/
+# Excepción: las definiciones de agentes del equipo técnico se versionan (sin secretos).
+.claude/*
+!.claude/agents/
 
 # Herramientas externas de apoyo a la auditoría, no forman parte de C4A.
 .audit-tools/
