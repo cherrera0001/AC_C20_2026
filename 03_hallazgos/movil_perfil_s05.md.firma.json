@@ -1,7 +1,7 @@
 {
   "archivo": "movil_perfil_s05.md",
   "firmante": "Cristóbal Herrera <herrera.jara.cristobal@gmail.com>",
-  "fecha_utc": "2026-10-29T01:47:20Z",
-  "sha256_bytes_firmados": "2b837842e63460d1e31b42efbdc7194d3223ed547acb936c796e8765e6fc0018",
+  "fecha_utc": "2026-10-29T01:50:33Z",
+  "sha256_bytes_firmados": "6ed3e439b074faab524c0aa3b13c87e6ee9319c06f0dbf0f3d447bc722ca1e8f",
   "justificacion": "Aprobacion electronica del auditor en sesion 2026-10-29 («Adelante, queda todo firmado en este proceso»); huella SHA-256 de los bytes guardados; anulable con evento firma_anulada."
 }

@@ -1,6 +1,6 @@
 # S05 (móvil) — El perfil: el activo leído con las seis funciones del NIST CSF 2.0
 
-**Estado**: FIRMADO el 2026-10-29T01:47:20Z — `movil_perfil_s05.firma.json`. Función sin material queda «no consta», nunca «sin hallazgos» (FR-06).
+**Estado**: FIRMADO el 2026-10-29T01:50:33Z — `movil_perfil_s05.firma.json`. Función sin material queda «no consta», nunca «sin hallazgos» (FR-06).
 
 ## Gobernar
 - Síntesis: Consta para este ejercicio: alcance y hallazgos firmados (alcance_movil.firma.json, movil_w4b_riesgos.firma.json) con autorizacion y ventana. Politicas del titular del dispositivo fuera de este ejercicio: no consta.
@@ -8,7 +8,7 @@
 ## Identificar
 - R1: R1 vive en Identificar: 65 componentes exportados sin permiso (51 con intent-filter): la gestion de la configuracion exige endurecer l…
 - R6: R6 vive en Identificar: Parche de seguridad 2026-09-01 (~2 meses): la gestion de vulnerabilidades tecnicas cubre la actualizacion opor…
-- Síntesis: Inventario realizado: dispositivo (H1), aplicacion y origen (H2), superficie exportada medida (H6). Estado de verified boot / bootloader / cifrado del dispositivo: pendiente de medicion (dispositivo desconectado).
+- Síntesis: Inventario realizado: dispositivo (H1), aplicación y origen (H2), superficie exportada medida (H6). Postura medida el 2026-10-29 (raw/postura_dispositivo.txt): bootloader bloqueado (ro.boot.flash.locked=1), verified boot green, dm-verity enforcing, cifrado de archivos (FBE) activo, build user no depurable.
 
 ## Proteger
 - R1: R1 vive en Proteger: 65 componentes exportados sin permiso (51 con intent-filter): la gestion de la configuracion exige endurecer l…
@@ -19,14 +19,14 @@
 - R6: R6 vive en Proteger: Parche de seguridad 2026-09-01 (~2 meses): la gestion de vulnerabilidades tecnicas cubre la actualizacion opor…
 - R7: R7 vive en Proteger: Version 2.26.42.74 del 2026-10-28 con auto-actualizacion: gestion de vulnerabilidades del software instalado; …
 - R8: R8 vive en Proteger: cleartextTrafficPermitted=true en base-config y CA de usuario con overridePins=true: el uso de criptografia ex…
-- Síntesis: Concentra la mayor parte del material: R1-R3, R5-R8. Medidas activas observadas: pin-set (20+ SHA-256) y cleartext=false en dominios de mensajeria (H8), exclusion total de backups (H7), denegaciones de permisos por el usuario (H5), firma y origen Play verificados (H4).
+- Síntesis: Concentra la mayor parte del material: R1-R3, R5-R8. Medidas activas observadas: pin-set (20+ SHA-256) y cleartext=false en dominios de mensajeria (H8), exclusion total de backups (H7), denegaciones de permisos por el usuario (H5), firma y origen Play verificados (H4). Cifrado del dispositivo (FBE) y verified boot reforzando la postura (medido 2026-10-29).
 
 ## Detectar
-- Síntesis: No consta: no se midieron capacidades de deteccion del dispositivo (estado de Play Protect, monitoreo) — pendiente de recopilacion documental.
+- Síntesis: Play Protect activo: package_verifier_user_consent=1 y upload_apk_enable=1 (verificacion de apps con envio de APKs a Google); el toggle legacy package_verifier_enable queda sin fijar (default). Medido el 2026-10-29 (raw/postura_dispositivo.txt). Monitoreo adicional del SO: no consta.
 
 ## Responder
 - Síntesis: No consta: sin hechos sobre respuesta a incidentes del activo.
 
 ## Recuperar
 - R4: R4 vive en Recuperar: Backup: la app excluye todo su almacen y exige capacidad de cifrado (disableIfNoEncryptionCapabilities); el us…
-- Síntesis: La app excluye todo su almacen de respaldo y transferencia (H7); cifrado del dispositivo y copias a nivel SO: no consta (pendiente).
+- Síntesis: La app excluye todo su almacen de respaldo y transferencia (H7); cifrado del dispositivo (FBE) activo, medido 2026-10-29. Copias a nivel SO fuera de alcance del proveedor de la app: no consta.
