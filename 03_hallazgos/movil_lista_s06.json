@@ -1,0 +1,61 @@
+{
+  "producto": "S06 movil — La lista",
+  "version_esquema": "1",
+  "fuente": "movil_perfil_s05 (firmado) + inventario de la auditoría móvil",
+  "controles": [
+    {
+      "id": "1",
+      "titulo": "Inventario y control de activos",
+      "justificacion": "H1+H2+H6: inventario del dispositivo, la aplicación y su superficie exportada realizado y custodiado.",
+      "estado": "propuesto-firmado"
+    },
+    {
+      "id": "2",
+      "titulo": "Inventario y control de software",
+      "justificacion": "H2: versión exacta, instalador (Play) y fecha de actualización registrados; APK con digest verificado.",
+      "estado": "propuesto-firmado"
+    },
+    {
+      "id": "3",
+      "titulo": "Protección de datos",
+      "justificacion": "H5+H7: permisos sensibles concedidos/denegados y exclusión total de backups (datos protegidos por diseño de la app).",
+      "estado": "propuesto-firmado"
+    },
+    {
+      "id": "4",
+      "titulo": "Configuración segura de activos y software",
+      "justificacion": "R1+R6+R8: superficie exportada sin permiso, parche 2026-09-01 y configuración de red (cleartext base, CA usuario con override de pins, pin-set en dominios clave).",
+      "estado": "propuesto-firmado"
+    },
+    {
+      "id": "6",
+      "titulo": "Gestión de accesos",
+      "justificacion": "H5: gestión de accesos del usuario — denegaciones de SMS/llamadas/legacy storage; biometría concedida.",
+      "estado": "propuesto-firmado"
+    },
+    {
+      "id": "7",
+      "titulo": "Gestión continua de vulnerabilidades",
+      "justificacion": "R6+R7: parche de plataforma (~2 meses) y versión vigente de la app con auto-actualización.",
+      "estado": "propuesto-firmado"
+    },
+    {
+      "id": "10",
+      "titulo": "Defensas contra malware",
+      "justificacion": "R3: REQUEST_INSTALL_PACKAGES declarado — superficie a vigilar ante malvertising.",
+      "estado": "propuesto-firmado"
+    },
+    {
+      "id": "11",
+      "titulo": "Recuperación de datos",
+      "justificacion": "H7: alcance de respaldo — la app excluye todo su almacén en backup y transferencia.",
+      "estado": "propuesto-firmado"
+    },
+    {
+      "id": "16",
+      "titulo": "Seguridad de aplicaciones",
+      "justificacion": "R1+R8: seguridad de la aplicación — componentes exportados y configuración de red del APK analizados estáticamente.",
+      "estado": "propuesto-firmado"
+    }
+  ]
+}

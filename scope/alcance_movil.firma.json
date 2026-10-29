@@ -1,0 +1,10 @@
+{
+  "archivo": "alcance_movil.md",
+  "ruta": "scope/alcance_movil.md",
+  "firmante": "Cristóbal Herrera <herrera.jara.cristobal@gmail.com>",
+  "rol": "auditor responsable (dueño del dispositivo y de la evidencia)",
+  "fecha_utc": "2026-10-29T01:36:11Z",
+  "sha256_bytes_firmados": "e98bd84e360c9aa179d590e9d41d71bb616708bd7f50a7ad56ed4437c55739e0",
+  "metodo": "aprobación electrónica en sesión; huella SHA-256 sobre los bytes guardados (convención S01, sin GPG)",
+  "nota": "Firma del alcance con el ajuste evidenciado com.whatsapp -> com.whatsapp.w4b."
+}
