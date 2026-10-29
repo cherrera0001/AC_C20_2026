@@ -173,8 +173,8 @@ def main():
              "(2) triaje fino de R1 sobre decompilación jadx (evidencia disponible); "
              "(3) push a origin (decisión del dueño).")
     L.append("")
-    L.append("Anexos: `movil_matriz_cumplimiento.md`; índice de evidencia en "
-             f"`{RUN}/MANIFEST.json`; productos S03–S06 firmados en `03_hallazgos/`.")
+    L.append("Anexos: `movil_matriz_cumplimiento.md`; mapa HTML recorrible `movil_mapa.html` "
+             "(índice de evidencia en " f"`{RUN}/MANIFEST.json`); productos S03–S06 firmados en `03_hallazgos/`.")
     p = out / "movil_informe_cierre.md"
     p.write_text("\n".join(L) + "\n", encoding="utf-8")
     firma(p, ahora)
