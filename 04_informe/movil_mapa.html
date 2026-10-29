@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cierre de la auditoría móvil — Dispositivo personal + WhatsApp Business (com.whatsapp.w4b)</title>
+<style>
+:root { --bg:#ffffff; --fg:#1a1a1a; --mut:#6b6a66; --card:#f6f5f2; --line:#e2e0da; }
+html[data-theme="dark"] { --bg:#191919; --fg:#e8e6e1; --mut:#9a978f; --card:#222120; --line:#3a3833; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:15px/1.55 system-ui,Segoe UI,Roboto,sans-serif; }
+header { padding:1.4rem 1.6rem .6rem; }
+h1 { font-size:1.35rem; margin:.2rem 0; }
+.meta { color:var(--mut); font-size:.85rem; }
+.tiles { display:flex; flex-wrap:wrap; gap:.6rem; padding:.8rem 1.6rem; }
+.tile { display:flex; align-items:center; gap:.45rem; background:var(--card); border:1px solid var(--line); border-radius:.6rem; padding:.4rem .8rem; }
+.dot { width:.7rem; height:.7rem; border-radius:50%; display:inline-block; }
+.tile-n { font-weight:700; font-size:1.05rem; }
+.tile-l { color:var(--mut); font-size:.8rem; text-transform:uppercase; letter-spacing:.03em; }
+.controls { padding:.2rem 1.6rem .8rem; display:flex; flex-wrap:wrap; gap:.4rem; align-items:center; }
+button { background:var(--card); color:var(--fg); border:1px solid var(--line); border-radius:.5rem; padding:.3rem .8rem; cursor:pointer; font-size:.85rem; }
+button.on { outline:2px solid var(--fg); }
+input[type=search] { flex:1; min-width:12rem; background:var(--card); color:var(--fg); border:1px solid var(--line); border-radius:.5rem; padding:.35rem .7rem; }
+main { padding:0 1.6rem 2.5rem; max-width:60rem; }
+details.finding { background:var(--card); border:1px solid var(--line); border-radius:.7rem; margin:.7rem 0; }
+details.finding summary { cursor:pointer; list-style:none; display:flex; flex-wrap:wrap; align-items:center; gap:.6rem; padding:.75rem .95rem; }
+details.finding summary::-webkit-details-marker { display:none; }
+.badge { --c:#6b6a66; border-left:.45rem solid var(--c); padding:.12rem .55rem; border-radius:.35rem; background:var(--bg); font-weight:700; font-size:.78rem; text-transform:uppercase; }
+.fid { font-weight:700; }
+.ftitle { flex:1; min-width:14rem; }
+.body { padding:.2rem 1rem 1rem; border-top:1px solid var(--line); }
+.chips { display:flex; flex-wrap:wrap; gap:.35rem; margin:.5rem 0; }
+.chip { font-size:.75rem; background:var(--bg); border:1px solid var(--line); border-radius:.4rem; padding:.12rem .5rem; color:var(--mut); }
+.ev { margin:.5rem 0 0; padding-left:1.1rem; }
+.ev li { margin:.25rem 0; font-size:.85rem; }
+code { background:var(--bg); border:1px solid var(--line); border-radius:.3rem; padding:.05rem .35rem; font-size:.82rem; }
+.nivel { font-weight:700; text-transform:uppercase; font-size:.8rem; }
+.nivel.cumple { color:#2a78d6; } .nivel.parcial { color:#b8860b; }
+table { border-collapse:collapse; width:100%; font-size:.85rem; margin-top:.8rem; }
+th,td { border:1px solid var(--line); padding:.4rem .6rem; text-align:left; vertical-align:top; }
+th { background:var(--card); }
+footer { padding:1rem 1.6rem 2rem; color:var(--mut); font-size:.8rem; }
+.noresults { padding:1rem 1.6rem; color:var(--mut); display:none; }
+</style>
+</head>
+<body>
+<header>
+<h1>Cierre de la auditoría móvil — Dispositivo personal + WhatsApp Business (com.whatsapp.w4b)</h1>
+<div class="meta">Run RUN-20261029T003246Z-3802 · objetivo dispositivo a525a763 + com.whatsapp.w4b v2.26.42.74 · 2026-10-29 · APK sha256 <code>5b1bdcad6e615a4488aba59c381add57…</code> · firmado por Cristóbal Herrera</div>
+</header>
+<div class="tiles">
+<div class="tile"><span class="dot" style="background:#ec835a"></span><span class="tile-n">1</span><span class="tile-l">ALTO</span></div>
+<div class="tile"><span class="dot" style="background:#fab219"></span><span class="tile-n">3</span><span class="tile-l">MEDIO</span></div>
+<div class="tile"><span class="dot" style="background:#2a78d6"></span><span class="tile-n">4</span><span class="tile-l">BAJO</span></div>
+</div>
+<div class="controls">
+<button class="sevbtn" data-sev="ALTO">ALTO</button>
+<button class="sevbtn" data-sev="MEDIO">MEDIO</button>
+<button class="sevbtn" data-sev="BAJO">BAJO</button>
+<button class="sevbtn" data-sev="INFORMACIONAL">INFORMACIONAL</button>
+<input id="q" type="search" placeholder="buscar por riesgo, CWE, control…">
+<button id="theme" type="button">claro/oscuro</button>
+</div>
+<main>
+<details class="finding" data-sev="ALTO" data-text="r1 superficie exportada sin permiso (65 componentes; 51 con intent-filter) componentes exportados sin android:permission; notables: receivers otp, webloginresulthandleractivity, smblinkingservice, instrumentationservice. cwe-926 (pendiente de confirmar) a.8.9 proteger, identificar 4, 1">
+<summary><span class="badge" style="--c:#ec835a">ALTO</span>
+<span class="fid">R1</span><span class="ftitle">Superficie exportada sin permiso (65 componentes; 51 con intent-filter)</span></summary>
+<div class="body">
+<p>Componentes exportados sin android:permission; notables: receivers OTP, WebLoginResultHandlerActivity, SmbLinkingService, InstrumentationService.</p>
+<div class="chips">
+<span class="chip">ISO/IEC 27001:2022 A.8.9</span>
+<span class="chip">NIST CSF 2.0: Proteger, Identificar</span>
+<span class="chip">CIS v8.1: 4, 1</span>
+<span class="chip">CWE-926 (pendiente de confirmar)</span>
+<span class="chip">cumplimiento propuesto: <span class="nivel parcial">parcial</span></span>
+</div>
+<strong>Evidencia (custodia verificable):</strong>
+<ul class="ev"><li><code>rea/06_analisis_propio.json</code> · sha256 <code>66c3b12700bbfc50…</code></li><li><code>raw/dumpsys_com.whatsapp.w4b.txt</code> · sha256 <code>3986314ce1216bff…</code></li><li><code>rea/05_inspect_apk.json</code> · sha256 <code>80fab08aabbc558b…</code></li></ul>
+</div>
+</details>
+<details class="finding" data-sev="MEDIO" data-text="r2 permisos sensibles concedidos (ubicación, micrófono, cámara, contactos, medios) concedidos por decisión del usuario; denegados sms/llamadas/legacy storage. cwe-250 a.8.3 proteger 3, 6">
+<summary><span class="badge" style="--c:#fab219">MEDIO</span>
+<span class="fid">R2</span><span class="ftitle">Permisos sensibles concedidos (ubicación, micrófono, cámara, contactos, medios)</span></summary>
+<div class="body">
+<p>Concedidos por decisión del usuario; denegados SMS/llamadas/legacy storage.</p>
+<div class="chips">
+<span class="chip">ISO/IEC 27001:2022 A.8.3</span>
+<span class="chip">NIST CSF 2.0: Proteger</span>
+<span class="chip">CIS v8.1: 3, 6</span>
+<span class="chip">CWE-250</span>
+<span class="chip">cumplimiento propuesto: <span class="nivel parcial">parcial</span></span>
+</div>
+<strong>Evidencia (custodia verificable):</strong>
+<ul class="ev"><li><code>raw/dumpsys_com.whatsapp.w4b.txt</code> · sha256 <code>3986314ce1216bff…</code></li></ul>
+</div>
+</details>
+<details class="finding" data-sev="MEDIO" data-text="r3 request_install_packages declarado función de instalación de paquetes presente en manifiesto. cwe-494 a.8.9 proteger 10">
+<summary><span class="badge" style="--c:#fab219">MEDIO</span>
+<span class="fid">R3</span><span class="ftitle">REQUEST_INSTALL_PACKAGES declarado</span></summary>
+<div class="body">
+<p>Función de instalación de paquetes presente en manifiesto.</p>
+<div class="chips">
+<span class="chip">ISO/IEC 27001:2022 A.8.9</span>
+<span class="chip">NIST CSF 2.0: Proteger</span>
+<span class="chip">CIS v8.1: 10</span>
+<span class="chip">CWE-494</span>
+<span class="chip">cumplimiento propuesto: <span class="nivel parcial">parcial</span></span>
+</div>
+<strong>Evidencia (custodia verificable):</strong>
+<ul class="ev"><li><code>rea/06_analisis_propio.json</code> · sha256 <code>66c3b12700bbfc50…</code></li></ul>
+</div>
+</details>
+<details class="finding" data-sev="BAJO" data-text="r4 backup (cerrado) full_backup_content y data_extraction_rules excluyen todo; cifrado fbe medido. cwe-312 a.8.24 recuperar, proteger 11">
+<summary><span class="badge" style="--c:#2a78d6">BAJO</span>
+<span class="fid">R4</span><span class="ftitle">Backup (cerrado)</span></summary>
+<div class="body">
+<p>full_backup_content y data_extraction_rules excluyen todo; cifrado FBE medido.</p>
+<div class="chips">
+<span class="chip">ISO/IEC 27001:2022 A.8.24</span>
+<span class="chip">NIST CSF 2.0: Recuperar, Proteger</span>
+<span class="chip">CIS v8.1: 11</span>
+<span class="chip">CWE-312</span>
+<span class="chip">cumplimiento propuesto: <span class="nivel cumple">cumple</span></span>
+</div>
+<strong>Evidencia (custodia verificable):</strong>
+<ul class="ev"><li><code>rea/xml_seguridad/full_backup_content.xml</code> · sha256 <code>e498231749043fd1…</code></li><li><code>rea/xml_seguridad/data_extraction_rules.xml</code> · sha256 <code>11497269b9fec28c…</code></li><li><code>raw/postura_dispositivo.txt</code> · sha256 <code>06f8967033643a80…</code></li></ul>
+</div>
+</details>
+<details class="finding" data-sev="BAJO" data-text="r5 legacy external storage declarado mitigado por denegaciones de runtime. cwe-200 a.8.3 proteger 3">
+<summary><span class="badge" style="--c:#2a78d6">BAJO</span>
+<span class="fid">R5</span><span class="ftitle">Legacy external storage declarado</span></summary>
+<div class="body">
+<p>Mitigado por denegaciones de runtime.</p>
+<div class="chips">
+<span class="chip">ISO/IEC 27001:2022 A.8.3</span>
+<span class="chip">NIST CSF 2.0: Proteger</span>
+<span class="chip">CIS v8.1: 3</span>
+<span class="chip">CWE-200</span>
+<span class="chip">cumplimiento propuesto: <span class="nivel parcial">parcial</span></span>
+</div>
+<strong>Evidencia (custodia verificable):</strong>
+<ul class="ev"><li><code>rea/06_analisis_propio.json</code> · sha256 <code>66c3b12700bbfc50…</code></li><li><code>raw/dumpsys_com.whatsapp.w4b.txt</code> · sha256 <code>3986314ce1216bff…</code></li></ul>
+</div>
+</details>
+<details class="finding" data-sev="BAJO" data-text="r6 parche de plataforma 2026-09-01 (postura verificada) bootloader locked, verified boot green, dm-verity enforcing, fbe, play protect activo. n/d a.8.8 proteger, identificar 7">
+<summary><span class="badge" style="--c:#2a78d6">BAJO</span>
+<span class="fid">R6</span><span class="ftitle">Parche de plataforma 2026-09-01 (postura verificada)</span></summary>
+<div class="body">
+<p>Bootloader locked, verified boot green, dm-verity enforcing, FBE, Play Protect activo.</p>
+<div class="chips">
+<span class="chip">ISO/IEC 27001:2022 A.8.8</span>
+<span class="chip">NIST CSF 2.0: Proteger, Identificar</span>
+<span class="chip">CIS v8.1: 7</span>
+<span class="chip">n/d</span>
+<span class="chip">cumplimiento propuesto: <span class="nivel cumple">cumple</span></span>
+</div>
+<strong>Evidencia (custodia verificable):</strong>
+<ul class="ev"><li><code>raw/postura_dispositivo.txt</code> · sha256 <code>06f8967033643a80…</code></li><li><code>rea/01_inspect_adb_device.json</code> · sha256 <code>6287ab063e5238b5…</code></li></ul>
+</div>
+</details>
+<details class="finding" data-sev="BAJO" data-text="r7 versión de la app vigente (2.26.42.74, 2026-10-28) auto-actualización por play; firmas v2/v3/v3.1 con certificado whatsapp verificado. n/d a.8.8 proteger 7">
+<summary><span class="badge" style="--c:#2a78d6">BAJO</span>
+<span class="fid">R7</span><span class="ftitle">Versión de la app vigente (2.26.42.74, 2026-10-28)</span></summary>
+<div class="body">
+<p>Auto-actualización por Play; firmas v2/v3/v3.1 con certificado WhatsApp verificado.</p>
+<div class="chips">
+<span class="chip">ISO/IEC 27001:2022 A.8.8</span>
+<span class="chip">NIST CSF 2.0: Proteger</span>
+<span class="chip">CIS v8.1: 7</span>
+<span class="chip">n/d</span>
+<span class="chip">cumplimiento propuesto: <span class="nivel cumple">cumple</span></span>
+</div>
+<strong>Evidencia (custodia verificable):</strong>
+<ul class="ev"><li><code>rea/07_firma_certificados.json</code> · sha256 <code>25fe962b40a52cc8…</code></li><li><code>raw/dumpsys_com.whatsapp.w4b.txt</code> · sha256 <code>3986314ce1216bff…</code></li></ul>
+</div>
+</details>
+<details class="finding" data-sev="MEDIO" data-text="r8 red: cleartext base y ca de usuario con override de pins base-config cleartexttrafficpermitted=true; trust-anchors user overridepins=true; dominios clave con pin-set (20+ sha-256). cwe-319 a.8.24 proteger 4">
+<summary><span class="badge" style="--c:#fab219">MEDIO</span>
+<span class="fid">R8</span><span class="ftitle">Red: cleartext base y CA de usuario con override de pins</span></summary>
+<div class="body">
+<p>base-config cleartextTrafficPermitted=true; trust-anchors user overridePins=true; dominios clave con pin-set (20+ SHA-256).</p>
+<div class="chips">
+<span class="chip">ISO/IEC 27001:2022 A.8.24</span>
+<span class="chip">NIST CSF 2.0: Proteger</span>
+<span class="chip">CIS v8.1: 4</span>
+<span class="chip">CWE-319</span>
+<span class="chip">cumplimiento propuesto: <span class="nivel parcial">parcial</span></span>
+</div>
+<strong>Evidencia (custodia verificable):</strong>
+<ul class="ev"><li><code>rea/xml_seguridad/network_security_config.xml</code> · sha256 <code>e563c177b42e8f7f…</code></li></ul>
+</div>
+</details>
+<table>
+<thead><tr><th>Control ISO</th><th>Riesgo</th><th>Nivel propuesto</th><th>CWE</th></tr></thead>
+<tbody><tr><td>ISO/IEC 27001:2022 A.8.9</td><td>R1 — Superficie exportada sin permiso (65 componentes; 51 con intent-filter)</td><td><span class='nivel parcial'>parcial</span></td><td>CWE-926 (pendiente de confirmar)</td></tr>
+<tr><td>ISO/IEC 27001:2022 A.8.3</td><td>R2 — Permisos sensibles concedidos (ubicación, micrófono, cámara, contactos, medios)</td><td><span class='nivel parcial'>parcial</span></td><td>CWE-250</td></tr>
+<tr><td>ISO/IEC 27001:2022 A.8.9</td><td>R3 — REQUEST_INSTALL_PACKAGES declarado</td><td><span class='nivel parcial'>parcial</span></td><td>CWE-494</td></tr>
+<tr><td>ISO/IEC 27001:2022 A.8.24</td><td>R4 — Backup (cerrado)</td><td><span class='nivel cumple'>cumple</span></td><td>CWE-312</td></tr>
+<tr><td>ISO/IEC 27001:2022 A.8.3</td><td>R5 — Legacy external storage declarado</td><td><span class='nivel parcial'>parcial</span></td><td>CWE-200</td></tr>
+<tr><td>ISO/IEC 27001:2022 A.8.8</td><td>R6 — Parche de plataforma 2026-09-01 (postura verificada)</td><td><span class='nivel cumple'>cumple</span></td><td>n/d</td></tr>
+<tr><td>ISO/IEC 27001:2022 A.8.8</td><td>R7 — Versión de la app vigente (2.26.42.74, 2026-10-28)</td><td><span class='nivel cumple'>cumple</span></td><td>n/d</td></tr>
+<tr><td>ISO/IEC 27001:2022 A.8.24</td><td>R8 — Red: cleartext base y CA de usuario con override de pins</td><td><span class='nivel parcial'>parcial</span></td><td>CWE-319</td></tr></tbody>
+</table>
+<p class="noresults" id="noresults">sin resultados para el filtro actual</p>
+</main>
+<footer>Informe recorrible hasta la evidencia: cada tarjeta enlaza sus archivos con huella SHA-256 en evidence/RUN-20261029T003246Z-3802. Niveles de cumplimiento propuestos por el auditor (principio II); un borrador no se presenta como informe firmado. Generado por platform/tools/mapa_movil.py (canonico: platform/c4a/htmlmap.py M1).</footer>
+<script>
+var b=document.getElementById('theme');
+b.onclick=function(){var h=document.documentElement;var d=h.getAttribute('data-theme')==='dark';h.setAttribute('data-theme',d?'':'dark');};
+var sev='';
+var btns=document.querySelectorAll('.sevbtn');
+btns.forEach(function(x){x.onclick=function(){sev=(sev===x.dataset.sev)?'':x.dataset.sev;btns.forEach(function(y){y.classList.toggle('on',y.dataset.sev===sev);});filtrar();};});
+var q=document.getElementById('q');
+q.oninput=filtrar;
+function filtrar(){
+ var t=q.value.toLowerCase();var any=false;
+ document.querySelectorAll('details.finding').forEach(function(d){
+  var okS=!sev||d.dataset.sev===sev;
+  var okT=!t||d.dataset.text.indexOf(t)>-1;
+  var show=okS&&okT;d.style.display=show?'':'none';if(show)any=true;
+ });
+ document.getElementById('noresults').style.display=any?'none':'block';
+}
+</script>
+</body>
+</html>

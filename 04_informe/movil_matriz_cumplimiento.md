@@ -1,6 +1,6 @@
 # Matriz de cumplimiento — auditoría móvil (anexo del cierre)
 
-**Estado**: FIRMADO el 2026-10-29T01:54:53Z. Niveles: propuesta fundamentada del auditor (principio II); no atribuible al estándar.
+**Estado**: FIRMADO el 2026-10-29T01:58:05Z. Niveles: propuesta fundamentada del auditor (principio II); no atribuible al estándar.
 
 | Control | Marco | Riesgo | Hechos | Nivel propuesto | Fundamento |
 |---|---|---|---|---|---|

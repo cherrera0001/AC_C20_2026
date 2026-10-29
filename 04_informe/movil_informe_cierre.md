@@ -1,6 +1,6 @@
 # Cierre de la auditoría móvil — Dispositivo personal + WhatsApp Business (com.whatsapp.w4b)
 
-**Estado**: FIRMADO el 2026-10-29T01:54:53Z (registro `.firma.json` por archivo). Plantilla: `PLANTILLA_CIERRE_C4A.md`.
+**Estado**: FIRMADO el 2026-10-29T01:58:05Z (registro `.firma.json` por archivo). Plantilla: `PLANTILLA_CIERRE_C4A.md`.
 
 ## 1. Identificación y autorización
 
@@ -112,4 +112,4 @@ Dictamen limitado al alcance y a la fecha: el dispositivo y la aplicación objet
 
 Pendientes declarados: (1) VALIDAR artículo de exclusión personal, Ley 21.719; (2) triaje fino de R1 sobre decompilación jadx (evidencia disponible); (3) push a origin (decisión del dueño).
 
-Anexos: `movil_matriz_cumplimiento.md`; índice de evidencia en `evidence/RUN-20261029T003246Z-3802/MANIFEST.json`; productos S03–S06 firmados en `03_hallazgos/`.
+Anexos: `movil_matriz_cumplimiento.md`; mapa HTML recorrible `movil_mapa.html` (índice de evidencia en `evidence/RUN-20261029T003246Z-3802/MANIFEST.json`); productos S03–S06 firmados en `03_hallazgos/`.
