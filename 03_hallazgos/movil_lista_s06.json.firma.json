@@ -1,7 +1,7 @@
 {
   "archivo": "movil_lista_s06.json",
   "firmante": "Cristóbal Herrera <herrera.jara.cristobal@gmail.com>",
-  "fecha_utc": "2026-10-29T01:47:20Z",
+  "fecha_utc": "2026-10-29T01:50:33Z",
   "sha256_bytes_firmados": "65a258d76bc292c14fc6ad0f82cdea12a7d9721bded96a2a3871227f8d372125",
   "justificacion": "Aprobacion electronica del auditor en sesion 2026-10-29 («Adelante, queda todo firmado en este proceso»); huella SHA-256 de los bytes guardados; anulable con evento firma_anulada."
 }

@@ -1,6 +1,6 @@
 # S06 (móvil) — La lista: CIS Controls v8.1 aplicables, anclados en hechos
 
-**Estado**: FIRMADO el 2026-10-29T01:47:20Z — `movil_lista_s06.firma.json`. Seleccionar un control no es un dictamen de cumplimiento; la versión del catálogo es v8.1 (fuente oficial CIS).
+**Estado**: FIRMADO el 2026-10-29T01:50:33Z — `movil_lista_s06.firma.json`. Seleccionar un control no es un dictamen de cumplimiento; la versión del catálogo es v8.1 (fuente oficial CIS).
 
 ## 1 — Inventario y control de activos
 Justificación de aplicabilidad: H1+H2+H6: inventario del dispositivo, la aplicación y su superficie exportada realizado y custodiado.

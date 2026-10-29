@@ -1,6 +1,6 @@
 # S04 (móvil) — La cita: riesgos ubicados en marco con versión e identificador
 
-**Estado**: FIRMADO el 2026-10-29T01:47:20Z — registro en `movil_citas_s04.firma.json`. Propuesta de la herramienta; correspondencia = sugerencia explicada (principio II).
+**Estado**: FIRMADO el 2026-10-29T01:50:33Z — registro en `movil_citas_s04.firma.json`. Propuesta de la herramienta; correspondencia = sugerencia explicada (principio II).
 
 ## R1
 - Marco: ISO/IEC 27001 — versión 2022 — identificador **A.8.9**
