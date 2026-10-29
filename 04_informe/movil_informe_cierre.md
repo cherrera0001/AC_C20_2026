@@ -1,6 +1,6 @@
 # Cierre de la auditoría móvil — Dispositivo personal + WhatsApp Business (com.whatsapp.w4b)
 
-**Estado**: FIRMADO el 2026-10-29T01:58:05Z (registro `.firma.json` por archivo). Plantilla: `PLANTILLA_CIERRE_C4A.md`.
+**Estado**: FIRMADO el 2026-10-29T02:10:22Z (registro `.firma.json` por archivo). Plantilla: `PLANTILLA_CIERRE_C4A.md`.
 
 ## 1. Identificación y autorización
 

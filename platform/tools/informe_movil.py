@@ -234,6 +234,178 @@ def main():
     firma(p, ahora)
     print("movil_plan_remediacion.md OK")
 
+    # ---------- resumen ejecutivo para gerencia ----------
+    E = ["# Resumen ejecutivo — Auditoría móvil (dispositivo personal + WhatsApp Business)",
+         "",
+         f"**Ejecución:** {RUN.split('/')[-1]} · 2026-10-29 · objetivo: teléfono personal del auditor (Xiaomi) y `com.whatsapp.w4b`",
+         "**Alcance:** solo lectura (ADB + análisis estático del APK). Sin tráfico de red, sin ejecución "
+         "de la app, sin datos de terceros.",
+         "",
+         "## Estado en una línea",
+         "",
+         "El teléfono está bien protegido y la aplicación es genuina y está al día; se identificaron "
+         "**8 riesgos (0 críticos: 1 alto, 3 medios, 4 bajos)**, todos gestionables con configuración y "
+         "hábitos del titular. Productos firmados y evidencia verificable en cada afirmación.",
+         "",
+         "## Riesgos por severidad",
+         "",
+         "| Severidad | N.º | IDs |",
+         "|---|---|---|",
+         "| Alto | 1 | R1 |",
+         "| Medio | 3 | R2, R3, R8 |",
+         "| Bajo | 4 | R4, R5, R6, R7 |",
+         "",
+         "## Los cinco de mayor prioridad",
+         "",
+         "1. **R1 (alto)** — La app expone 65 componentes a otras apps del equipo sin protección de "
+         "permisos (51 alcanzables directamente); conviene confirmar sus validaciones internas.",
+         "2. **R8 (medio)** — La configuración de red permite tráfico sin cifrar fuera de los dominios de "
+         "WhatsApp y confía en certificadores instalados por el usuario, lo que puede anular el "
+         "anclaje de certificados.",
+         "3. **R3 (medio)** — La app puede iniciar instalaciones de otras aplicaciones; solo aceptar "
+         "instalaciones propias y esperadas.",
+         "4. **R2 (medio)** — Permisos sensibles activos (ubicación precisa, micrófono, cámara, "
+         "contactos); ajustarlos a «solo con la app en uso» donde se pueda.",
+         "5. **R6 (bajo, residual)** — El parche de seguridad tiene ~2 meses; mantener la "
+         "actualización automática del sistema.",
+         "",
+         "## Qué significa y qué sigue",
+         "",
+         "No hay indicio de compromiso: el arranque del equipo está verificado, el almacenamiento "
+         "cifrado, el antivirus de Google activo, y la app fue instalada y se actualiza por Google Play "
+         "con firma criptográfica de WhatsApp comprobada. Los riesgos restantes son de configuración "
+         "y de superficie propia de una app de mensajería de este tamaño. El plan de remediación "
+         "(movil_plan_remediacion.md) ordena las acciones; la mayoría es gratuita y toma minutos.",
+         "",
+         "## Decisiones solicitadas",
+         "",
+         "- Aprobar los ajustes de permisos recomendados (ubicación/micrófono solo con la app en uso).",
+         "- Acordar la regla de no instalar certificados de empresa/proxy en el equipo personal.",
+         "- Mantener activadas las actualizaciones automáticas de sistema y de la app.",
+         "",
+         "## Limitaciones",
+         "",
+         "No se analizó tráfico de red ni comportamiento en ejecución (por diseño del alcance). "
+         "Una referencia legal (artículo de la Ley 21.719) quedó marcada VALIDAR. "
+         "La función «Responder» del marco NIST queda sin material: un equipo personal no tiene "
+         "proceso formal de respuesta a incidentes.",
+         "",
+         "La evidencia de cada afirmación está en " + RUN + "/ con huella SHA-256 y verificación "
+         "independiente (SHA256SUMS). Este resumen se presenta junto al informe de cierre firmado."]
+    p = out / "movil_resumen_ejecutivo.md"
+    p.write_text("\n".join(E) + "\n", encoding="utf-8")
+    firma(p, ahora)
+    print("movil_resumen_ejecutivo.md OK")
+
+    # ---------- definiciones y recomendaciones para el equipo técnico ----------
+    D = ["# Definiciones y recomendaciones para el equipo técnico — auditoría móvil",
+         "",
+         f"**Ejecución:** {RUN.split('/')[-1]} · 2026-10-29. Documento técnico complementario del "
+         "informe de cierre: define cada concepto medido y entrega la recomendación concreta con su "
+         "evidencia verificable.",
+         "",
+         "## Glosario de términos medidos",
+         "",
+         "- **Componente exportado**: pieza de la app (activity, service, receiver, provider) que otras "
+         "apps del equipo pueden invocar. Sin permiso asociado, cualquier app instalada la alcanza.",
+         "- **Intent-filter**: declaración de qué intents (acciones) atiende un componente; con "
+         "filtro, el componente es alcanzable por intents implícitos.",
+         "- **Permisos runtime**: permisos Android de la categoría «peligrosa» que el usuario concede o "
+         "deniega por app (ubicación, micrófono, cámara, contactos…).",
+         "- **Network Security Config**: política TLS de la app: qué dominios exigen cifrado, qué "
+         "certificados se confían (sistema/usuario) y qué certificados se anclan (pin-set).",
+         "- **Cleartext**: tráfico HTTP sin cifrar. `cleartextTrafficPermitted=true` lo permite.",
+         "- **Pin-set / overridePins**: anclaje de certificados de un dominio; `overridePins=true` en "
+         "un trust-anchor permite que ese certificado lo anule un CA instalado por el usuario.",
+         "- **Firmas APK v2/v3/v3.1**: esquemas de firma de Android; v3.1 añade rotación de claves. Su "
+         "presencia con certificado correcto acredita autenticidad e integridad.",
+         "- **Verified boot / dm-verity / FBE**: arranque verificado (green), verificación de bloques "
+         "del sistema (enforcing) y cifrado basado en archivos del almacenamiento.",
+         "- **Play Protect**: verificación de apps de Google: analiza APKs antes y después de la "
+         "instalación.",
+         "",
+         "## Riesgos: definición, constatación y recomendación",
+         ""]
+
+    def bloque(rid, titulo, definicion, constatado, recomendacion):
+        D.append(f"### {rid} — {titulo}")
+        D.append(f"- **Definición**: {definicion}")
+        D.append(f"- **Constatado**: {constatado}")
+        D.append(f"- **Recomendación técnica**: {recomendacion}")
+        D.append("")
+
+    bloque("R1", "Superficie exportada sin permiso",
+           "componentes de la app invocables por otras apps sin control de acceso por permiso.",
+           "65 exportados sin permiso, 51 con intent-filter; notables: receivers de OTP "
+           "(OtpRequestedReceiver, OtpIdentityHashRequestedReceiver), WebLoginResultHandlerActivity, "
+           "TpalOAuthRedirectActivity, SmbLinkingService, InstrumentationService.",
+           "Triar los componentes señalados sobre la decompilación jadx ya disponible "
+           f"({RUN}/rea/05_inspect_apk.json): buscar validaciones de emisor (getCallingPackage, "
+           "signature check). Si faltan, reportar a Meta. Re-ejecutar el triaje con un agente explore "
+           "por lotes; evidencia: rea/06_analisis_propio.json, raw/dumpsys_com.whatsapp.w4b.txt.")
+    bloque("R2", "Permisos sensibles concedidos",
+           "la app accede a ubicación precisa, micrófono, cámara, contactos y medios del equipo.",
+           "Concedidos por el usuario; denegados SMS, llamadas, registro de llamadas y almacenamiento "
+           "legacy.",
+           "Ajustes → Permisos: ubicación y micrófono en «solo con la app en uso» si el flujo de "
+           "negocio lo permite; revisar contactos y medios. Evidencia: raw/dumpsys_com.whatsapp.w4b.txt.")
+    bloque("R3", "REQUEST_INSTALL_PACKAGES",
+           "permiso que permite a la app iniciar la instalación de otros APK.",
+           "Declarado en el manifiesto (rea/06_analisis_propio.json).",
+           "En decompilación, localizar los PendingIntent de instalación y confirmar que van "
+           "acompañados del prompt del sistema. Política de uso: aceptar solo instalaciones "
+           "esperadas. Monitorear con Play Protect activo (postura medida: activo).")
+    bloque("R4", "Backup (riesgo cerrado)",
+           "respaldo de datos de la app por Android (nube o transferencia a otro equipo).",
+           "full_backup_content.xml y data_extraction_rules.xml excluyen todo el almacén de la app; "
+           "cifrado FBE activo en el equipo.",
+           "Sin acción. Verificación periódica tras actualizaciones de la app (las reglas pueden "
+           "cambiar): re-extraer los XML con el parser (platform/tools/analisis_apk_propio.py).")
+    bloque("R5", "Legacy external storage",
+           "modo de almacenamiento compartido heredado que amplía el acceso a archivos.",
+           "requestLegacyExternalStorage=true en manifiesto; mitigado por denegaciones de runtime.",
+           "Sin acción inmediata; monitorear que las denegaciones se mantengan tras actualizaciones.")
+    bloque("R6", "Parche de plataforma (residual bajo)",
+           "antigüedad del último parche de seguridad del sistema operativo.",
+           "Parche 2026-09-01 (~2 meses), verified boot green, dm-verity enforcing, bootloader "
+           "bloqueado (raw/postura_dispositivo.txt).",
+           "Mantener auto-actualización del SO; verificar el parche mensualmente con "
+           "platform/tools/postura_dispositivo.sh tras reconectar el equipo.")
+    bloque("R7", "Versión de la aplicación",
+           "exposición a vulnerabilidades conocidas ya corregidas por el fabricante de la app.",
+           "v2.26.42.74 del 2026-10-28, instalada y actualizada por Google Play; firma verificada "
+           "(certificados Brian Acton/WhatsApp LLC, huella coincidente con fuente pública).",
+           "Mantener auto-actualización por Play; ante CVEs públicos de WhatsApp, confirmar que la "
+           "versión instalada es posterior al parche (versionCode en raw/dumpsys_com.whatsapp.w4b.txt).")
+    bloque("R8", "Configuración de red (cleartext y CA de usuario)",
+           "política TLS global de la app y confianza en certificadores del usuario.",
+           "base-config cleartextTrafficPermitted=true; trust-anchors incluye CA de usuario con "
+           "overridePins=true; dominios WhatsApp con cleartext=false y pin-set (20+ SHA-256) "
+           "(rea/xml_seguridad/network_security_config.xml).",
+           "No instalar CA de usuario salvo necesidad transitoria (proxy corporativo) y eliminarlos al "
+           "terminar; verificar Ajustes → Seguridad → Credenciales de usuario. Si el alcance futuro "
+           "autoriza tráfico, complementar con la skill net-pcap-analisis sobre una captura del "
+           "equipo (hoy fuera de alcance).")
+
+    D.append("## Recomendaciones transversales al equipo técnico")
+    D.append("")
+    D.append("- Reutilizar la cadena de adquisición: `platform/tools/auditoria_movil_wsp.sh` (adquisición "
+             "+ custodia) y `postura_dispositivo.sh` (postura al reconectar); ambas regeneran "
+             "SHA256SUMS y MANIFEST.")
+    D.append("- Todo resultado se firma con `.firma.json` (firmante + fecha + huella SHA-256); verificar "
+             "antes de presentar: recalcular el hash del archivo contra su registro de firma.")
+    D.append("- Sincronización con GitHub: fetch → inspeccionar archivos remotos → rebase → verificar "
+             "firmas y suite de pruebas (`python -m unittest discover -s platform/tests`) → push "
+             "fast-forward, sin `--force`.")
+    D.append("- La evidencia cruda no se versiona (`evidence/` está en `.gitignore`); se versionan "
+             "productos, firmas y herramientas.")
+    D.append("")
+    D.append("Evidencia de referencia: " + RUN + "/ (MANIFEST.json con 29 archivos verificados).")
+    p = out / "movil_definiciones_recomendaciones_tecnicas.md"
+    p.write_text("\n".join(D) + "\n", encoding="utf-8")
+    firma(p, ahora)
+    print("movil_definiciones_recomendaciones_tecnicas.md OK")
+
     # ---------- frases S08 ----------
     G = ["# Frase para la gerencia (S08) — auditoría móvil",
          "",
@@ -274,6 +446,7 @@ def main():
 
     ok = True
     for n in ("movil_informe_cierre", "movil_matriz_cumplimiento", "movil_plan_remediacion",
+              "movil_resumen_ejecutivo", "movil_definiciones_recomendaciones_tecnicas",
               "movil_frase_gerencia", "movil_frase_tecnica"):
         p = out / f"{n}.md"
         f = json.loads((out / f"{n}.md.firma.json").read_text(encoding="utf-8"))
